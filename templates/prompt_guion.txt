@@ -1,0 +1,21 @@
+Genera un guion de edición completo en formato JSON para el siguiente relato paranormal.
+
+## DATOS DEL PROYECTO
+- **Plataforma destino:** {plataforma}
+- **Formato de video:** {formato_video}
+- **Resolución:** {resolucion}
+- **Duración del audio de narración:** {duracion_audio}
+
+## RELATO PARANORMAL
+{relato}
+
+## INSTRUCCIONES ESPECÍFICAS
+1. Calcula los tiempos de cada imagen para que cubran TODA la duración del audio ({duracion_audio}), sin huecos.
+2. Los prompts de imagen deben estar en INGLÉS y ser extremadamente detallados para IAs generativas.
+3. Recomienda pistas de fondo REALES (artista - nombre) que yo pueda buscar y editar.
+4. Los efectos de sonido deben tener tiempos exactos dentro de la duración del audio.
+5. Adapta la estrategia al formato de {plataforma}: {notas_plataforma}
+
+## ESQUEMA JSON REQUERIDO
+Responde SOLO con un JSON válido que siga exactamente esta estructura:
+{schema_json}
