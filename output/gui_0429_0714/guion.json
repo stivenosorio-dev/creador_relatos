@@ -1,0 +1,134 @@
+{
+    "guion": {
+        "titulo_video": "El Guardia de Seguridad Desapareció",
+        "descripcion": "Un relato paranormal sobre un guardia de seguridad que desaparece misteriosamente.",
+        "hashtags": "#paranormal #relato #misterio #desaparecida",
+        "duracion_total_audio": "08:15",
+        "plataforma": "youtube_largo",
+        "formato_video": "16:9 (1920x1080)",
+        "configuracion_audio_recomendada": {
+            "volumen_narracion_db": -6.0,
+            "volumen_musica_fondo_db": -22.0,
+            "volumen_musica_en_pausas_db": -14.0,
+            "volumen_sfx_ambiente_db": -20.0,
+            "volumen_sfx_impacto_db": -10.0,
+            "ducking_activado": true,
+            "fade_in_musica_ms": 3000,
+            "fade_out_musica_ms": 5000,
+            "notas_mezcla": ""
+        },
+        "pistas_de_fondo_recomendadas": [
+            {
+                "segmento": "introduccion",
+                "tiempo_inicio": "00:00:05",
+                "tiempo_fin": "00:00:20",
+                "referencia": "Myuu - Haunted Ambient 1",
+                "alternativa": "",
+                "mood": "misterio_creciente",
+                "volumen_relativo_sugerido": 0.15,
+                "notas": ""
+            },
+            {
+                "segmento": "desarrollo",
+                "tiempo_inicio": "00:03:45",
+                "tiempo_fin": "00:04:30",
+                "referencia": "CO.AG Music - Dark Ambient 1",
+                "alternativa": "",
+                "mood": "tensión_sostenida",
+                "volumen_relativo_sugerido": 0.2,
+                "notas": ""
+            },
+            {
+                "segmento": "climax",
+                "tiempo_inicio": "00:05:45",
+                "tiempo_fin": "00:06:30",
+                "referencia": "Adrian von Ziegler - Dark Celtic 1",
+                "alternativa": "",
+                "mood": "terror_intenso",
+                "volumen_relativo_sugerido": 0.25,
+                "notas": ""
+            },
+            {
+                "segmento": "cierre",
+                "tiempo_inicio": "00:07:30",
+                "tiempo_fin": "00:08:15",
+                "referencia": "",
+                "alternativa": "",
+                "mood": "inquietud_residual",
+                "volumen_relativo_sugerido": 0.1,
+                "notas": ""
+            }
+        ],
+        "imagenes": [
+            {
+                "id": 1,
+                "tiempo_inicio": "00:01:05",
+                "tiempo_fin": "00:02:30",
+                "duracion_segundos": 25,
+                "prompt": "Un guardia de seguridad parado en un pasillo oscuro. La cámara se acerca a su rostro, mostrando una expresión seria.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 6,
+                "notas_director": "Mostrar la expresión del guardia para crear un ambiente de misterio."
+            },
+            {
+                "id": 2,
+                "tiempo_inicio": "00:04:45",
+                "tiempo_fin": "00:05:30",
+                "duracion_segundos": 25,
+                "prompt": "La cámara se mueve a través del pasillo, mostrando sillas vacías y luces parpadeantes. La iluminación es débil y azulada.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 4,
+                "notas_director": "Crear un ambiente de tensión y misterio."
+            },
+            {
+                "id": 3,
+                "tiempo_inicio": "00:06:30",
+                "tiempo_fin": "00:07:15",
+                "duracion_segundos": 25,
+                "prompt": "La cámara se acerca a la cara del guardia, mostrando una expresión de sorpresa y miedo.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 8,
+                "notas_director": "Crear un impacto máximo en el espectador."
+            }
+        ],
+        "efectos_sonidos_especiales": [
+            {
+                "id": 1,
+                "tiempo_exacto": "00:03:45",
+                "duracion_ms": 5000,
+                "tipo": "transicion",
+                "referencia": "fade_from_black_2s",
+                "descripcion": "Un fade en negro para crear un ambiente de tensión.",
+                "volumen_sugerido_db": -15.0,
+                "fade_in_ms": 0,
+                "fade_out_ms": 300
+            },
+            {
+                "id": 2,
+                "tiempo_exacto": "00:07:30",
+                "duracion_ms": 5000,
+                "tipo": "transicion",
+                "referencia": "fade_from_black_2s",
+                "descripcion": "Un fade en negro para crear un ambiente de inquietud.",
+                "volumen_sugerido_db": -15.0,
+                "fade_in_ms": 0,
+                "fade_out_ms": 300
+            }
+        ],
+        "notas_generales_director": {
+            "ritmo_narrativo": "Misterio creciente, tensión sostenida, terror máximo",
+            "uso_silencios": "Crear silencios para generar impacto.",
+            "regla_de_oro_sfx": "Minimizar los efectos de sonido a menos que sean absolutamente necesarios.",
+            "imagenes_principio": "Mostrar la expresión del guardia, crear un ambiente de misterio.",
+            "hook_inicial": "Crear un impacto máximo en el espectador con la primera imagen.",
+            "call_to_action": ""
+        },
+        "thumbnail_sugerido": "Un screenshot atractivo de la cara del guardia, con una expresión de sorpresa y miedo."
+    }
+}

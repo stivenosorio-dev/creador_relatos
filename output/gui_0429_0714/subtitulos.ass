@@ -1,0 +1,453 @@
+[Script Info]
+Title: Subtitulos Paranormales
+ScriptType: v4.00+
+WrapStyle: 1
+ScaledBorderAndShadow: yes
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Letra blanca con sombra oscura (para relato base)
+Style: Terror,Bebas Neue,100,&H00FFFFFF,&H000000FF,&H44000000,&H88000000,-1,0,0,0,100,100,2,0,1,6,0,5,50,50,400,1
+; Letra con resalte rojo (usado principalmente con el karaoke)
+Style: Impacto,Bebas Neue,110,&H00FFFFFF,&H000000FF,&H33000000,&H88000000,-1,0,0,0,100,100,2,0,1,8,0,5,50,50,400,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.96,Impacto,,0,0,0,,{\k42}El {\k38}guardia {\k15}de
+Dialogue: 0,0:00:00.96,0:00:01.76,Impacto,,0,0,0,,{\k46}seguridad {\k18}de {\k15}mi
+Dialogue: 0,0:00:01.76,0:00:02.85,Impacto,,0,0,0,,{\k61}universidad {\k22}me {\k25}dijo
+Dialogue: 0,0:00:02.85,0:00:03.89,Impacto,,0,0,0,,{\k30}algo {\k37}antes {\k35}de
+Dialogue: 0,0:00:03.89,0:00:05.08,Impacto,,0,0,0,,{\k118}desaparecer.
+Dialogue: 0,0:00:05.55,0:00:06.25,Impacto,,0,0,0,,{\k32}Pienso {\k13}en {\k24}eso
+Dialogue: 0,0:00:06.25,0:00:07.13,Impacto,,0,0,0,,{\k28}todos {\k33}y {\k25}cada
+Dialogue: 0,0:00:07.13,0:00:07.70,Impacto,,0,0,0,,{\k24}uno {\k13}de {\k18}los
+Dialogue: 0,0:00:07.70,0:00:08.11,Impacto,,0,0,0,,{\k41}días.
+Dialogue: 0,0:00:09.08,0:00:09.92,Impacto,,0,0,0,,{\k17}No {\k24}se {\k41}suponía
+Dialogue: 0,0:00:09.92,0:00:10.74,Impacto,,0,0,0,,{\k16}que {\k24}yo {\k41}estuviera
+Dialogue: 0,0:00:10.74,0:00:11.38,Impacto,,0,0,0,,{\k16}en {\k17}el {\k30}campus
+Dialogue: 0,0:00:11.38,0:00:12.01,Impacto,,0,0,0,,{\k33}tan {\k29}tarde.
+Dialogue: 0,0:00:13.03,0:00:13.66,Impacto,,0,0,0,,{\k18}Era {\k29}como {\k14}las
+Dialogue: 0,0:00:13.66,0:00:14.22,Impacto,,0,0,0,,{\k19}2 {\k10}de {\k25}la
+Dialogue: 0,0:00:14.22,0:00:14.61,Impacto,,0,0,0,,{\k39}mañana,
+Dialogue: 0,0:00:14.92,0:00:15.64,Impacto,,0,0,0,,{\k16}a {\k40}finales {\k16}de
+Dialogue: 0,0:00:15.64,0:00:16.14,Impacto,,0,0,0,,{\k50}semestre.
+Dialogue: 0,0:00:17.07,0:00:17.87,Impacto,,0,0,0,,{\k18}Me {\k21}había {\k39}dormido
+Dialogue: 0,0:00:17.87,0:00:18.69,Impacto,,0,0,0,,{\k14}en {\k12}la {\k55}biblioteca
+Dialogue: 0,0:00:18.69,0:00:19.44,Impacto,,0,0,0,,{\k10}y {\k30}me {\k33}desperté
+Dialogue: 0,0:00:19.44,0:00:20.57,Impacto,,0,0,0,,{\k33}con {\k27}sillas {\k51}vacías
+Dialogue: 0,0:00:20.57,0:00:21.35,Impacto,,0,0,0,,{\k22}y {\k21}las {\k33}luces
+Dialogue: 0,0:00:21.35,0:00:22.19,Impacto,,0,0,0,,{\k83}parpadeando.
+Dialogue: 0,0:00:23.10,0:00:23.89,Impacto,,0,0,0,,{\k27}Ese {\k26}tipo {\k25}de
+Dialogue: 0,0:00:23.89,0:00:24.71,Impacto,,0,0,0,,{\k46}silencio {\k21}que {\k14}no
+Dialogue: 0,0:00:24.71,0:00:25.53,Impacto,,0,0,0,,{\k26}se {\k25}siente {\k30}como
+Dialogue: 0,0:00:25.53,0:00:25.87,Impacto,,0,0,0,,{\k33}paz.
+Dialogue: 0,0:00:26.96,0:00:27.73,Impacto,,0,0,0,,{\k23}Se {\k30}siente {\k23}como
+Dialogue: 0,0:00:27.73,0:00:28.42,Impacto,,0,0,0,,{\k24}si {\k21}algo {\k22}se
+Dialogue: 0,0:00:28.42,0:00:29.53,Impacto,,0,0,0,,{\k29}hubiera {\k42}quedado {\k39}quieto
+Dialogue: 0,0:00:29.53,0:00:30.42,Impacto,,0,0,0,,{\k32}justo {\k40}antes {\k16}de
+Dialogue: 0,0:00:30.42,0:00:30.98,Impacto,,0,0,0,,{\k7}que {\k17}tú {\k30}lo
+Dialogue: 0,0:00:30.98,0:00:31.82,Impacto,,0,0,0,,{\k83}vieras.
+Dialogue: 0,0:00:32.25,0:00:33.17,Impacto,,0,0,0,,{\k39}Empaque {\k20}mi {\k32}bolsa
+Dialogue: 0,0:00:33.17,0:00:33.92,Impacto,,0,0,0,,{\k38}rápido {\k17}y {\k17}me
+Dialogue: 0,0:00:33.92,0:00:34.50,Impacto,,0,0,0,,{\k14}fui {\k23}por {\k20}la
+Dialogue: 0,0:00:34.50,0:00:35.28,Impacto,,0,0,0,,{\k32}salida {\k46}lateral.
+Dialogue: 0,0:00:36.29,0:00:37.06,Impacto,,0,0,0,,{\k30}Ahí {\k19}fue {\k26}donde
+Dialogue: 0,0:00:37.06,0:00:38.06,Impacto,,0,0,0,,{\k50}encontré {\k17}al {\k32}señor
+Dialogue: 0,0:00:38.06,0:00:38.35,Impacto,,0,0,0,,{\k29}Osei.
+Dialogue: 0,0:00:39.36,0:00:40.03,Impacto,,0,0,0,,{\k17}Era {\k20}el {\k28}guardia
+Dialogue: 0,0:00:40.03,0:00:40.90,Impacto,,0,0,0,,{\k24}de {\k41}seguridad {\k21}de
+Dialogue: 0,0:00:40.90,0:00:41.35,Impacto,,0,0,0,,{\k16}la {\k28}noche.
+Dialogue: 0,0:00:42.32,0:00:43.25,Impacto,,0,0,0,,{\k24}Un {\k28}tipo {\k41}grande,
+Dialogue: 0,0:00:43.64,0:00:44.11,Impacto,,0,0,0,,{\k47}callado,
+Dialogue: 0,0:00:44.39,0:00:45.10,Impacto,,0,0,0,,{\k12}de {\k27}esos {\k30}hombres
+Dialogue: 0,0:00:45.10,0:00:46.06,Impacto,,0,0,0,,{\k28}que {\k47}asienten {\k20}en
+Dialogue: 0,0:00:46.06,0:00:46.67,Impacto,,0,0,0,,{\k14}vez {\k21}de {\k25}hablar.
+Dialogue: 0,0:00:47.67,0:00:48.43,Impacto,,0,0,0,,{\k21}Lo {\k20}había {\k33}visto
+Dialogue: 0,0:00:48.43,0:00:49.35,Impacto,,0,0,0,,{\k30}como {\k25}cien {\k35}veces
+Dialogue: 0,0:00:49.35,0:00:50.06,Impacto,,0,0,0,,{\k21}en {\k16}dos {\k32}años
+Dialogue: 0,0:00:50.06,0:00:51.03,Impacto,,0,0,0,,{\k23}y {\k30}nunca {\k43}habíamos
+Dialogue: 0,0:00:51.03,0:00:52.42,Impacto,,0,0,0,,{\k39}tenido {\k40}una {\k57}conversación
+Dialogue: 0,0:00:52.42,0:00:53.00,Impacto,,0,0,0,,{\k21}de {\k35}verdad.
+Dialogue: 0,0:00:54.02,0:00:55.57,Impacto,,0,0,0,,{\k55}Revisaba {\k16}mi {\k83}identificación,
+Dialogue: 0,0:00:55.96,0:00:57.07,Impacto,,0,0,0,,{\k47}asentía {\k24}y {\k39}seguía.
+Dialogue: 0,0:00:58.02,0:00:58.92,Impacto,,0,0,0,,{\k32}Eso {\k29}era {\k28}toda
+Dialogue: 0,0:00:58.92,0:00:59.79,Impacto,,0,0,0,,{\k35}nuestra {\k51}relación.
+Dialogue: 0,0:01:00.75,0:01:01.79,Impacto,,0,0,0,,{\k35}Esa {\k39}noche {\k29}estaba
+Dialogue: 0,0:01:01.79,0:01:02.57,Impacto,,0,0,0,,{\k42}parado {\k16}al {\k19}final
+Dialogue: 0,0:01:02.57,0:01:03.47,Impacto,,0,0,0,,{\k26}del {\k63}pasillo,
+Dialogue: 0,0:01:03.82,0:01:04.57,Impacto,,0,0,0,,{\k25}mirando {\k20}la {\k29}puerta
+Dialogue: 0,0:01:04.57,0:01:05.35,Impacto,,0,0,0,,{\k21}del {\k32}nivel {\k23}de
+Dialogue: 0,0:01:05.35,0:01:07.12,Impacto,,0,0,0,,{\k64}mantenimiento {\k21}del {\k90}sótano.
+Dialogue: 0,0:01:07.68,0:01:08.39,Impacto,,0,0,0,,{\k15}Ni {\k40}la {\k14}estaba
+Dialogue: 0,0:01:08.39,0:01:09.20,Impacto,,0,0,0,,{\k81}revisando.
+Dialogue: 0,0:01:10.04,0:01:10.78,Impacto,,0,0,0,,{\k17}Ni {\k35}se {\k20}estaba
+Dialogue: 0,0:01:10.78,0:01:11.85,Impacto,,0,0,0,,{\k107}acercando.
+Dialogue: 0,0:01:12.46,0:01:13.15,Impacto,,0,0,0,,{\k21}Solo {\k46}ahí,
+Dialogue: 0,0:01:13.56,0:01:14.67,Impacto,,0,0,0,,{\k44}completamente {\k65}quieto,
+Dialogue: 0,0:01:14.84,0:01:15.65,Impacto,,0,0,0,,{\k14}con {\k14}la {\k52}linterna
+Dialogue: 0,0:01:15.65,0:01:17.26,Impacto,,0,0,0,,{\k51}apuntando {\k20}al {\k89}piso.
+Dialogue: 0,0:01:17.68,0:01:18.43,Impacto,,0,0,0,,{\k29}Casi {\k25}me {\k20}pasó
+Dialogue: 0,0:01:18.43,0:01:18.95,Impacto,,0,0,0,,{\k26}de {\k25}largo.
+Dialogue: 0,0:01:19.98,0:01:20.93,Impacto,,0,0,0,,{\k23}Él {\k26}habló {\k45}primero.
+Dialogue: 0,0:01:21.96,0:01:22.90,Impacto,,0,0,0,,{\k43}¿Sientes {\k50}eso?
+Dialogue: 0,0:01:23.56,0:01:24.57,Impacto,,0,0,0,,{\k43}Me {\k57}detuve.
+Dialogue: 0,0:01:25.54,0:01:26.43,Impacto,,0,0,0,,{\k54}¿Sentir {\k34}qué?
+Dialogue: 0,0:01:27.09,0:01:28.50,Impacto,,0,0,0,,{\k38}No {\k28}me {\k73}miró.
+Dialogue: 0,0:01:29.15,0:01:30.07,Impacto,,0,0,0,,{\k29}Seguía {\k42}mirando {\k20}la
+Dialogue: 0,0:01:30.07,0:01:31.09,Impacto,,0,0,0,,{\k29}puerta {\k21}del {\k50}sótano.
+Dialogue: 0,0:01:31.35,0:01:33.62,Impacto,,0,0,0,,{\k121}Algunos {\k57}edificios {\k46}juntan
+Dialogue: 0,0:01:33.62,0:01:34.12,Impacto,,0,0,0,,{\k50}cosas,
+Dialogue: 0,0:01:34.43,0:01:34.76,Impacto,,0,0,0,,{\k32}dijo.
+Dialogue: 0,0:01:35.81,0:01:37.32,Impacto,,0,0,0,,{\k17}No {\k134}fantasmas.
+Dialogue: 0,0:01:37.82,0:01:38.31,Impacto,,0,0,0,,{\k14}No {\k20}como {\k14}en
+Dialogue: 0,0:01:38.31,0:01:39.54,Impacto,,0,0,0,,{\k20}las {\k103}películas.
+Dialogue: 0,0:01:40.28,0:01:40.73,Impacto,,0,0,0,,{\k45}Solo,
+Dialogue: 0,0:01:41.06,0:01:41.35,Impacto,,0,0,0,,{\k29}peso.
+Dialogue: 0,0:01:42.45,0:01:43.42,Impacto,,0,0,0,,{\k32}Malos {\k37}momentos {\k26}que
+Dialogue: 0,0:01:43.42,0:01:44.54,Impacto,,0,0,0,,{\k29}nunca {\k59}terminaron {\k22}de
+Dialogue: 0,0:01:44.54,0:01:44.87,Impacto,,0,0,0,,{\k33}pasar.
+Dialogue: 0,0:01:45.00,0:01:45.71,Impacto,,0,0,0,,{\k18}¿Tu {\k25}alguna {\k28}vez
+Dialogue: 0,0:01:45.71,0:01:46.34,Impacto,,0,0,0,,{\k32}entras {\k17}a {\k12}un
+Dialogue: 0,0:01:46.34,0:01:47.15,Impacto,,0,0,0,,{\k28}cuarto {\k25}y {\k28}sientes
+Dialogue: 0,0:01:47.15,0:01:48.45,Impacto,,0,0,0,,{\k29}que {\k70}interrumpiste {\k29}algo?
+Dialogue: 0,0:01:49.40,0:01:50.07,Impacto,,0,0,0,,{\k39}Yo {\k28}sí.
+Dialogue: 0,0:01:50.96,0:01:51.60,Impacto,,0,0,0,,{\k21}Pero {\k24}no {\k17}dije
+Dialogue: 0,0:01:51.60,0:01:52.01,Impacto,,0,0,0,,{\k40}nada.
+Dialogue: 0,0:01:53.01,0:01:54.12,Impacto,,0,0,0,,{\k28}Este {\k54}edificio {\k28}lo
+Dialogue: 0,0:01:54.12,0:01:54.42,Impacto,,0,0,0,,{\k29}hace,
+Dialogue: 0,0:01:54.85,0:01:55.43,Impacto,,0,0,0,,{\k57}continuó.
+Dialogue: 0,0:01:56.23,0:01:57.07,Impacto,,0,0,0,,{\k26}Desde {\k28}que {\k29}empecé
+Dialogue: 0,0:01:57.07,0:01:57.42,Impacto,,0,0,0,,{\k34}aquí,
+Dialogue: 0,0:01:57.71,0:01:58.76,Impacto,,0,0,0,,{\k21}hace {\k34}once {\k48}años.
+Dialogue: 0,0:01:59.73,0:02:00.92,Impacto,,0,0,0,,{\k20}Pero {\k68}últimamente {\k29}es
+Dialogue: 0,0:02:00.92,0:02:01.45,Impacto,,0,0,0,,{\k53}distinto.
+Dialogue: 0,0:02:02.40,0:02:03.56,Impacto,,0,0,0,,{\k59}Últimamente {\k26}se {\k29}siente
+Dialogue: 0,0:02:03.56,0:02:04.18,Impacto,,0,0,0,,{\k25}como {\k20}si {\k16}lo
+Dialogue: 0,0:02:04.18,0:02:04.81,Impacto,,0,0,0,,{\k21}que {\k17}sea {\k23}que
+Dialogue: 0,0:02:04.81,0:02:05.64,Impacto,,0,0,0,,{\k18}haya {\k28}allá {\k35}abajo,
+Dialogue: 0,0:02:06.06,0:02:07.06,Impacto,,0,0,0,,{\k15}hizo {\k29}una {\k54}pausa,
+Dialogue: 0,0:02:07.34,0:02:07.78,Impacto,,0,0,0,,{\k9}la {\k20}deó {\k14}un
+Dialogue: 0,0:02:07.78,0:02:08.56,Impacto,,0,0,0,,{\k21}poco {\k19}la {\k36}cabeza,
+Dialogue: 0,0:02:09.00,0:02:09.80,Impacto,,0,0,0,,{\k12}como {\k25}si {\k42}estuviera
+Dialogue: 0,0:02:09.80,0:02:10.52,Impacto,,0,0,0,,{\k71}escuchando,
+Dialogue: 0,0:02:10.69,0:02:11.80,Impacto,,0,0,0,,{\k18}ya {\k36}hubiera {\k56}terminado
+Dialogue: 0,0:02:11.80,0:02:12.46,Impacto,,0,0,0,,{\k29}de {\k36}esperar.
+Dialogue: 0,0:02:13.31,0:02:14.59,Impacto,,0,0,0,,{\k37}Me {\k90}reí.
+Dialogue: 0,0:02:15.12,0:02:15.72,Impacto,,0,0,0,,{\k59}Nerviosa,
+Dialogue: 0,0:02:16.12,0:02:16.55,Impacto,,0,0,0,,{\k42}cortita,
+Dialogue: 0,0:02:16.96,0:02:17.50,Impacto,,0,0,0,,{\k53}apenada.
+Dialogue: 0,0:02:18.44,0:02:19.09,Impacto,,0,0,0,,{\k20}Por {\k15}fin {\k28}me
+Dialogue: 0,0:02:19.09,0:02:19.50,Impacto,,0,0,0,,{\k41}miró.
+Dialogue: 0,0:02:20.28,0:02:21.12,Impacto,,0,0,0,,{\k26}Y {\k21}quiero {\k35}tener
+Dialogue: 0,0:02:21.12,0:02:22.03,Impacto,,0,0,0,,{\k40}cuidado {\k28}con {\k21}cómo
+Dialogue: 0,0:02:22.03,0:02:23.28,Impacto,,0,0,0,,{\k53}describo {\k20}su {\k51}expresión
+Dialogue: 0,0:02:23.28,0:02:24.44,Impacto,,0,0,0,,{\k30}porque {\k35}desde {\k50}entonces
+Dialogue: 0,0:02:24.44,0:02:25.22,Impacto,,0,0,0,,{\k24}la {\k28}he {\k25}estado
+Dialogue: 0,0:02:25.22,0:02:26.21,Impacto,,0,0,0,,{\k36}dando {\k47}vueltas {\k14}en
+Dialogue: 0,0:02:26.21,0:02:26.94,Impacto,,0,0,0,,{\k21}la {\k29}cabeza {\k21}mil
+Dialogue: 0,0:02:26.94,0:02:27.46,Impacto,,0,0,0,,{\k52}veces.
+Dialogue: 0,0:02:28.47,0:02:29.87,Impacto,,0,0,0,,{\k24}No {\k47}parecía {\k68}asustado.
+Dialogue: 0,0:02:30.69,0:02:31.65,Impacto,,0,0,0,,{\k52}Parecía {\k21}un {\k21}hombre
+Dialogue: 0,0:02:31.65,0:02:32.36,Impacto,,0,0,0,,{\k21}que {\k21}ya {\k26}había
+Dialogue: 0,0:02:32.36,0:02:33.40,Impacto,,0,0,0,,{\k50}aceptado {\k27}algo {\k26}que
+Dialogue: 0,0:02:33.40,0:02:33.97,Impacto,,0,0,0,,{\k15}el {\k24}resto {\k17}de
+Dialogue: 0,0:02:33.97,0:02:35.31,Impacto,,0,0,0,,{\k42}nosotros {\k57}todavía {\k34}no
+Dialogue: 0,0:02:35.31,0:02:36.30,Impacto,,0,0,0,,{\k18}nos {\k30}habían {\k50}dicho.
+Dialogue: 0,0:02:37.31,0:02:37.99,Impacto,,0,0,0,,{\k18}Vete {\k17}a {\k32}casa,
+Dialogue: 0,0:02:38.34,0:02:38.90,Impacto,,0,0,0,,{\k18}dijo {\k24}en {\k13}voz
+Dialogue: 0,0:02:38.90,0:02:39.27,Impacto,,0,0,0,,{\k36}baja.
+Dialogue: 0,0:02:40.28,0:02:41.06,Impacto,,0,0,0,,{\k19}No {\k30}uses {\k28}la
+Dialogue: 0,0:02:41.06,0:02:42.25,Impacto,,0,0,0,,{\k34}salida {\k40}lateral {\k45}después
+Dialogue: 0,0:02:42.25,0:02:43.13,Impacto,,0,0,0,,{\k21}de {\k65}medianoche.
+Dialogue: 0,0:02:44.02,0:02:44.91,Impacto,,0,0,0,,{\k19}No {\k37}vuelvas {\k31}a
+Dialogue: 0,0:02:44.91,0:02:45.87,Impacto,,0,0,0,,{\k12}este {\k56}edificio {\k28}cuando
+Dialogue: 0,0:02:45.87,0:02:46.62,Impacto,,0,0,0,,{\k30}ya {\k18}sea {\k25}de
+Dialogue: 0,0:02:46.62,0:02:46.93,Impacto,,0,0,0,,{\k31}noche.
+Dialogue: 0,0:02:47.81,0:02:48.46,Impacto,,0,0,0,,{\k28}¿Por {\k37}qué?
+Dialogue: 0,0:02:49.28,0:02:50.00,Impacto,,0,0,0,,{\k34}Miró {\k15}de {\k21}vuelta
+Dialogue: 0,0:02:50.00,0:02:50.78,Impacto,,0,0,0,,{\k21}la {\k32}puerta {\k23}del
+Dialogue: 0,0:02:50.78,0:02:51.78,Impacto,,0,0,0,,{\k100}sótano.
+Dialogue: 0,0:02:52.28,0:02:53.00,Impacto,,0,0,0,,{\k26}Porque {\k21}he {\k23}estado
+Dialogue: 0,0:02:53.00,0:02:54.21,Impacto,,0,0,0,,{\k60}vigilando {\k25}esa {\k34}puerta
+Dialogue: 0,0:02:54.21,0:02:55.43,Impacto,,0,0,0,,{\k45}durante {\k30}once {\k46}años,
+Dialogue: 0,0:02:55.87,0:02:56.09,Impacto,,0,0,0,,{\k21}dijo.
+Dialogue: 0,0:02:57.03,0:02:57.72,Impacto,,0,0,0,,{\k21}Y {\k15}el {\k31}jueves
+Dialogue: 0,0:02:57.72,0:02:58.94,Impacto,,0,0,0,,{\k34}pasado {\k36}estaba {\k51}abierta
+Dialogue: 0,0:02:58.94,0:02:59.77,Impacto,,0,0,0,,{\k30}cuando {\k52}llegué.
+Dialogue: 0,0:03:00.47,0:03:01.63,Impacto,,0,0,0,,{\k30}Y {\k35}estaba {\k50}abierta
+Dialogue: 0,0:03:01.63,0:03:02.31,Impacto,,0,0,0,,{\k26}cuando {\k25}me {\k15}fui.
+Dialogue: 0,0:03:03.28,0:03:03.96,Impacto,,0,0,0,,{\k24}Y {\k43}nunca,
+Dialogue: 0,0:03:04.27,0:03:04.87,Impacto,,0,0,0,,{\k11}ni {\k26}una {\k21}sola
+Dialogue: 0,0:03:04.87,0:03:05.31,Impacto,,0,0,0,,{\k43}vez,
+Dialogue: 0,0:03:05.61,0:03:06.65,Impacto,,0,0,0,,{\k7}la {\k15}he {\k80}desbloqueado.
+Dialogue: 0,0:03:07.56,0:03:08.12,Impacto,,0,0,0,,{\k21}Me {\k34}fui.
+Dialogue: 0,0:03:09.13,0:03:09.87,Impacto,,0,0,0,,{\k34}Caminé {\k40}rápido,
+Dialogue: 0,0:03:10.19,0:03:10.96,Impacto,,0,0,0,,{\k24}no {\k52}corrí.
+Dialogue: 0,0:03:11.75,0:03:12.56,Impacto,,0,0,0,,{\k26}Me {\k35}repetí {\k18}que
+Dialogue: 0,0:03:12.56,0:03:13.30,Impacto,,0,0,0,,{\k30}solo {\k21}era {\k21}un
+Dialogue: 0,0:03:13.30,0:03:14.28,Impacto,,0,0,0,,{\k25}hombre {\k52}extraño {\k19}y
+Dialogue: 0,0:03:14.28,0:03:15.00,Impacto,,0,0,0,,{\k28}viejo {\k19}que {\k24}había
+Dialogue: 0,0:03:15.00,0:03:16.63,Impacto,,0,0,0,,{\k58}trabajado {\k63}demasiados {\k41}turnos
+Dialogue: 0,0:03:16.63,0:03:17.50,Impacto,,0,0,0,,{\k22}de {\k23}noche {\k40}solo.
+Dialogue: 0,0:03:18.46,0:03:19.28,Impacto,,0,0,0,,{\k31}Eso {\k21}fue {\k28}hace
+Dialogue: 0,0:03:19.28,0:03:20.03,Impacto,,0,0,0,,{\k25}seis {\k50}semanas.
+Dialogue: 0,0:03:21.13,0:03:21.96,Impacto,,0,0,0,,{\k22}El {\k31}señor {\k28}Osei
+Dialogue: 0,0:03:21.96,0:03:22.53,Impacto,,0,0,0,,{\k17}no {\k12}ha {\k28}vuelto
+Dialogue: 0,0:03:22.53,0:03:23.46,Impacto,,0,0,0,,{\k20}al {\k34}campus {\k37}desde
+Dialogue: 0,0:03:23.46,0:03:24.12,Impacto,,0,0,0,,{\k29}esa {\k36}noche.
+Dialogue: 0,0:03:25.12,0:03:25.96,Impacto,,0,0,0,,{\k47}Pregunté {\k15}en {\k20}la
+Dialogue: 0,0:03:25.96,0:03:26.62,Impacto,,0,0,0,,{\k65}recepción.
+Dialogue: 0,0:03:27.55,0:03:28.37,Impacto,,0,0,0,,{\k41}Dijeron {\k19}que {\k20}se
+Dialogue: 0,0:03:28.37,0:03:29.33,Impacto,,0,0,0,,{\k12}fue {\k21}sin {\k62}avisar.
+Dialogue: 0,0:03:29.71,0:03:31.05,Impacto,,0,0,0,,{\k69}Sin {\k31}dejar {\k32}un
+Dialogue: 0,0:03:31.05,0:03:32.56,Impacto,,0,0,0,,{\k43}contacto {\k21}para {\k85}reenviarte.
+Dialogue: 0,0:03:33.41,0:03:34.56,Impacto,,0,0,0,,{\k18}Sin {\k96}explicación.
+Dialogue: 0,0:03:35.43,0:03:36.22,Impacto,,0,0,0,,{\k23}Once {\k36}años {\k19}en
+Dialogue: 0,0:03:36.22,0:03:37.11,Impacto,,0,0,0,,{\k18}el {\k31}mismo {\k38}trabajo
+Dialogue: 0,0:03:37.11,0:03:37.84,Impacto,,0,0,0,,{\k17}y {\k20}de {\k35}repente
+Dialogue: 0,0:03:37.84,0:03:38.93,Impacto,,0,0,0,,{\k36}no {\k50}regresó {\k21}una
+Dialogue: 0,0:03:38.93,0:03:39.43,Impacto,,0,0,0,,{\k50}mañana.
+Dialogue: 0,0:03:40.46,0:03:41.13,Impacto,,0,0,0,,{\k25}Paso {\k18}por {\k23}ese
+Dialogue: 0,0:03:41.13,0:03:42.30,Impacto,,0,0,0,,{\k54}edificio {\k37}todos {\k24}los
+Dialogue: 0,0:03:42.30,0:03:42.58,Impacto,,0,0,0,,{\k28}días.
+Dialogue: 0,0:03:43.61,0:03:44.12,Impacto,,0,0,0,,{\k19}Y {\k15}no {\k15}he
+Dialogue: 0,0:03:44.12,0:03:45.03,Impacto,,0,0,0,,{\k31}usado {\k24}la {\k34}salida
+Dialogue: 0,0:03:45.03,0:03:46.06,Impacto,,0,0,0,,{\k41}lateral {\k34}ni {\k28}una
+Dialogue: 0,0:03:46.06,0:03:46.62,Impacto,,0,0,0,,{\k21}sola {\k34}vez.
+Dialogue: 0,0:03:47.63,0:03:48.31,Impacto,,0,0,0,,{\k18}Y {\k18}la {\k31}semana
+Dialogue: 0,0:03:48.31,0:03:49.08,Impacto,,0,0,0,,{\k76}pasada,
+Dialogue: 0,0:03:49.31,0:03:50.43,Impacto,,0,0,0,,{\k20}pasando {\k25}al {\k65}atardecer,
+Dialogue: 0,0:03:50.84,0:03:51.52,Impacto,,0,0,0,,{\k9}eché {\k19}un {\k38}vistazo
+Dialogue: 0,0:03:51.52,0:03:52.30,Impacto,,0,0,0,,{\k11}a {\k14}la {\k52}ventanita
+Dialogue: 0,0:03:52.30,0:03:53.15,Impacto,,0,0,0,,{\k19}del {\k34}nivel {\k31}del
+Dialogue: 0,0:03:53.15,0:03:53.81,Impacto,,0,0,0,,{\k31}suelo {\k24}que {\k9}da
+Dialogue: 0,0:03:53.81,0:03:54.56,Impacto,,0,0,0,,{\k20}al {\k53}sótano.
+Dialogue: 0,0:03:55.46,0:03:56.25,Impacto,,0,0,0,,{\k19}La {\k25}luz {\k34}estaba
+Dialogue: 0,0:03:56.25,0:03:57.53,Impacto,,0,0,0,,{\k64}encendida {\k23}ahí {\k40}abajo.
+Dialogue: 0,0:03:58.56,0:03:59.69,Impacto,,0,0,0,,{\k59}Seguridad {\k18}del {\k35}campus
+Dialogue: 0,0:03:59.69,0:04:00.41,Impacto,,0,0,0,,{\k26}me {\k21}dijo {\k23}que
+Dialogue: 0,0:04:00.41,0:04:01.21,Impacto,,0,0,0,,{\k21}ese {\k32}nivel {\k25}está
+Dialogue: 0,0:04:01.21,0:04:02.68,Impacto,,0,0,0,,{\k80}desmantelado {\k34}desde {\k31}hace
+Dialogue: 0,0:04:02.68,0:04:03.19,Impacto,,0,0,0,,{\k51}años.
+Dialogue: 0,0:04:04.19,0:04:05.00,Impacto,,0,0,0,,{\k32}Nadie {\k29}tiene {\k18}la
+Dialogue: 0,0:04:05.00,0:04:05.91,Impacto,,0,0,0,,{\k91}llave.
+Dialogue: 0,0:04:06.47,0:04:07.40,Impacto,,0,0,0,,{\k32}Sadow {\k41}Kernel {\k18}el
+Dialogue: 0,0:04:07.40,0:04:08.37,Impacto,,0,0,0,,{\k34}guardia {\k23}de {\k40}seguridad
+Dialogue: 0,0:04:08.37,0:04:09.37,Impacto,,0,0,0,,{\k18}de {\k18}mi {\k63}universidad
+Dialogue: 0,0:04:09.37,0:04:10.13,Impacto,,0,0,0,,{\k20}me {\k25}dijo {\k29}algo
+Dialogue: 0,0:04:10.13,0:04:12.02,Impacto,,0,0,0,,{\k38}antes {\k34}de {\k115}desaparecer.
+Dialogue: 0,0:04:12.52,0:04:13.24,Impacto,,0,0,0,,{\k34}Pienso {\k15}en {\k21}eso
+Dialogue: 0,0:04:13.24,0:04:14.12,Impacto,,0,0,0,,{\k28}todos {\k34}y {\k25}cada
+Dialogue: 0,0:04:14.12,0:04:14.69,Impacto,,0,0,0,,{\k25}uno {\k14}de {\k17}los
+Dialogue: 0,0:04:14.69,0:04:15.15,Impacto,,0,0,0,,{\k46}días.
+Dialogue: 0,0:04:16.05,0:04:16.88,Impacto,,0,0,0,,{\k18}No {\k24}se {\k41}suponía
+Dialogue: 0,0:04:16.88,0:04:17.70,Impacto,,0,0,0,,{\k16}que {\k25}yo {\k39}estuviera
+Dialogue: 0,0:04:17.70,0:04:18.37,Impacto,,0,0,0,,{\k18}en {\k18}el {\k30}campus
+Dialogue: 0,0:04:18.37,0:04:18.97,Impacto,,0,0,0,,{\k30}tan {\k30}tarde.
+Dialogue: 0,0:04:19.98,0:04:20.63,Impacto,,0,0,0,,{\k21}Era {\k30}como {\k13}las
+Dialogue: 0,0:04:20.63,0:04:21.19,Impacto,,0,0,0,,{\k18}dos {\k12}de {\k25}la
+Dialogue: 0,0:04:21.19,0:04:21.60,Impacto,,0,0,0,,{\k40}mañana,
+Dialogue: 0,0:04:21.92,0:04:22.63,Impacto,,0,0,0,,{\k13}a {\k39}finales {\k18}de
+Dialogue: 0,0:04:22.63,0:04:23.18,Impacto,,0,0,0,,{\k54}semestre.
+Dialogue: 0,0:04:24.05,0:04:24.87,Impacto,,0,0,0,,{\k19}Me {\k19}había {\k42}dormido
+Dialogue: 0,0:04:24.87,0:04:25.67,Impacto,,0,0,0,,{\k12}en {\k12}la {\k56}biblioteca
+Dialogue: 0,0:04:25.67,0:04:26.43,Impacto,,0,0,0,,{\k13}y {\k27}me {\k34}desperté
+Dialogue: 0,0:04:26.43,0:04:27.55,Impacto,,0,0,0,,{\k31}con {\k30}sillas {\k50}vacías
+Dialogue: 0,0:04:27.55,0:04:28.32,Impacto,,0,0,0,,{\k24}y {\k23}las {\k30}luces
+Dialogue: 0,0:04:28.32,0:04:29.20,Impacto,,0,0,0,,{\k87}parpadeando.
+Dialogue: 0,0:04:30.04,0:04:30.87,Impacto,,0,0,0,,{\k31}Ese {\k25}tipo {\k25}de
+Dialogue: 0,0:04:30.87,0:04:31.72,Impacto,,0,0,0,,{\k43}silencio {\k24}que {\k16}no
+Dialogue: 0,0:04:31.72,0:04:32.50,Impacto,,0,0,0,,{\k21}se {\k28}siente {\k27}como
+Dialogue: 0,0:04:32.50,0:04:32.87,Impacto,,0,0,0,,{\k37}paz.
+Dialogue: 0,0:04:33.95,0:04:34.72,Impacto,,0,0,0,,{\k22}Se {\k30}siente {\k24}como
+Dialogue: 0,0:04:34.72,0:04:35.39,Impacto,,0,0,0,,{\k21}si {\k24}algo {\k21}se
+Dialogue: 0,0:04:35.39,0:04:36.51,Impacto,,0,0,0,,{\k30}hubiera {\k42}quedado {\k39}quieto
+Dialogue: 0,0:04:36.51,0:04:37.39,Impacto,,0,0,0,,{\k31}justo {\k38}antes {\k17}de
+Dialogue: 0,0:04:37.39,0:04:37.81,Impacto,,0,0,0,,{\k10}que {\k16}tú {\k15}lo
+Dialogue: 0,0:04:37.81,0:04:38.83,Impacto,,0,0,0,,{\k101}vieras.
+Dialogue: 0,0:04:39.31,0:04:40.17,Impacto,,0,0,0,,{\k31}Empaque {\k19}mi {\k34}bolsa
+Dialogue: 0,0:04:40.17,0:04:40.88,Impacto,,0,0,0,,{\k35}rápido {\k20}y {\k15}me
+Dialogue: 0,0:04:40.88,0:04:41.49,Impacto,,0,0,0,,{\k13}fui {\k26}por {\k19}la
+Dialogue: 0,0:04:41.49,0:04:42.26,Impacto,,0,0,0,,{\k31}salida {\k45}lateral.
+Dialogue: 0,0:04:43.29,0:04:44.05,Impacto,,0,0,0,,{\k27}Ahí {\k19}fue {\k28}donde
+Dialogue: 0,0:04:44.05,0:04:45.05,Impacto,,0,0,0,,{\k50}encontré {\k18}al {\k31}señor
+Dialogue: 0,0:04:45.05,0:04:45.32,Impacto,,0,0,0,,{\k27}Osei.
+Dialogue: 0,0:04:46.45,0:04:47.13,Impacto,,0,0,0,,{\k20}Era {\k17}el {\k30}guardia
+Dialogue: 0,0:04:47.13,0:04:48.00,Impacto,,0,0,0,,{\k22}de {\k41}seguridad {\k22}de
+Dialogue: 0,0:04:48.00,0:04:48.45,Impacto,,0,0,0,,{\k16}la {\k29}noche.
+Dialogue: 0,0:04:49.41,0:04:50.35,Impacto,,0,0,0,,{\k23}Un {\k30}tipo {\k40}grande,
+Dialogue: 0,0:04:50.73,0:04:51.14,Impacto,,0,0,0,,{\k41}callado,
+Dialogue: 0,0:04:51.47,0:04:52.18,Impacto,,0,0,0,,{\k15}de {\k25}esos {\k30}hombres
+Dialogue: 0,0:04:52.18,0:04:53.14,Impacto,,0,0,0,,{\k28}que {\k47}asienten {\k19}en
+Dialogue: 0,0:04:53.14,0:04:53.81,Impacto,,0,0,0,,{\k14}vez {\k21}de {\k30}hablar.
+Dialogue: 0,0:04:54.76,0:04:55.55,Impacto,,0,0,0,,{\k22}Lo {\k19}había {\k36}visto
+Dialogue: 0,0:04:55.55,0:04:56.43,Impacto,,0,0,0,,{\k30}como {\k25}cien {\k31}veces
+Dialogue: 0,0:04:56.43,0:04:57.14,Impacto,,0,0,0,,{\k24}en {\k15}dos {\k31}años
+Dialogue: 0,0:04:57.14,0:04:58.14,Impacto,,0,0,0,,{\k26}y {\k27}nunca {\k45}habíamos
+Dialogue: 0,0:04:58.14,0:04:59.55,Impacto,,0,0,0,,{\k36}tenido {\k42}una {\k62}conversación
+Dialogue: 0,0:04:59.55,0:05:00.20,Impacto,,0,0,0,,{\k12}de {\k53}verdad.
+Dialogue: 0,0:05:01.12,0:05:02.70,Impacto,,0,0,0,,{\k54}Revisaba {\k19}mi {\k83}identificación,
+Dialogue: 0,0:05:03.05,0:05:04.17,Impacto,,0,0,0,,{\k50}asentía {\k21}y {\k40}seguía.
+Dialogue: 0,0:05:05.11,0:05:06.00,Impacto,,0,0,0,,{\k33}Eso {\k25}era {\k30}toda
+Dialogue: 0,0:05:06.00,0:05:06.91,Impacto,,0,0,0,,{\k36}nuestra {\k54}relación.
+Dialogue: 0,0:05:07.97,0:05:08.91,Impacto,,0,0,0,,{\k33}Esa {\k25}noche {\k34}estaba
+Dialogue: 0,0:05:08.91,0:05:09.68,Impacto,,0,0,0,,{\k39}parado {\k18}al {\k19}final
+Dialogue: 0,0:05:09.68,0:05:10.49,Impacto,,0,0,0,,{\k24}del {\k56}pasillo,
+Dialogue: 0,0:05:10.88,0:05:11.67,Impacto,,0,0,0,,{\k30}mirando {\k18}la {\k30}puerta
+Dialogue: 0,0:05:11.67,0:05:12.44,Impacto,,0,0,0,,{\k21}del {\k34}nivel {\k21}de
+Dialogue: 0,0:05:12.44,0:05:13.88,Impacto,,0,0,0,,{\k63}mantenimiento {\k24}del {\k56}sótano.
+Dialogue: 0,0:05:14.75,0:05:15.50,Impacto,,0,0,0,,{\k19}Ni {\k37}la {\k16}estaba
+Dialogue: 0,0:05:15.50,0:05:16.30,Impacto,,0,0,0,,{\k80}revisando.
+Dialogue: 0,0:05:17.14,0:05:17.87,Impacto,,0,0,0,,{\k18}Ni {\k36}se {\k18}estaba
+Dialogue: 0,0:05:17.87,0:05:18.62,Impacto,,0,0,0,,{\k75}acercando.
+Dialogue: 0,0:05:19.56,0:05:20.23,Impacto,,0,0,0,,{\k22}Solo {\k43}ahí,
+Dialogue: 0,0:05:20.67,0:05:21.73,Impacto,,0,0,0,,{\k43}completamente {\k62}quieto,
+Dialogue: 0,0:05:21.94,0:05:22.73,Impacto,,0,0,0,,{\k12}con {\k16}la {\k50}linterna
+Dialogue: 0,0:05:22.73,0:05:23.82,Impacto,,0,0,0,,{\k53}apuntando {\k20}al {\k35}piso.
+Dialogue: 0,0:05:24.77,0:05:25.54,Impacto,,0,0,0,,{\k30}Casi {\k25}me {\k20}pasó
+Dialogue: 0,0:05:25.54,0:05:26.04,Impacto,,0,0,0,,{\k25}de {\k24}largo.
+Dialogue: 0,0:05:27.06,0:05:28.04,Impacto,,0,0,0,,{\k25}Él {\k25}habló {\k46}primero.
+Dialogue: 0,0:05:29.02,0:05:29.97,Impacto,,0,0,0,,{\k50}¿Sientes {\k44}eso?
+Dialogue: 0,0:05:30.73,0:05:32.02,Impacto,,0,0,0,,{\k31}Me {\k97}detuve.
+Dialogue: 0,0:05:32.56,0:05:33.51,Impacto,,0,0,0,,{\k60}¿Sentir {\k35}qué?
+Dialogue: 0,0:05:34.17,0:05:35.35,Impacto,,0,0,0,,{\k39}No {\k28}me {\k50}miró.
+Dialogue: 0,0:05:36.26,0:05:37.18,Impacto,,0,0,0,,{\k28}Seguía {\k43}mirando {\k19}la
+Dialogue: 0,0:05:37.18,0:05:38.41,Impacto,,0,0,0,,{\k28}puerta {\k23}del {\k70}sótano.
+Dialogue: 0,0:05:39.31,0:05:40.73,Impacto,,0,0,0,,{\k37}Algunos {\k57}edificios {\k46}juntan
+Dialogue: 0,0:05:40.73,0:05:41.18,Impacto,,0,0,0,,{\k45}cosas,
+Dialogue: 0,0:05:41.56,0:05:41.81,Impacto,,0,0,0,,{\k24}dijo.
+Dialogue: 0,0:05:42.87,0:05:44.00,Impacto,,0,0,0,,{\k22}No {\k89}fantasmas.
+Dialogue: 0,0:05:44.86,0:05:45.42,Impacto,,0,0,0,,{\k19}No {\k21}como {\k14}en
+Dialogue: 0,0:05:45.42,0:05:46.74,Impacto,,0,0,0,,{\k18}las {\k113}películas.
+Dialogue: 0,0:05:47.33,0:05:48.42,Impacto,,0,0,0,,{\k52}Solo {\k56}peso.
+Dialogue: 0,0:05:49.56,0:05:50.52,Impacto,,0,0,0,,{\k31}Malos {\k36}momentos {\k27}que
+Dialogue: 0,0:05:50.52,0:05:51.64,Impacto,,0,0,0,,{\k32}nunca {\k56}terminaron {\k23}de
+Dialogue: 0,0:05:51.64,0:05:51.94,Impacto,,0,0,0,,{\k30}pasar.
+Dialogue: 0,0:05:52.12,0:05:52.82,Impacto,,0,0,0,,{\k13}¿Tú {\k25}alguna {\k30}vez
+Dialogue: 0,0:05:52.82,0:05:53.44,Impacto,,0,0,0,,{\k31}entras {\k16}a {\k13}un
+Dialogue: 0,0:05:53.44,0:05:54.25,Impacto,,0,0,0,,{\k28}cuarto {\k21}y {\k30}sientes
+Dialogue: 0,0:05:54.25,0:05:55.56,Impacto,,0,0,0,,{\k31}que {\k68}interrumpiste {\k31}algo?
+Dialogue: 0,0:05:56.47,0:05:57.20,Impacto,,0,0,0,,{\k43}Yo {\k29}sí.
+Dialogue: 0,0:05:58.02,0:05:58.70,Impacto,,0,0,0,,{\k26}Pero {\k23}no {\k18}dije
+Dialogue: 0,0:05:58.70,0:05:59.12,Impacto,,0,0,0,,{\k42}nada.
+Dialogue: 0,0:05:59.95,0:06:01.22,Impacto,,0,0,0,,{\k40}Este {\k57}edificio {\k28}lo
+Dialogue: 0,0:06:01.22,0:06:01.54,Impacto,,0,0,0,,{\k31}hace,
+Dialogue: 0,0:06:01.93,0:06:02.89,Impacto,,0,0,0,,{\k95}continuó.
+Dialogue: 0,0:06:03.37,0:06:04.17,Impacto,,0,0,0,,{\k21}Desde {\k32}que {\k25}empecé
+Dialogue: 0,0:06:04.17,0:06:04.52,Impacto,,0,0,0,,{\k35}aquí,
+Dialogue: 0,0:06:04.85,0:06:05.82,Impacto,,0,0,0,,{\k19}hace {\k30}once {\k47}años.
+Dialogue: 0,0:06:06.82,0:06:07.97,Impacto,,0,0,0,,{\k19}Pero {\k68}últimamente {\k26}es
+Dialogue: 0,0:06:07.97,0:06:09.08,Impacto,,0,0,0,,{\k111}distinto.
+Dialogue: 0,0:06:09.49,0:06:10.67,Impacto,,0,0,0,,{\k59}Últimamente {\k26}se {\k31}siente
+Dialogue: 0,0:06:10.67,0:06:11.26,Impacto,,0,0,0,,{\k24}como {\k19}si {\k15}lo
+Dialogue: 0,0:06:11.26,0:06:11.91,Impacto,,0,0,0,,{\k22}que {\k18}sea {\k24}que
+Dialogue: 0,0:06:11.91,0:06:12.73,Impacto,,0,0,0,,{\k17}haya {\k30}allá {\k34}abajo,
+Dialogue: 0,0:06:13.17,0:06:14.14,Impacto,,0,0,0,,{\k13}hizo {\k30}una {\k53}pausa,
+Dialogue: 0,0:06:14.43,0:06:15.08,Impacto,,0,0,0,,{\k27}ladeó {\k16}un {\k21}poco
+Dialogue: 0,0:06:15.08,0:06:15.68,Impacto,,0,0,0,,{\k18}la {\k42}cabeza,
+Dialogue: 0,0:06:16.08,0:06:16.88,Impacto,,0,0,0,,{\k12}como {\k24}si {\k43}estuviera
+Dialogue: 0,0:06:16.88,0:06:17.61,Impacto,,0,0,0,,{\k72}escuchando,
+Dialogue: 0,0:06:17.76,0:06:18.88,Impacto,,0,0,0,,{\k20}ya {\k37}hubiera {\k53}terminado
+Dialogue: 0,0:06:18.88,0:06:19.49,Impacto,,0,0,0,,{\k30}de {\k30}esperar.
+Dialogue: 0,0:06:20.45,0:06:21.68,Impacto,,0,0,0,,{\k36}Me {\k86}reí.
+Dialogue: 0,0:06:22.27,0:06:22.87,Impacto,,0,0,0,,{\k60}Nerviosa,
+Dialogue: 0,0:06:23.19,0:06:23.66,Impacto,,0,0,0,,{\k46}cortita,
+Dialogue: 0,0:06:24.07,0:06:24.63,Impacto,,0,0,0,,{\k56}apenada.
+Dialogue: 0,0:06:25.56,0:06:26.19,Impacto,,0,0,0,,{\k18}Por {\k18}fin {\k27}me
+Dialogue: 0,0:06:26.19,0:06:26.56,Impacto,,0,0,0,,{\k36}miró.
+Dialogue: 0,0:06:27.42,0:06:28.24,Impacto,,0,0,0,,{\k21}Y {\k24}quiero {\k36}tener
+Dialogue: 0,0:06:28.24,0:06:29.13,Impacto,,0,0,0,,{\k39}cuidado {\k28}con {\k21}cómo
+Dialogue: 0,0:06:29.13,0:06:30.37,Impacto,,0,0,0,,{\k52}describo {\k17}su {\k54}expresión
+Dialogue: 0,0:06:30.37,0:06:31.56,Impacto,,0,0,0,,{\k28}porque {\k37}desde {\k51}entonces
+Dialogue: 0,0:06:31.56,0:06:32.31,Impacto,,0,0,0,,{\k24}la {\k27}he {\k24}estado
+Dialogue: 0,0:06:32.31,0:06:33.31,Impacto,,0,0,0,,{\k36}dando {\k50}vueltas {\k13}en
+Dialogue: 0,0:06:33.31,0:06:34.06,Impacto,,0,0,0,,{\k19}la {\k31}cabeza {\k22}mil
+Dialogue: 0,0:06:34.06,0:06:34.63,Impacto,,0,0,0,,{\k57}veces.
+Dialogue: 0,0:06:35.49,0:06:37.38,Impacto,,0,0,0,,{\k33}No {\k46}parecía {\k109}asustado.
+Dialogue: 0,0:06:37.91,0:06:38.75,Impacto,,0,0,0,,{\k41}Parecía {\k22}un {\k19}hombre
+Dialogue: 0,0:06:38.75,0:06:39.44,Impacto,,0,0,0,,{\k24}que {\k21}ya {\k24}había
+Dialogue: 0,0:06:39.44,0:06:40.49,Impacto,,0,0,0,,{\k52}aceptado {\k25}algo {\k25}que
+Dialogue: 0,0:06:40.49,0:06:41.11,Impacto,,0,0,0,,{\k15}el {\k24}resto {\k22}de
+Dialogue: 0,0:06:41.11,0:06:42.41,Impacto,,0,0,0,,{\k41}nosotros {\k52}todavía {\k36}no
+Dialogue: 0,0:06:42.41,0:06:43.37,Impacto,,0,0,0,,{\k19}nos {\k30}habían {\k45}dicho.
+Dialogue: 0,0:06:44.33,0:06:45.10,Impacto,,0,0,0,,{\k28}Vete {\k15}a {\k32}casa,
+Dialogue: 0,0:06:45.48,0:06:46.00,Impacto,,0,0,0,,{\k15}dijo {\k22}en {\k13}voz
+Dialogue: 0,0:06:46.00,0:06:46.37,Impacto,,0,0,0,,{\k37}baja.
+Dialogue: 0,0:06:47.35,0:06:48.17,Impacto,,0,0,0,,{\k27}No {\k25}uses {\k28}la
+Dialogue: 0,0:06:48.17,0:06:49.35,Impacto,,0,0,0,,{\k31}salida {\k39}lateral {\k46}después
+Dialogue: 0,0:06:49.35,0:06:50.25,Impacto,,0,0,0,,{\k25}de {\k63}medianoche.
+Dialogue: 0,0:06:51.10,0:06:52.01,Impacto,,0,0,0,,{\k21}No {\k40}vuelvas {\k29}a
+Dialogue: 0,0:06:52.01,0:06:52.98,Impacto,,0,0,0,,{\k12}este {\k56}edificio {\k28}cuando
+Dialogue: 0,0:06:52.98,0:06:53.72,Impacto,,0,0,0,,{\k29}ya {\k18}sea {\k26}de
+Dialogue: 0,0:06:53.72,0:06:54.00,Impacto,,0,0,0,,{\k27}noche.
+Dialogue: 0,0:06:54.91,0:06:55.52,Impacto,,0,0,0,,{\k27}¿Por {\k33}qué?
+Dialogue: 0,0:06:56.38,0:06:57.11,Impacto,,0,0,0,,{\k30}Miró {\k19}de {\k22}vuelta
+Dialogue: 0,0:06:57.11,0:06:57.88,Impacto,,0,0,0,,{\k24}la {\k29}puerta {\k24}del
+Dialogue: 0,0:06:57.88,0:06:58.93,Impacto,,0,0,0,,{\k104}sótano.
+Dialogue: 0,0:06:59.18,0:07:00.11,Impacto,,0,0,0,,{\k42}Porque {\k25}he {\k24}estado
+Dialogue: 0,0:07:00.11,0:07:01.31,Impacto,,0,0,0,,{\k59}vigilando {\k28}esa {\k31}puerta
+Dialogue: 0,0:07:01.31,0:07:02.58,Impacto,,0,0,0,,{\k45}durante {\k30}once {\k51}años,
+Dialogue: 0,0:07:02.87,0:07:03.17,Impacto,,0,0,0,,{\k30}dijo.
+Dialogue: 0,0:07:04.16,0:07:04.83,Impacto,,0,0,0,,{\k17}Y {\k16}el {\k33}jueves
+Dialogue: 0,0:07:04.83,0:07:06.07,Impacto,,0,0,0,,{\k34}pasado {\k36}estaba {\k53}abierta
+Dialogue: 0,0:07:06.07,0:07:06.86,Impacto,,0,0,0,,{\k25}cuando {\k52}llegué.
+Dialogue: 0,0:07:07.74,0:07:08.75,Impacto,,0,0,0,,{\k30}Y {\k19}estaba {\k51}abierta
+Dialogue: 0,0:07:08.75,0:07:09.37,Impacto,,0,0,0,,{\k22}cuando {\k25}me {\k13}fui.
+Dialogue: 0,0:07:10.37,0:07:11.06,Impacto,,0,0,0,,{\k25}Y {\k42}nunca,
+Dialogue: 0,0:07:11.37,0:07:11.98,Impacto,,0,0,0,,{\k10}ni {\k25}una {\k24}sola
+Dialogue: 0,0:07:11.98,0:07:12.39,Impacto,,0,0,0,,{\k41}vez,
+Dialogue: 0,0:07:12.72,0:07:13.74,Impacto,,0,0,0,,{\k7}la {\k15}he {\k78}desbloqueado.
+Dialogue: 0,0:07:14.63,0:07:15.16,Impacto,,0,0,0,,{\k24}Me {\k28}fui.
+Dialogue: 0,0:07:16.24,0:07:17.00,Impacto,,0,0,0,,{\k31}Caminé {\k43}rápido,
+Dialogue: 0,0:07:17.31,0:07:18.00,Impacto,,0,0,0,,{\k22}no {\k45}corrí.
+Dialogue: 0,0:07:18.87,0:07:19.67,Impacto,,0,0,0,,{\k25}Me {\k36}repetí {\k18}que
+Dialogue: 0,0:07:19.67,0:07:20.38,Impacto,,0,0,0,,{\k30}solo {\k19}era {\k21}un
+Dialogue: 0,0:07:20.38,0:07:21.38,Impacto,,0,0,0,,{\k25}hombre {\k52}extraño {\k21}y
+Dialogue: 0,0:07:21.38,0:07:22.11,Impacto,,0,0,0,,{\k28}viejo {\k19}que {\k24}había
+Dialogue: 0,0:07:22.11,0:07:23.73,Impacto,,0,0,0,,{\k56}trabajado {\k63}demasiados {\k42}turnos
+Dialogue: 0,0:07:23.73,0:07:24.58,Impacto,,0,0,0,,{\k24}de {\k23}noche {\k37}solo.
+Dialogue: 0,0:07:25.56,0:07:26.36,Impacto,,0,0,0,,{\k31}Eso {\k22}fue {\k25}hace
+Dialogue: 0,0:07:26.36,0:07:27.13,Impacto,,0,0,0,,{\k27}seis {\k50}semanas.
+Dialogue: 0,0:07:28.07,0:07:29.06,Impacto,,0,0,0,,{\k30}El {\k39}señor {\k28}Osei
+Dialogue: 0,0:07:29.06,0:07:29.66,Impacto,,0,0,0,,{\k19}no {\k12}ha {\k28}vuelto
+Dialogue: 0,0:07:29.66,0:07:30.57,Impacto,,0,0,0,,{\k17}al {\k34}campus {\k39}desde
+Dialogue: 0,0:07:30.57,0:07:31.30,Impacto,,0,0,0,,{\k30}esa {\k42}noche.
+Dialogue: 0,0:07:32.22,0:07:33.06,Impacto,,0,0,0,,{\k50}Pregunté {\k13}en {\k19}la
+Dialogue: 0,0:07:33.06,0:07:34.04,Impacto,,0,0,0,,{\k98}recepción.
+Dialogue: 0,0:07:34.63,0:07:35.45,Impacto,,0,0,0,,{\k40}Dijeron {\k21}que {\k19}se
+Dialogue: 0,0:07:35.45,0:07:36.74,Impacto,,0,0,0,,{\k12}fue {\k22}sin {\k93}avisar.
+Dialogue: 0,0:07:37.37,0:07:38.18,Impacto,,0,0,0,,{\k18}Sin {\k30}dejar {\k33}un
+Dialogue: 0,0:07:38.18,0:07:39.64,Impacto,,0,0,0,,{\k39}contacto {\k22}para {\k83}reenviarte.
+Dialogue: 0,0:07:40.50,0:07:41.62,Impacto,,0,0,0,,{\k22}Sin {\k89}explicación.
+Dialogue: 0,0:07:42.51,0:07:43.33,Impacto,,0,0,0,,{\k24}Once {\k37}años {\k19}en
+Dialogue: 0,0:07:43.33,0:07:44.22,Impacto,,0,0,0,,{\k18}el {\k30}mismo {\k40}trabajo
+Dialogue: 0,0:07:44.22,0:07:44.95,Impacto,,0,0,0,,{\k17}y {\k20}de {\k35}repente
+Dialogue: 0,0:07:44.95,0:07:46.01,Impacto,,0,0,0,,{\k36}no {\k50}regresó {\k19}una
+Dialogue: 0,0:07:46.01,0:07:46.50,Impacto,,0,0,0,,{\k48}mañana.
+Dialogue: 0,0:07:47.54,0:07:48.24,Impacto,,0,0,0,,{\k23}Paso {\k22}por {\k24}ese
+Dialogue: 0,0:07:48.24,0:07:49.39,Impacto,,0,0,0,,{\k53}edificio {\k38}todos {\k23}los
+Dialogue: 0,0:07:49.39,0:07:49.68,Impacto,,0,0,0,,{\k28}días.
+Dialogue: 0,0:07:50.69,0:07:51.24,Impacto,,0,0,0,,{\k22}Y {\k13}no {\k18}he
+Dialogue: 0,0:07:51.24,0:07:52.12,Impacto,,0,0,0,,{\k31}usado {\k21}la {\k34}salida
+Dialogue: 0,0:07:52.12,0:07:53.16,Impacto,,0,0,0,,{\k43}lateral {\k33}ni {\k26}una
+Dialogue: 0,0:07:53.16,0:07:53.74,Impacto,,0,0,0,,{\k21}sola {\k36}vez.
+Dialogue: 0,0:07:54.70,0:07:55.41,Impacto,,0,0,0,,{\k20}Y {\k17}la {\k32}semana
+Dialogue: 0,0:07:55.41,0:07:56.12,Impacto,,0,0,0,,{\k71}pasada,
+Dialogue: 0,0:07:56.43,0:07:57.49,Impacto,,0,0,0,,{\k19}pasando {\k25}al {\k60}atardecer,
+Dialogue: 0,0:07:57.49,0:07:58.64,Impacto,,0,0,0,,{\k53}eché {\k22}un {\k39}vistazo
+Dialogue: 0,0:07:58.64,0:07:59.43,Impacto,,0,0,0,,{\k10}a {\k12}la {\k56}ventanita
+Dialogue: 0,0:07:59.43,0:08:00.26,Impacto,,0,0,0,,{\k19}del {\k30}nivel {\k33}del
+Dialogue: 0,0:08:00.26,0:08:00.91,Impacto,,0,0,0,,{\k30}suelo {\k24}que {\k10}da
+Dialogue: 0,0:08:00.91,0:08:02.08,Impacto,,0,0,0,,{\k19}al {\k97}sótano.
+Dialogue: 0,0:08:02.57,0:08:03.33,Impacto,,0,0,0,,{\k16}La {\k27}luz {\k31}estaba
+Dialogue: 0,0:08:03.33,0:08:04.68,Impacto,,0,0,0,,{\k64}encendida {\k24}ahí {\k45}abajo.
+Dialogue: 0,0:08:05.83,0:08:06.81,Impacto,,0,0,0,,{\k40}Seguridad {\k19}del {\k37}campus
+Dialogue: 0,0:08:06.81,0:08:07.56,Impacto,,0,0,0,,{\k25}me {\k19}dijo {\k28}que
+Dialogue: 0,0:08:07.56,0:08:08.31,Impacto,,0,0,0,,{\k18}ese {\k31}nivel {\k25}está
+Dialogue: 0,0:08:08.31,0:08:09.77,Impacto,,0,0,0,,{\k80}desmantelado {\k33}desde {\k31}hace
+Dialogue: 0,0:08:09.77,0:08:10.31,Impacto,,0,0,0,,{\k54}años.
+Dialogue: 0,0:08:11.33,0:08:12.10,Impacto,,0,0,0,,{\k28}Nadie {\k30}tiene {\k18}la
+Dialogue: 0,0:08:12.10,0:08:12.89,Impacto,,0,0,0,,{\k79}llave.
+Dialogue: 0,0:08:13.54,0:08:14.18,Impacto,,0,0,0,,{\k25}Sharo {\k37}Chrono.

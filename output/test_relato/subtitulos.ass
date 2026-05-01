@@ -1,0 +1,35 @@
+[Script Info]
+Title: Subtitulos Paranormales
+ScriptType: v4.00+
+WrapStyle: 1
+ScaledBorderAndShadow: yes
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Letra blanca con sombra oscura (para relato base)
+Style: Terror,Bebas Neue,100,&H00FFFFFF,&H000000FF,&H44000000,&H88000000,-1,0,0,0,100,100,2,0,1,6,0,5,50,50,400,1
+; Letra con resalte rojo (usado principalmente con el karaoke)
+Style: Impacto,Bebas Neue,110,&H00FFFFFF,&H000000FF,&H33000000,&H88000000,-1,0,0,0,100,100,2,0,1,8,0,5,50,50,400,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:01.04,Impacto,,0,0,0,,{\k46}Era {\k25}una {\k32}noche
+Dialogue: 0,0:00:01.04,0:00:02.54,Impacto,,0,0,0,,{\k30}fría {\k21}de {\k98}octubre.
+Dialogue: 0,0:00:02.99,0:00:03.81,Impacto,,0,0,0,,{\k13}El {\k32}viento {\k35}huyaba
+Dialogue: 0,0:00:03.81,0:00:04.69,Impacto,,0,0,0,,{\k23}entre {\k28}los {\k36}árboles
+Dialogue: 0,0:00:04.69,0:00:06.54,Impacto,,0,0,0,,{\k63}centenarios {\k21}del {\k100}cementerio.
+Dialogue: 0,0:00:07.24,0:00:08.09,Impacto,,0,0,0,,{\k20}¿Hay {\k27}alguien {\k37}ahí?
+Dialogue: 0,0:00:08.46,0:00:09.06,Impacto,,0,0,0,,{\k59}pregunté,
+Dialogue: 0,0:00:09.30,0:00:09.75,Impacto,,0,0,0,,{\k11}con {\k16}la {\k17}voz
+Dialogue: 0,0:00:09.75,0:00:10.74,Impacto,,0,0,0,,{\k98}temblorosa.
+Dialogue: 0,0:00:11.56,0:00:12.53,Impacto,,0,0,0,,{\k27}Nadie {\k69}respondió,
+Dialogue: 0,0:00:12.83,0:00:13.72,Impacto,,0,0,0,,{\k17}pero {\k46}escuché {\k24}unos
+Dialogue: 0,0:00:13.72,0:00:14.80,Impacto,,0,0,0,,{\k108}pasos.
+Dialogue: 0,0:00:15.80,0:00:16.39,Impacto,,0,0,0,,{\k59}Lentos.
+Dialogue: 0,0:00:16.94,0:00:17.53,Impacto,,0,0,0,,{\k59}Pesados.
+Dialogue: 0,0:00:18.51,0:00:19.37,Impacto,,0,0,0,,{\k23}Se {\k50}acercaban {\k12}a
+Dialogue: 0,0:00:19.37,0:00:20.21,Impacto,,0,0,0,,{\k17}mi {\k66}espalda,
+Dialogue: 0,0:00:20.44,0:00:21.21,Impacto,,0,0,0,,{\k22}corrí {\k13}sin {\k40}mirar
+Dialogue: 0,0:00:21.21,0:00:21.51,Impacto,,0,0,0,,{\k30}atrás.

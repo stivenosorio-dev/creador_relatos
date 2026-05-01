@@ -157,21 +157,27 @@ PLATAFORMAS = {
 
 @dataclass
 class VozConfig:
-    """Configuración de una voz de edge-tts."""
+    """Configuración de una voz TTS."""
     voice_id: str
     nombre: str
     genero: str
     region: str
     descripcion: str
+    motor: str = "edge-tts"  # "edge-tts" o "kokoro"
 
+
+# Motores TTS disponibles
+MOTORES_TTS = ["edge-tts", "kokoro"]
 
 VOCES_DISPONIBLES = {
+    # --- edge-tts ---
     "jorge": VozConfig(
         voice_id="es-MX-JorgeNeural",
         nombre="Jorge",
         genero="masculino",
         region="México",
         descripcion="Profunda, grave, ideal para terror. La mejor para relatos de hoguera.",
+        motor="edge-tts",
     ),
     "gonzalo": VozConfig(
         voice_id="es-CO-GonzaloNeural",
@@ -179,6 +185,7 @@ VOCES_DISPONIBLES = {
         genero="masculino",
         region="Colombia",
         descripcion="Clara, envolvente, buen tono narrativo.",
+        motor="edge-tts",
     ),
     "tomas": VozConfig(
         voice_id="es-AR-TomasNeural",
@@ -186,6 +193,7 @@ VOCES_DISPONIBLES = {
         genero="masculino",
         region="Argentina",
         descripcion="Expresiva, con carácter, interesante para relatos dramáticos.",
+        motor="edge-tts",
     ),
     "alvaro": VozConfig(
         voice_id="es-ES-AlvaroNeural",
@@ -193,6 +201,32 @@ VOCES_DISPONIBLES = {
         genero="masculino",
         region="España",
         descripcion="Seria, narrativa, estilo documental europeo.",
+        motor="edge-tts",
+    ),
+    # --- kokoro (español) ---
+    "kokoro_santa": VozConfig(
+        voice_id="em_santa",
+        nombre="Kokoro Santa",
+        genero="masculino",
+        region="Español (Kokoro)",
+        descripcion="Voz masculina en español con Kokoro. Profunda y narrativa.",
+        motor="kokoro",
+    ),
+    "kokoro_alex": VozConfig(
+        voice_id="em_alex",
+        nombre="Kokoro Alex",
+        genero="masculino",
+        region="Español (Kokoro)",
+        descripcion="Voz masculina en español con Kokoro. Clara y enérgica.",
+        motor="kokoro",
+    ),
+    "kokoro_dora": VozConfig(
+        voice_id="ef_dora",
+        nombre="Kokoro Dora",
+        genero="femenino",
+        region="Español (Kokoro)",
+        descripcion="Voz femenina en español con Kokoro. Cálida y expresiva.",
+        motor="kokoro",
     ),
 }
 

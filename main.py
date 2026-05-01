@@ -423,6 +423,7 @@ def voces():
     table = Table(title="🎤 Voces Disponibles", show_header=True)
     table.add_column("ID", style="cyan")
     table.add_column("Nombre", style="white")
+    table.add_column("Motor", style="magenta")
     table.add_column("Región", style="yellow")
     table.add_column("Voice ID", style="dim")
     table.add_column("Descripción", style="green")
@@ -432,6 +433,7 @@ def voces():
         table.add_row(
             key + marker,
             voz.nombre,
+            voz.motor,
             voz.region,
             voz.voice_id,
             voz.descripcion,
@@ -439,6 +441,23 @@ def voces():
 
     console.print(table)
     console.print(f"\n  ⭐ Voz por defecto: [bold cyan]{VOZ_DEFAULT}[/bold cyan]\n")
+
+
+# ============================================================================
+# COMANDO: gui (lanzar interfaz gráfica)
+# ============================================================================
+
+@cli.command()
+def gui():
+    """🖥️ Lanza la interfaz gráfica de usuario (Tkinter)."""
+    try:
+        from gui import AppParanormal
+        print_info("Iniciando interfaz gráfica...")
+        app = AppParanormal()
+        app.mainloop()
+    except Exception as e:
+        print_error(f"Error al lanzar la GUI: {e}")
+        sys.exit(1)
 
 
 # ============================================================================
@@ -477,6 +496,7 @@ def _mostrar_configuracion(plataforma, voz, modelo, velocidad, output_path) -> N
     table.add_column("Valor", style="bold cyan")
 
     table.add_row("Plataforma", f"{plataforma.nombre_display} ({plataforma.aspecto})")
+    table.add_row("Motor TTS", voz.motor)
     table.add_row("Voz", f"{voz.nombre} ({voz.voice_id})")
     table.add_row("Modelo IA", modelo)
     table.add_row("Velocidad voz", velocidad)

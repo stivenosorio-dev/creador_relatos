@@ -1,0 +1,146 @@
+{
+    "guion": {
+        "titulo_video": "El Cementerio Aullante",
+        "descripcion": "Un relato paranormal sobre un cementerio aullante en la noche de octubre.",
+        "hashtags": "#relatonparanormal #cementerioaullante #nocturno",
+        "duracion_total_audio": "00:22",
+        "plataforma": "YouTube Shorts",
+        "formato_video": "9:16 (1080x1920)",
+        "configuracion_audio_recomendada": {
+            "volumen_narracion_db": -6.0,
+            "volumen_musica_fondo_db": -22.0,
+            "volumen_musica_en_pausas_db": -14.0,
+            "volumen_sfx_ambiente_db": -20.0,
+            "volumen_sfx_impacto_db": -10.0,
+            "ducking_activado": true,
+            "fade_in_musica_ms": 3000,
+            "fade_out_musica_ms": 5000,
+            "notas_mezcla": ""
+        },
+        "pistas_de_fondo_recomendadas": [
+            {
+                "segmento": "introduccion",
+                "tiempo_inicio": "00:00:00",
+                "tiempo_fin": "00:03:00",
+                "referencia": "Myuu - Haunted",
+                "alternativa": "CO.AG Music - Dark Ambient",
+                "mood": "misterio_creciente",
+                "volumen_relativo_sugerido": 0.15,
+                "notas": ""
+            },
+            {
+                "segmento": "desarrollo",
+                "tiempo_inicio": "00:03:00",
+                "tiempo_fin": "01:05:00",
+                "referencia": "Kevin MacLeod - Tension",
+                "alternativa": "Atrium Carceri - Dark Ambient",
+                "mood": "tension_sostenida",
+                "volumen_relativo_sugerido": 0.2,
+                "notas": ""
+            },
+            {
+                "segmento": "climax",
+                "tiempo_inicio": "01:05:00",
+                "tiempo_fin": "02:10:00",
+                "referencia": "Lustmord - Dark Drone",
+                "alternativa": "Dark Fantasy Studio - Epic Dark",
+                "mood": "terror_intenso",
+                "volumen_relativo_sugerido": 0.25,
+                "notas": ""
+            },
+            {
+                "segmento": "cierre",
+                "tiempo_inicio": "02:10:00",
+                "tiempo_fin": "00:22:00",
+                "referencia": "Myuu - Haunted",
+                "alternativa": "CO.AG Music - Dark Ambient",
+                "mood": "inquietud_residual",
+                "volumen_relativo_sugerido": 0.15,
+                "notas": ""
+            }
+        ],
+        "imagenes": [
+            {
+                "id": 1,
+                "tiempo_inicio": "00:00:00",
+                "tiempo_fin": "01:30:00",
+                "duracion_segundos": 180,
+                "prompt": "Un cementerio aullante en la noche de octubre. Un árbol centenario con hojas secas y un viento frío que aulla entre los troncos.",
+                "transicion_entrada": "fade_from_black",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 6,
+                "notas_director": ""
+            },
+            {
+                "id": 2,
+                "tiempo_inicio": "01:30:00",
+                "tiempo_fin": "03:00:00",
+                "duracion_segundos": 180,
+                "prompt": "Una figura camina por el cementerio. La luz de la luna ilumina su rostro, revelando una expresión de miedo y desesperación.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "cut",
+                "efecto_movimiento": "paneo_lento_derecha",
+                "intensidad_emocional": 8,
+                "notas_director": ""
+            },
+            {
+                "id": 3,
+                "tiempo_inicio": "03:00:00",
+                "tiempo_fin": "04:30:00",
+                "duracion_segundos": 180,
+                "prompt": "El cementerio se llena de un silencio pesado. La figura desaparece en la oscuridad, dejando al espectador con una sensación de incertidumbre.",
+                "transicion_entrada": "fade_to_black",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "estatico",
+                "intensidad_emocional": 4,
+                "notas_director": ""
+            },
+            {
+                "id": 4,
+                "tiempo_inicio": "04:30:00",
+                "tiempo_fin": "05:30:00",
+                "duracion_segundos": 180,
+                "prompt": "La figura reaparece, pero esta vez con una expresión de terror y desesperación.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "cut",
+                "efecto_movimiento": "zoom_lento_out",
+                "intensidad_emocional": 9,
+                "notas_director": ""
+            }
+        ],
+        "efectos_sonidos_especiales": [
+            {
+                "id": 1,
+                "tiempo_exacto": "00:02:30",
+                "duracion_ms": 5000,
+                "tipo": "ambiente",
+                "referencia": "viento_nocturno",
+                "descripcion": "Un viento frío y silencioso que aulla entre los árboles.",
+                "volumen_sugerido_db": -15.0,
+                "fade_in_ms": 2000,
+                "fade_out_ms": 300
+            },
+            {
+                "id": 2,
+                "tiempo_exacto": "01:10:00",
+                "duracion_ms": 10000,
+                "tipo": "sfx_impacto",
+                "referencia": "golpe_puerta_seco",
+                "descripcion": "Un golpe seco y fuerte en una puerta de madera.",
+                "volumen_sugerido_db": -10.0,
+                "fade_in_ms": 1000,
+                "fade_out_ms": 200
+            }
+        ],
+        "notas_generales_director": {
+            "ritmo_narrativo": "seguir el arco emocional del relato: HOOK (primeros segundos) → CALMA INQUIETANTE → MISTERIO → TENSIÓN CRECIENTE → CLÍMAX → CIERRE INQUIETANTE",
+            "uso_silencios": "utilizar silencios estratégicos para generar impacto y tensión.",
+            "regla_de_oro_sfx": "utilizar efectos de sonido de manera estratégica para crear una atmósfera de terror y miedo.",
+            "imagenes_principio": "utilizar imágenes con un estilo visual premium y una paleta de colores oscura y misteriosa.",
+            "hook_inicial": "comenzar con un hook impactante que atraiga la atención del espectador.",
+            "call_to_action": "incluir un CTA en el final del video para animar a los espectadores a compartir su experiencia."
+        },
+        "thumbnail_sugerido": null
+    }
+}

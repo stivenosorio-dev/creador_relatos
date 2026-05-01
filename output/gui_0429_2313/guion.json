@@ -1,0 +1,157 @@
+{
+    "guion": {
+        "titulo_video": "El hombre de la carretera",
+        "descripcion": "Un relato paranormal sobre un misterioso hombre que aparece en una carretera y causa accidentes. ¿Qué secreto oculta?",
+        "hashtags": "#relatoparanormal #misterio #accidentes #espirtus",
+        "duracion_total_audio": "04:55",
+        "plataforma": "Facebook",
+        "formato_video": "9:16 (1080x1920)",
+        "configuracion_audio_recomendada": {
+            "volumen_narracion_db": -6.0,
+            "volumen_musica_fondo_db": -22.0,
+            "volumen_musica_en_pausas_db": -14.0,
+            "volumen_sfx_ambiente_db": -20.0,
+            "volumen_sfx_impacto_db": -10.0,
+            "ducking_activado": true,
+            "fade_in_musica_ms": 3000,
+            "fade_out_musica_ms": 5000,
+            "notas_mezcla": ""
+        },
+        "pistas_de_fondo_recomendadas": [
+            {
+                "segmento": "introduccion",
+                "tiempo_inicio": "00:00:00",
+                "tiempo_fin": "00:30:00",
+                "referencia": "Myuu - Haunted",
+                "alternativa": "",
+                "mood": "misterio_creciente",
+                "volumen_relativo_sugerido": 0.15,
+                "notas": ""
+            },
+            {
+                "segmento": "desarrollo",
+                "tiempo_inicio": "00:30:00",
+                "tiempo_fin": "01:20:00",
+                "referencia": "",
+                "alternativa": "CO.AG Music - Dark Ambient",
+                "mood": "tension_sostenida",
+                "volumen_relativo_sugerido": 0.25,
+                "notas": ""
+            },
+            {
+                "segmento": "climax",
+                "tiempo_inicio": "01:20:00",
+                "tiempo_fin": "02:05:00",
+                "referencia": "",
+                "alternativa": "Adrian von Ziegler - Dark Celtic",
+                "mood": "terror_intenso",
+                "volumen_relativo_sugerido": 0.5,
+                "notas": ""
+            },
+            {
+                "segmento": "cierre",
+                "tiempo_inicio": "02:05:00",
+                "tiempo_fin": "03:40:00",
+                "referencia": "",
+                "alternativa": "",
+                "mood": "inquietud_residual",
+                "volumen_relativo_sugerido": 0.2,
+                "notas": ""
+            }
+        ],
+        "imagenes": [
+            {
+                "id": 1,
+                "tiempo_inicio": "00:00:00",
+                "tiempo_fin": "00:30:00",
+                "duracion_segundos": 30,
+                "prompt": " Una carretera desierta a la luz del sol. El horizonte se extiende en un fondo blanco y despejado.",
+                "transicion_entrada": "fade_from_black_2s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 3,
+                "notas_director": ""
+            },
+            {
+                "id": 2,
+                "tiempo_inicio": "00:30:00",
+                "tiempo_fin": "01:20:00",
+                "duracion_segundos": 50,
+                "prompt": " Un hombre de pie en medio de la carretera. Sus brazos se extienden hacia adelante y hacia atrás, como si estuviera señalando dos direcciones opuestas.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "paneo_lento_derecha",
+                "efecto_movimiento": "pulso_sutil",
+                "intensidad_emocional": 8,
+                "notas_director": ""
+            },
+            {
+                "id": 3,
+                "tiempo_inicio": "01:20:00",
+                "tiempo_fin": "02:05:00",
+                "duracion_segundos": 45,
+                "prompt": " Una figura oscura y vaga en la carretera. Su silueta se ve borrosa y distorsionada.",
+                "transicion_entrada": "fade_from_black_2s",
+                "transicion_salida": "zoom_lento_out",
+                "efecto_movimiento": "estatico",
+                "intensidad_emocional": 9,
+                "notas_director": ""
+            },
+            {
+                "id": 4,
+                "tiempo_inicio": "02:05:00",
+                "tiempo_fin": "03:40:00",
+                "duracion_segundos": 35,
+                "prompt": " La carretera está desierta y oscura. El hombre ha desaparecido.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "fade_to_black_2s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 4,
+                "notas_director": ""
+            }
+        ],
+        "efectos_sonidos_especiales": [
+            {
+                "id": 1,
+                "tiempo_exacto": "00:30:00",
+                "duracion_ms": 1000,
+                "tipo": "transicion",
+                "referencia": "crossfade_1.5s",
+                "descripcion": "Efecto de transición entre la introducción y el desarrollo.",
+                "volumen_sugerido_db": -10.0,
+                "fade_in_ms": 500,
+                "fade_out_ms": 200
+            },
+            {
+                "id": 2,
+                "tiempo_exacto": "01:20:00",
+                "duracion_ms": 1500,
+                "tipo": "impacto",
+                "referencia": "golpe_puerta_seco",
+                "descripcion": "Efecto de impacto en el clímax.",
+                "volumen_sugerido_db": -15.0,
+                "fade_in_ms": 200,
+                "fade_out_ms": 300
+            },
+            {
+                "id": 3,
+                "tiempo_exacto": "02:05:00",
+                "duracion_ms": 1000,
+                "tipo": "transicion",
+                "referencia": "crossfade_1.5s",
+                "descripcion": "Efecto de transición entre el desarrollo y el cierre.",
+                "volumen_sugerido_db": -10.0,
+                "fade_in_ms": 500,
+                "fade_out_ms": 200
+            }
+        ],
+        "notas_generales_director": {
+            "ritmo_narrativo": "sostenido, con un ritmo rápido en las transiciones.",
+            "uso_silencios": "Utilizar silencios para generar suspense y tensión.",
+            "regla_de_oro_sfx": " Utilizar efectos de sonido moderadamente, especialmente en los momentos de mayor impacto.",
+            "imagenes_principio": "Estilo visual minimalista y despejado.",
+            "hook_inicial": "El primer segundo del video debe ser atractivo y generar interés.",
+            "call_to_action": "Incluir una llamada a la acción al final del video, como 'suscribirse' o 'compartir'."
+        },
+        "thumbnail_sugerido": ""
+    }
+}

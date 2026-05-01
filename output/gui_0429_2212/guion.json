@@ -1,0 +1,157 @@
+{
+    "guion": {
+        "titulo_video": "La Habitación del Terror",
+        "descripcion": "Un relato paranormal sobre una habitación misteriosa que me sigue perturbando hasta hoy.",
+        "hashtags": "#relatoparanormal #terror #misterio",
+        "duracion_total_audio": "04:54",
+        "plataforma": "Facebook",
+        "formato_video": "9:16 (1080x1920)",
+        "configuracion_audio_recomendada": {
+            "volumen_narracion_db": -6.0,
+            "volumen_musica_fondo_db": -22.0,
+            "volumen_musica_en_pausas_db": -14.0,
+            "volumen_sfx_ambiente_db": -20.0,
+            "volumen_sfx_impacto_db": -10.0,
+            "ducking_activado": true,
+            "fade_in_musica_ms": 3000,
+            "fade_out_musica_ms": 5000,
+            "notas_mezcla": ""
+        },
+        "pistas_de_fondo_recomendadas": [
+            {
+                "segmento": "introduccion",
+                "tiempo_inicio": "00:00:05",
+                "tiempo_fin": "00:00:20",
+                "referencia": "Myuu - Haunted",
+                "alternativa": "CO.AG Music - Dark Ambient",
+                "mood": "misterio_creciente",
+                "volumen_relativo_sugerido": 0.15,
+                "notas": "Usemos esta pista para crear una atmósfera misteriosa y creciente."
+            },
+            {
+                "segmento": "desarrollo",
+                "tiempo_inicio": "00:00:40",
+                "tiempo_fin": "00:01:20",
+                "referencia": "Adrian von Ziegler - Dark Celtic",
+                "alternativa": "Lustmord - Deep Drone",
+                "mood": "tension_sostenida",
+                "volumen_relativo_sugerido": 0.2,
+                "notas": "Usemos esta pista para aumentar la tensión y la ansiedad en el video."
+            },
+            {
+                "segmento": "climax",
+                "tiempo_inicio": "00:01:40",
+                "tiempo_fin": "00:02:10",
+                "referencia": "Myuu - Terror",
+                "alternativa": "",
+                "mood": "terror_intenso",
+                "volumen_relativo_sugerido": 0.3,
+                "notas": "Usemos esta pista para maximizar el impacto y la intensidad del terror."
+            },
+            {
+                "segmento": "cierre",
+                "tiempo_inicio": "00:02:30",
+                "tiempo_fin": "00:03:10",
+                "referencia": "",
+                "alternativa": "CO.AG Music - Dark Ambient",
+                "mood": "inquietud_residual",
+                "volumen_relativo_sugerido": 0.1,
+                "notas": "Usemos esta pista para cerrar el video con una sensación de inquietud y tristeza."
+            }
+        ],
+        "imagenes": [
+            {
+                "id": 1,
+                "tiempo_inicio": "00:00:00",
+                "tiempo_fin": "00:00:10",
+                "duracion_segundos": 10,
+                "prompt": "Un cuarto oscuro con una cama y un escritorio, iluminado solo por la luz del sol filtrada a través de la puerta.",
+                "transicion_entrada": "fade_from_black_2s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_in",
+                "intensidad_emocional": 5,
+                "notas_director": "Esta imagen debe ser impactante y establecer el tono del video."
+            },
+            {
+                "id": 2,
+                "tiempo_inicio": "00:00:20",
+                "tiempo_fin": "00:00:40",
+                "duracion_segundos": 20,
+                "prompt": "La mano de mi abuela agarreando mi brazo mientras estoy durmiendo.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "estatico",
+                "intensidad_emocional": 8,
+                "notas_director": "Esta imagen debe ser tensa y creciente la ansiedad."
+            },
+            {
+                "id": 3,
+                "tiempo_inicio": "00:01:10",
+                "tiempo_fin": "00:01:30",
+                "duracion_segundos": 20,
+                "prompt": "Mi gata asustada y con pelo erizado, mirando hacia la puerta.",
+                "transicion_entrada": "fade_from_black_2s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "zoom_lento_out",
+                "intensidad_emocional": 6,
+                "notas_director": "Esta imagen debe ser llena de miedo y terror."
+            },
+            {
+                "id": 4,
+                "tiempo_inicio": "00:02:10",
+                "tiempo_fin": "00:02:40",
+                "duracion_segundos": 30,
+                "prompt": "La habitación en la oscuridad, con solo la luz de la luna filtrada a través de las cortinas.",
+                "transicion_entrada": "crossfade_1.5s",
+                "transicion_salida": "crossfade_1.5s",
+                "efecto_movimiento": "paneo_lento_derecha",
+                "intensidad_emocional": 9,
+                "notas_director": "Esta imagen debe ser la más impactante y terrorífica del video."
+            }
+        ],
+        "efectos_sonidos_especiales": [
+            {
+                "id": 1,
+                "tiempo_exacto": "00:00:05",
+                "duracion_ms": 2000,
+                "tipo": "ambiente",
+                "referencia": "viento_nocturno",
+                "descripcion": "Un viento suave y fresco que entra en la habitación.",
+                "volumen_sugerido_db": -12.0,
+                "fade_in_ms": 500,
+                "fade_out_ms": 300
+            },
+            {
+                "id": 2,
+                "tiempo_exacto": "00:00:20",
+                "duracion_ms": 1500,
+                "tipo": "impacto",
+                "referencia": "piano_terror",
+                "descripcion": "Un golpe fuerte y doloroso en la habitación.",
+                "volumen_sugerido_db": -15.0,
+                "fade_in_ms": 1000,
+                "fade_out_ms": 500
+            },
+            {
+                "id": 3,
+                "tiempo_exacto": "00:01:10",
+                "duracion_ms": 2500,
+                "tipo": "sfx",
+                "referencia": "gato_asustado",
+                "descripcion": "Un grito de terror y miedo.",
+                "volumen_sugerido_db": -18.0,
+                "fade_in_ms": 1500,
+                "fade_out_ms": 1000
+            }
+        ],
+        "notas_generales_director": {
+            "ritmo_narrativo": "creciente",
+            "uso_silencios": "estrategia de impacto",
+            "regla_de_oro_sfx": "utilizar solo los efectos más intensos",
+            "imagenes_principio": "misteriosa y oscura",
+            "hook_inicial": "una imagen impactante y tensa",
+            "call_to_action": ""
+        },
+        "thumbnail_sugerido": " Una imagen de la habitación con una cama y un escritorio, iluminado solo por la luz del sol filtrada a través de la puerta."
+    }
+}

@@ -1,0 +1,291 @@
+[Script Info]
+Title: Subtitulos Paranormales
+ScriptType: v4.00+
+WrapStyle: 1
+ScaledBorderAndShadow: yes
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Letra blanca con sombra oscura (para relato base)
+Style: Terror,Bebas Neue,100,&H00FFFFFF,&H000000FF,&H44000000,&H88000000,-1,0,0,0,100,100,2,0,1,6,0,5,50,50,400,1
+; Letra con resalte rojo (usado principalmente con el karaoke)
+Style: Impacto,Bebas Neue,110,&H00FFFFFF,&H000000FF,&H33000000,&H88000000,-1,0,0,0,100,100,2,0,1,8,0,5,50,50,400,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.80,Impacto,,0,0,0,,{\k36}El {\k26}hombre {\k18}de
+Dialogue: 0,0:00:00.80,0:00:01.78,Impacto,,0,0,0,,{\k19}la {\k78}carretera.
+Dialogue: 0,0:00:02.64,0:00:03.04,Impacto,,0,0,0,,{\k39}Amigos,
+Dialogue: 0,0:00:03.25,0:00:03.72,Impacto,,0,0,0,,{\k20}lo {\k10}que {\k16}voy
+Dialogue: 0,0:00:03.72,0:00:04.58,Impacto,,0,0,0,,{\k25}a {\k42}contarles {\k17}hoy
+Dialogue: 0,0:00:04.58,0:00:05.40,Impacto,,0,0,0,,{\k13}es {\k32}muy {\k36}diferente
+Dialogue: 0,0:00:05.40,0:00:05.96,Impacto,,0,0,0,,{\k25}a {\k12}todo {\k17}lo
+Dialogue: 0,0:00:05.96,0:00:06.44,Impacto,,0,0,0,,{\k9}que {\k12}les {\k26}he
+Dialogue: 0,0:00:06.44,0:00:07.37,Impacto,,0,0,0,,{\k46}compartido {\k47}antes.
+Dialogue: 0,0:00:08.77,0:00:09.27,Impacto,,0,0,0,,{\k50}Y,
+Dialogue: 0,0:00:09.27,0:00:09.77,Impacto,,0,0,0,,{\k50}sinceramente,
+Dialogue: 0,0:00:10.03,0:00:10.59,Impacto,,0,0,0,,{\k14}es {\k16}de {\k25}esas
+Dialogue: 0,0:00:10.59,0:00:11.38,Impacto,,0,0,0,,{\k40}historias {\k16}que {\k22}te
+Dialogue: 0,0:00:11.38,0:00:12.03,Impacto,,0,0,0,,{\k27}dejan {\k17}un {\k19}miedo
+Dialogue: 0,0:00:12.03,0:00:12.59,Impacto,,0,0,0,,{\k22}que {\k16}se {\k17}te
+Dialogue: 0,0:00:12.59,0:00:13.35,Impacto,,0,0,0,,{\k17}mete {\k33}hasta {\k24}los
+Dialogue: 0,0:00:13.35,0:00:13.88,Impacto,,0,0,0,,{\k52}huesos.
+Dialogue: 0,0:00:14.82,0:00:15.58,Impacto,,0,0,0,,{\k17}La {\k38}familia {\k19}de
+Dialogue: 0,0:00:15.58,0:00:16.12,Impacto,,0,0,0,,{\k11}mi {\k22}madre {\k20}es
+Dialogue: 0,0:00:16.12,0:00:16.60,Impacto,,0,0,0,,{\k14}de {\k13}un {\k20}pueblo
+Dialogue: 0,0:00:16.60,0:00:17.48,Impacto,,0,0,0,,{\k87}lejano.
+Dialogue: 0,0:00:18.17,0:00:18.85,Impacto,,0,0,0,,{\k11}La {\k26}casa {\k30}donde
+Dialogue: 0,0:00:18.85,0:00:19.75,Impacto,,0,0,0,,{\k37}creció {\k33}siempre {\k17}ha
+Dialogue: 0,0:00:19.75,0:00:20.69,Impacto,,0,0,0,,{\k21}estado {\k50}rodeada {\k22}de
+Dialogue: 0,0:00:20.69,0:00:21.78,Impacto,,0,0,0,,{\k43}sucesos {\k66}extraños,
+Dialogue: 0,0:00:22.01,0:00:23.05,Impacto,,0,0,0,,{\k23}cosas {\k51}difíciles {\k28}de
+Dialogue: 0,0:00:23.05,0:00:23.39,Impacto,,0,0,0,,{\k33}explicar,
+Dialogue: 0,0:00:23.73,0:00:24.25,Impacto,,0,0,0,,{\k14}que {\k19}no {\k17}solo
+Dialogue: 0,0:00:24.25,0:00:25.42,Impacto,,0,0,0,,{\k37}vivieron {\k22}mis {\k57}abuelos,
+Dialogue: 0,0:00:25.60,0:00:26.03,Impacto,,0,0,0,,{\k14}que {\k16}en {\k12}paz
+Dialogue: 0,0:00:26.03,0:00:26.60,Impacto,,0,0,0,,{\k57}descansen,
+Dialogue: 0,0:00:27.01,0:00:27.82,Impacto,,0,0,0,,{\k13}sino {\k38}también {\k29}muchos
+Dialogue: 0,0:00:27.82,0:00:28.80,Impacto,,0,0,0,,{\k50}habitantes {\k16}del {\k32}lugar.
+Dialogue: 0,0:00:29.66,0:00:30.42,Impacto,,0,0,0,,{\k32}Pero {\k19}hay {\k24}algo
+Dialogue: 0,0:00:30.42,0:00:31.32,Impacto,,0,0,0,,{\k29}en {\k33}particular {\k26}que
+Dialogue: 0,0:00:31.32,0:00:32.10,Impacto,,0,0,0,,{\k32}siempre {\k30}llamó {\k16}la
+Dialogue: 0,0:00:32.10,0:00:33.10,Impacto,,0,0,0,,{\k35}atención {\k28}de {\k35}todos.
+Dialogue: 0,0:00:34.14,0:00:35.60,Impacto,,0,0,0,,{\k28}Una {\k117}carretera.
+Dialogue: 0,0:00:36.04,0:00:37.00,Impacto,,0,0,0,,{\k16}Una {\k50}carretera {\k29}dentro
+Dialogue: 0,0:00:37.00,0:00:37.64,Impacto,,0,0,0,,{\k21}del {\k42}pueblo,
+Dialogue: 0,0:00:38.09,0:00:39.09,Impacto,,0,0,0,,{\k53}aparentemente {\k46}normal,
+Dialogue: 0,0:00:39.40,0:00:40.04,Impacto,,0,0,0,,{\k26}pero {\k37}que,
+Dialogue: 0,0:00:40.17,0:00:41.10,Impacto,,0,0,0,,{\k29}por {\k21}alguna {\k42}razón,
+Dialogue: 0,0:00:41.63,0:00:42.32,Impacto,,0,0,0,,{\k29}provocaba {\k20}un {\k19}miedo
+Dialogue: 0,0:00:42.32,0:00:43.60,Impacto,,0,0,0,,{\k71}inexplicable {\k26}en {\k29}cualquiera
+Dialogue: 0,0:00:43.60,0:00:44.32,Impacto,,0,0,0,,{\k29}que {\k20}pasara {\k21}por
+Dialogue: 0,0:00:44.32,0:00:44.64,Impacto,,0,0,0,,{\k32}ahí.
+Dialogue: 0,0:00:45.53,0:00:46.42,Impacto,,0,0,0,,{\k28}No {\k46}importaba {\k14}si
+Dialogue: 0,0:00:46.42,0:00:47.43,Impacto,,0,0,0,,{\k25}eran {\k53}conductores {\k21}de
+Dialogue: 0,0:00:47.43,0:00:48.06,Impacto,,0,0,0,,{\k62}autobuses,
+Dialogue: 0,0:00:48.52,0:00:49.25,Impacto,,0,0,0,,{\k23}personas {\k28}en {\k21}coche
+Dialogue: 0,0:00:49.25,0:00:50.34,Impacto,,0,0,0,,{\k14}o {\k21}en {\k72}motocicleta,
+Dialogue: 0,0:00:50.53,0:00:51.60,Impacto,,0,0,0,,{\k32}todos {\k57}coincidían {\k16}en
+Dialogue: 0,0:00:51.60,0:00:52.07,Impacto,,0,0,0,,{\k14}lo {\k33}mismo,
+Dialogue: 0,0:00:52.42,0:00:53.14,Impacto,,0,0,0,,{\k25}algo {\k28}no {\k17}estaba
+Dialogue: 0,0:00:53.14,0:00:53.78,Impacto,,0,0,0,,{\k21}bien {\k24}en {\k17}ese
+Dialogue: 0,0:00:53.78,0:00:54.64,Impacto,,0,0,0,,{\k85}tramo.
+Dialogue: 0,0:00:55.11,0:00:56.21,Impacto,,0,0,0,,{\k42}Muchos {\k38}decían {\k29}que,
+Dialogue: 0,0:00:56.38,0:00:57.35,Impacto,,0,0,0,,{\k19}al {\k78}atravesarlo,
+Dialogue: 0,0:00:57.71,0:00:58.50,Impacto,,0,0,0,,{\k25}sentían {\k22}una {\k29}especie
+Dialogue: 0,0:00:58.50,0:00:59.24,Impacto,,0,0,0,,{\k29}de {\k26}presión {\k17}en
+Dialogue: 0,0:00:59.24,0:00:59.71,Impacto,,0,0,0,,{\k14}el {\k33}pecho,
+Dialogue: 0,0:00:59.71,0:01:00.47,Impacto,,0,0,0,,{\k0}como {\k66}si {\k9}el
+Dialogue: 0,0:01:00.47,0:01:01.25,Impacto,,0,0,0,,{\k22}aire {\k23}se {\k32}volviera
+Dialogue: 0,0:01:01.25,0:01:02.38,Impacto,,0,0,0,,{\k112}pesado.
+Dialogue: 0,0:01:02.85,0:01:03.82,Impacto,,0,0,0,,{\k25}Otros {\k56}aseguraban {\k14}que
+Dialogue: 0,0:01:03.82,0:01:04.98,Impacto,,0,0,0,,{\k27}la {\k35}carretera {\k52}parecía
+Dialogue: 0,0:01:04.98,0:01:05.87,Impacto,,0,0,0,,{\k59}dividirse {\k12}en {\k17}dos
+Dialogue: 0,0:01:05.87,0:01:06.81,Impacto,,0,0,0,,{\k48}direcciones {\k20}al {\k25}mismo
+Dialogue: 0,0:01:06.81,0:01:07.34,Impacto,,0,0,0,,{\k52}tiempo,
+Dialogue: 0,0:01:07.59,0:01:08.06,Impacto,,0,0,0,,{\k14}como {\k18}si {\k14}se
+Dialogue: 0,0:01:08.06,0:01:08.98,Impacto,,0,0,0,,{\k51}deformara {\k23}frente {\k16}a
+Dialogue: 0,0:01:08.98,0:01:09.48,Impacto,,0,0,0,,{\k14}sus {\k35}ojos,
+Dialogue: 0,0:01:09.79,0:01:10.37,Impacto,,0,0,0,,{\k7}y {\k18}no {\k31}podían
+Dialogue: 0,0:01:10.37,0:01:11.23,Impacto,,0,0,0,,{\k38}entender {\k25}hacia {\k21}dónde
+Dialogue: 0,0:01:11.23,0:01:12.68,Impacto,,0,0,0,,{\k38}debían {\k106}conducir.
+Dialogue: 0,0:01:13.23,0:01:13.93,Impacto,,0,0,0,,{\k15}Ese {\k28}lugar {\k26}se
+Dialogue: 0,0:01:13.93,0:01:14.90,Impacto,,0,0,0,,{\k31}volvió {\k43}conocido {\k21}por
+Dialogue: 0,0:01:14.90,0:01:16.06,Impacto,,0,0,0,,{\k18}algo {\k97}peor.
+Dialogue: 0,0:01:17.59,0:01:18.12,Impacto,,0,0,0,,{\k52}Accidentes.
+Dialogue: 0,0:01:18.59,0:01:19.12,Impacto,,0,0,0,,{\k52}Demasiados.
+Dialogue: 0,0:01:20.20,0:01:21.06,Impacto,,0,0,0,,{\k34}Personas {\k21}que {\k29}salían
+Dialogue: 0,0:01:21.06,0:01:21.92,Impacto,,0,0,0,,{\k51}disparadas {\k18}de {\k15}sus
+Dialogue: 0,0:01:21.92,0:01:22.87,Impacto,,0,0,0,,{\k95}motocicletas,
+Dialogue: 0,0:01:23.12,0:01:24.28,Impacto,,0,0,0,,{\k23}choques {\k92}inexplicables,
+Dialogue: 0,0:01:24.54,0:01:25.18,Impacto,,0,0,0,,{\k33}heridas {\k30}graves,
+Dialogue: 0,0:01:25.57,0:01:25.81,Impacto,,0,0,0,,{\k23}y,
+Dialogue: 0,0:01:25.81,0:01:26.81,Impacto,,0,0,0,,{\k24}en {\k25}varios {\k50}casos,
+Dialogue: 0,0:01:27.20,0:01:28.18,Impacto,,0,0,0,,{\k98}muertes.
+Dialogue: 0,0:01:28.46,0:01:29.67,Impacto,,0,0,0,,{\k54}Gente {\k47}inocente {\k18}que
+Dialogue: 0,0:01:29.67,0:01:30.76,Impacto,,0,0,0,,{\k59}simplemente {\k26}tuvo {\k23}la
+Dialogue: 0,0:01:30.76,0:01:31.54,Impacto,,0,0,0,,{\k18}mala {\k37}suerte {\k21}de
+Dialogue: 0,0:01:31.54,0:01:32.46,Impacto,,0,0,0,,{\k29}cruzar {\k21}por {\k40}ahí.
+Dialogue: 0,0:01:33.28,0:01:34.06,Impacto,,0,0,0,,{\k17}Con {\k20}el {\k40}tiempo,
+Dialogue: 0,0:01:34.45,0:01:35.28,Impacto,,0,0,0,,{\k30}comenzaron {\k11}a {\k40}surgir
+Dialogue: 0,0:01:35.28,0:01:36.04,Impacto,,0,0,0,,{\k76}testimonios.
+Dialogue: 0,0:01:37.09,0:01:38.45,Impacto,,0,0,0,,{\k35}Varias {\k37}personas {\k62}afirmaban
+Dialogue: 0,0:01:38.45,0:01:39.31,Impacto,,0,0,0,,{\k25}haber {\k38}visto {\k21}a
+Dialogue: 0,0:01:39.31,0:01:39.81,Impacto,,0,0,0,,{\k12}un {\k19}hombre {\k18}en
+Dialogue: 0,0:01:39.81,0:01:40.48,Impacto,,0,0,0,,{\k25}la {\k42}carretera,
+Dialogue: 0,0:01:40.81,0:01:41.62,Impacto,,0,0,0,,{\k21}una {\k28}figura {\k31}que
+Dialogue: 0,0:01:41.62,0:01:42.62,Impacto,,0,0,0,,{\k35}aparecía {\k28}de {\k35}repente.
+Dialogue: 0,0:01:43.54,0:01:44.25,Impacto,,0,0,0,,{\k29}En {\k12}la {\k28}lengua
+Dialogue: 0,0:01:44.25,0:01:44.65,Impacto,,0,0,0,,{\k40}local,
+Dialogue: 0,0:01:45.03,0:01:45.67,Impacto,,0,0,0,,{\k17}lo {\k46}llamaban,
+Dialogue: 0,0:01:45.82,0:01:46.34,Impacto,,0,0,0,,{\k51}Gadiwan,
+Dialogue: 0,0:01:46.65,0:01:47.25,Impacto,,0,0,0,,{\k11}algo {\k26}así {\k21}como
+Dialogue: 0,0:01:47.25,0:01:48.23,Impacto,,0,0,0,,{\k26}un {\k71}mensajero,
+Dialogue: 0,0:01:48.56,0:01:49.23,Impacto,,0,0,0,,{\k18}alguien {\k26}que {\k21}podía
+Dialogue: 0,0:01:49.23,0:01:49.90,Impacto,,0,0,0,,{\k37}traer {\k20}el {\k9}bien
+Dialogue: 0,0:01:49.90,0:01:50.40,Impacto,,0,0,0,,{\k14}o {\k15}el {\k20}mal.
+Dialogue: 0,0:01:51.35,0:01:51.95,Impacto,,0,0,0,,{\k21}Pero {\k21}en {\k15}este
+Dialogue: 0,0:01:51.95,0:01:52.40,Impacto,,0,0,0,,{\k44}caso,
+Dialogue: 0,0:01:52.76,0:01:53.45,Impacto,,0,0,0,,{\k17}todos {\k32}sabían {\k19}lo
+Dialogue: 0,0:01:53.45,0:01:54.37,Impacto,,0,0,0,,{\k42}que {\k50}significaba.
+Dialogue: 0,0:01:55.34,0:01:56.76,Impacto,,0,0,0,,{\k23}Los {\k64}sobrevivientes {\k54}describían
+Dialogue: 0,0:01:56.76,0:01:57.76,Impacto,,0,0,0,,{\k19}su {\k48}apariencia {\k32}con
+Dialogue: 0,0:01:57.76,0:01:58.18,Impacto,,0,0,0,,{\k42}claridad,
+Dialogue: 0,0:01:58.18,0:01:59.50,Impacto,,0,0,0,,{\k37}una {\k39}figura {\k54}humana,
+Dialogue: 0,0:01:59.70,0:02:00.12,Impacto,,0,0,0,,{\k42}visible,
+Dialogue: 0,0:02:00.62,0:02:00.93,Impacto,,0,0,0,,{\k31}real,
+Dialogue: 0,0:02:01.35,0:02:01.93,Impacto,,0,0,0,,{\k12}pero {\k20}con {\k25}una
+Dialogue: 0,0:02:01.93,0:02:03.00,Impacto,,0,0,0,,{\k35}presencia {\k70}inquietante.
+Dialogue: 0,0:02:03.87,0:02:05.09,Impacto,,0,0,0,,{\k23}Y {\k29}todos {\k68}coincidían
+Dialogue: 0,0:02:05.09,0:02:06.23,Impacto,,0,0,0,,{\k15}en {\k18}algo {\k79}perturbador.
+Dialogue: 0,0:02:07.20,0:02:08.22,Impacto,,0,0,0,,{\k20}El {\k21}hombre {\k59}levantaba
+Dialogue: 0,0:02:08.22,0:02:08.99,Impacto,,0,0,0,,{\k15}ambos {\k60}brazos,
+Dialogue: 0,0:02:09.28,0:02:10.28,Impacto,,0,0,0,,{\k40}señalando {\k19}en {\k40}direcciones
+Dialogue: 0,0:02:10.28,0:02:11.16,Impacto,,0,0,0,,{\k87}opuestas.
+Dialogue: 0,0:02:12.06,0:02:13.06,Impacto,,0,0,0,,{\k19}Como {\k30}si {\k50}confundiera
+Dialogue: 0,0:02:13.06,0:02:14.52,Impacto,,0,0,0,,{\k84}deliberadamente {\k41}a {\k20}quienes
+Dialogue: 0,0:02:14.52,0:02:15.24,Impacto,,0,0,0,,{\k29}lo {\k42}veían.
+Dialogue: 0,0:02:16.18,0:02:16.93,Impacto,,0,0,0,,{\k34}Ahora {\k24}viene {\k15}lo
+Dialogue: 0,0:02:16.93,0:02:17.75,Impacto,,0,0,0,,{\k29}más {\k26}fuerte {\k25}de
+Dialogue: 0,0:02:17.75,0:02:18.28,Impacto,,0,0,0,,{\k13}esta {\k40}historia.
+Dialogue: 0,0:02:19.33,0:02:19.93,Impacto,,0,0,0,,{\k15}Un {\k28}amigo {\k15}de
+Dialogue: 0,0:02:19.93,0:02:20.77,Impacto,,0,0,0,,{\k18}mi {\k19}tío {\k46}viajaba
+Dialogue: 0,0:02:20.77,0:02:21.37,Impacto,,0,0,0,,{\k11}en {\k22}su {\k25}coche
+Dialogue: 0,0:02:21.37,0:02:22.15,Impacto,,0,0,0,,{\k28}desde {\k31}Pune {\k18}hacia
+Dialogue: 0,0:02:22.15,0:02:22.66,Impacto,,0,0,0,,{\k23}el {\k28}pueblo.
+Dialogue: 0,0:02:23.72,0:02:24.44,Impacto,,0,0,0,,{\k21}Era {\k21}una {\k28}noche
+Dialogue: 0,0:02:24.44,0:02:25.28,Impacto,,0,0,0,,{\k20}de {\k23}luna {\k40}llena.
+Dialogue: 0,0:02:25.50,0:02:27.05,Impacto,,0,0,0,,{\k84}Él {\k34}ya {\k36}conocía
+Dialogue: 0,0:02:27.05,0:02:27.93,Impacto,,0,0,0,,{\k23}las {\k64}historias,
+Dialogue: 0,0:02:28.16,0:02:29.27,Impacto,,0,0,0,,{\k20}sabía {\k71}perfectamente {\k18}lo
+Dialogue: 0,0:02:29.27,0:02:29.83,Impacto,,0,0,0,,{\k9}que {\k21}se {\k24}decía
+Dialogue: 0,0:02:29.83,0:02:30.81,Impacto,,0,0,0,,{\k25}de {\k18}esa {\k53}carretera.
+Dialogue: 0,0:02:31.71,0:02:32.58,Impacto,,0,0,0,,{\k24}Y {\k17}aún {\k44}así,
+Dialogue: 0,0:02:32.96,0:02:33.80,Impacto,,0,0,0,,{\k25}decidió {\k58}continuar.
+Dialogue: 0,0:02:34.83,0:02:35.90,Impacto,,0,0,0,,{\k37}Mientras {\k69}avanzaba,
+Dialogue: 0,0:02:36.15,0:02:36.78,Impacto,,0,0,0,,{\k18}de {\k19}pronto {\k25}lo
+Dialogue: 0,0:02:36.78,0:02:37.50,Impacto,,0,0,0,,{\k71}vio.
+Dialogue: 0,0:02:37.93,0:02:38.31,Impacto,,0,0,0,,{\k37}Ahí,
+Dialogue: 0,0:02:38.65,0:02:39.41,Impacto,,0,0,0,,{\k28}justo {\k30}frente {\k17}a
+Dialogue: 0,0:02:39.41,0:02:39.69,Impacto,,0,0,0,,{\k28}él.
+Dialogue: 0,0:02:40.50,0:02:41.15,Impacto,,0,0,0,,{\k24}El {\k40}hombre.
+Dialogue: 0,0:02:42.02,0:02:42.74,Impacto,,0,0,0,,{\k29}De {\k18}pie {\k24}en
+Dialogue: 0,0:02:42.74,0:02:43.52,Impacto,,0,0,0,,{\k17}medio {\k26}del {\k34}camino,
+Dialogue: 0,0:02:43.81,0:02:44.41,Impacto,,0,0,0,,{\k12}con {\k18}los {\k29}brazos
+Dialogue: 0,0:02:44.41,0:02:45.56,Impacto,,0,0,0,,{\k68}extendidos {\k20}hacia {\k25}lados
+Dialogue: 0,0:02:45.56,0:02:46.31,Impacto,,0,0,0,,{\k75}opuestos.
+Dialogue: 0,0:02:47.27,0:02:48.25,Impacto,,0,0,0,,{\k23}Como {\k50}indicando {\k24}dos
+Dialogue: 0,0:02:48.25,0:02:49.27,Impacto,,0,0,0,,{\k52}direcciones {\k21}al {\k28}mismo
+Dialogue: 0,0:02:49.27,0:02:49.66,Impacto,,0,0,0,,{\k39}tiempo.
+Dialogue: 0,0:02:50.65,0:02:51.62,Impacto,,0,0,0,,{\k19}Por {\k26}un {\k51}instante,
+Dialogue: 0,0:02:51.87,0:02:52.72,Impacto,,0,0,0,,{\k18}el {\k21}tiempo {\k45}pareció
+Dialogue: 0,0:02:52.72,0:02:53.46,Impacto,,0,0,0,,{\k74}detenerse.
+Dialogue: 0,0:02:53.71,0:02:54.59,Impacto,,0,0,0,,{\k87}Pero,
+Dialogue: 0,0:02:54.90,0:02:55.84,Impacto,,0,0,0,,{\k21}a {\k43}diferencia {\k28}de
+Dialogue: 0,0:02:55.84,0:02:56.13,Impacto,,0,0,0,,{\k29}otros,
+Dialogue: 0,0:02:56.40,0:02:56.96,Impacto,,0,0,0,,{\k13}el {\k24}amigo {\k18}de
+Dialogue: 0,0:02:56.96,0:02:57.53,Impacto,,0,0,0,,{\k15}mi {\k18}tío {\k23}no
+Dialogue: 0,0:02:57.53,0:02:58.56,Impacto,,0,0,0,,{\k43}reaccionó {\k21}con {\k36}miedo.
+Dialogue: 0,0:02:59.56,0:03:00.21,Impacto,,0,0,0,,{\k20}No {\k21}se {\k21}dejó
+Dialogue: 0,0:03:00.21,0:03:00.96,Impacto,,0,0,0,,{\k28}llevar {\k21}por {\k25}la
+Dialogue: 0,0:03:00.96,0:03:01.96,Impacto,,0,0,0,,{\k100}confusión.
+Dialogue: 0,0:03:02.62,0:03:03.75,Impacto,,0,0,0,,{\k52}Simplemente {\k21}lo {\k37}ignoró,
+Dialogue: 0,0:03:04.05,0:03:04.77,Impacto,,0,0,0,,{\k21}mantuvo {\k34}el {\k15}control
+Dialogue: 0,0:03:04.77,0:03:05.38,Impacto,,0,0,0,,{\k17}del {\k43}volante,
+Dialogue: 0,0:03:05.61,0:03:06.55,Impacto,,0,0,0,,{\k13}y {\k30}siguió {\k50}conduciendo
+Dialogue: 0,0:03:06.55,0:03:08.03,Impacto,,0,0,0,,{\k19}en {\k24}línea {\k103}recta.
+Dialogue: 0,0:03:08.40,0:03:09.34,Impacto,,0,0,0,,{\k36}Esa {\k57}decisión,
+Dialogue: 0,0:03:09.53,0:03:10.53,Impacto,,0,0,0,,{\k53}probablemente {\k21}le {\k24}salvó
+Dialogue: 0,0:03:10.53,0:03:10.96,Impacto,,0,0,0,,{\k15}la {\k28}vida.
+Dialogue: 0,0:03:12.05,0:03:12.68,Impacto,,0,0,0,,{\k28}Llegó {\k13}a {\k21}casa
+Dialogue: 0,0:03:12.68,0:03:13.71,Impacto,,0,0,0,,{\k30}sin {\k28}ningún {\k43}problema.
+Dialogue: 0,0:03:14.72,0:03:15.65,Impacto,,0,0,0,,{\k32}Tiempo {\k59}después,
+Dialogue: 0,0:03:15.90,0:03:16.46,Impacto,,0,0,0,,{\k9}la {\k21}gente {\k24}del
+Dialogue: 0,0:03:16.46,0:03:17.78,Impacto,,0,0,0,,{\k21}pueblo {\k47}decidió {\k62}investigar
+Dialogue: 0,0:03:17.78,0:03:18.28,Impacto,,0,0,0,,{\k14}lo {\k19}que {\k15}estaba
+Dialogue: 0,0:03:18.28,0:03:19.11,Impacto,,0,0,0,,{\k82}ocurriendo.
+Dialogue: 0,0:03:19.84,0:03:20.75,Impacto,,0,0,0,,{\k18}Y {\k15}fue {\k57}entonces
+Dialogue: 0,0:03:20.75,0:03:21.52,Impacto,,0,0,0,,{\k32}cuando {\k35}salió {\k8}a
+Dialogue: 0,0:03:21.52,0:03:22.00,Impacto,,0,0,0,,{\k11}la {\k16}luz {\k19}una
+Dialogue: 0,0:03:22.00,0:03:22.96,Impacto,,0,0,0,,{\k30}historia {\k25}del {\k40}pasado.
+Dialogue: 0,0:03:23.21,0:03:24.68,Impacto,,0,0,0,,{\k93}En {\k13}la {\k40}década
+Dialogue: 0,0:03:24.68,0:03:26.00,Impacto,,0,0,0,,{\k15}de {\k115}1970,
+Dialogue: 0,0:03:26.38,0:03:27.25,Impacto,,0,0,0,,{\k8}un {\k24}hombre {\k53}proveniente
+Dialogue: 0,0:03:27.25,0:03:28.03,Impacto,,0,0,0,,{\k19}de {\k32}Mumbai {\k25}tuvo
+Dialogue: 0,0:03:28.03,0:03:28.93,Impacto,,0,0,0,,{\k24}un {\k45}accidente {\k20}en
+Dialogue: 0,0:03:28.93,0:03:29.71,Impacto,,0,0,0,,{\k18}ese {\k35}mismo {\k24}tramo
+Dialogue: 0,0:03:29.71,0:03:30.99,Impacto,,0,0,0,,{\k15}de {\k19}la {\k92}carretera.
+Dialogue: 0,0:03:31.56,0:03:32.41,Impacto,,0,0,0,,{\k13}Su {\k46}vehículo {\k25}se
+Dialogue: 0,0:03:32.41,0:03:32.90,Impacto,,0,0,0,,{\k48}incendió,
+Dialogue: 0,0:03:33.09,0:03:33.63,Impacto,,0,0,0,,{\k12}y {\k19}él {\k21}murió
+Dialogue: 0,0:03:33.63,0:03:35.00,Impacto,,0,0,0,,{\k74}completamente {\k62}quemado.
+Dialogue: 0,0:03:35.87,0:03:36.94,Impacto,,0,0,0,,{\k13}Lo {\k26}más {\k67}perturbador,
+Dialogue: 0,0:03:37.03,0:03:37.59,Impacto,,0,0,0,,{\k18}no {\k19}fue {\k18}el
+Dialogue: 0,0:03:37.59,0:03:38.61,Impacto,,0,0,0,,{\k50}accidente {\k25}en {\k26}sí.
+Dialogue: 0,0:03:39.56,0:03:40.13,Impacto,,0,0,0,,{\k19}Sino {\k18}lo {\k19}que
+Dialogue: 0,0:03:40.13,0:03:40.86,Impacto,,0,0,0,,{\k18}pasó {\k54}después.
+Dialogue: 0,0:03:41.93,0:03:42.75,Impacto,,0,0,0,,{\k19}Las {\k36}personas {\k25}que
+Dialogue: 0,0:03:42.75,0:03:43.68,Impacto,,0,0,0,,{\k56}presenciaron {\k15}el {\k20}hecho
+Dialogue: 0,0:03:43.68,0:03:44.58,Impacto,,0,0,0,,{\k19}no {\k31}hicieron {\k38}nada.
+Dialogue: 0,0:03:45.65,0:03:46.53,Impacto,,0,0,0,,{\k25}Nadie {\k26}se {\k35}acercó
+Dialogue: 0,0:03:46.53,0:03:47.25,Impacto,,0,0,0,,{\k15}a {\k56}ayudarlo.
+Dialogue: 0,0:03:48.21,0:03:49.58,Impacto,,0,0,0,,{\k30}Nadie {\k45}intentó {\k60}sacarlo.
+Dialogue: 0,0:03:50.34,0:03:51.06,Impacto,,0,0,0,,{\k31}Por {\k40}miedo,
+Dialogue: 0,0:03:51.24,0:03:52.24,Impacto,,0,0,0,,{\k17}por {\k36}evitar {\k46}problemas
+Dialogue: 0,0:03:52.24,0:03:52.91,Impacto,,0,0,0,,{\k67}legales,
+Dialogue: 0,0:03:53.21,0:03:54.19,Impacto,,0,0,0,,{\k43}simplemente {\k21}lo {\k31}dejaron
+Dialogue: 0,0:03:54.19,0:03:55.12,Impacto,,0,0,0,,{\k92}morir.
+Dialogue: 0,0:03:55.61,0:03:56.56,Impacto,,0,0,0,,{\k23}Desde {\k71}entonces,
+Dialogue: 0,0:03:56.88,0:03:57.66,Impacto,,0,0,0,,{\k14}muchos {\k47}creyeron {\k15}que
+Dialogue: 0,0:03:57.66,0:03:58.53,Impacto,,0,0,0,,{\k12}su {\k43}espíritu {\k30}quedó
+Dialogue: 0,0:03:58.53,0:03:59.28,Impacto,,0,0,0,,{\k46}atrapado {\k15}en {\k13}ese
+Dialogue: 0,0:03:59.28,0:03:59.68,Impacto,,0,0,0,,{\k40}lugar.
+Dialogue: 0,0:04:00.56,0:04:01.93,Impacto,,0,0,0,,{\k28}Lleno {\k20}de {\k87}enojo.
+Dialogue: 0,0:04:02.34,0:04:03.12,Impacto,,0,0,0,,{\k34}Lleno {\k15}de {\k28}dolor.
+Dialogue: 0,0:04:04.18,0:04:04.59,Impacto,,0,0,0,,{\k13}Y {\k14}que {\k13}era
+Dialogue: 0,0:04:04.59,0:04:05.41,Impacto,,0,0,0,,{\k20}él {\k23}quien {\k37}provocaba
+Dialogue: 0,0:04:05.41,0:04:06.46,Impacto,,0,0,0,,{\k28}los {\k76}accidentes,
+Dialogue: 0,0:04:06.74,0:04:07.68,Impacto,,0,0,0,,{\k21}quien {\k53}confundía {\k18}a
+Dialogue: 0,0:04:07.68,0:04:08.41,Impacto,,0,0,0,,{\k12}los {\k61}conductores,
+Dialogue: 0,0:04:08.62,0:04:09.46,Impacto,,0,0,0,,{\k15}y {\k18}quien {\k50}aparecía
+Dialogue: 0,0:04:09.46,0:04:10.18,Impacto,,0,0,0,,{\k13}en {\k20}la {\k37}carretera
+Dialogue: 0,0:04:10.18,0:04:11.65,Impacto,,0,0,0,,{\k28}como {\k41}ese {\k78}mensajero.
+Dialogue: 0,0:04:12.78,0:04:13.37,Impacto,,0,0,0,,{\k59}Finalmente,
+Dialogue: 0,0:04:13.59,0:04:14.36,Impacto,,0,0,0,,{\k14}los {\k43}habitantes {\k18}del
+Dialogue: 0,0:04:14.36,0:04:15.36,Impacto,,0,0,0,,{\k27}pueblo {\k42}tomaron {\k30}una
+Dialogue: 0,0:04:15.36,0:04:16.19,Impacto,,0,0,0,,{\k83}decisión.
+Dialogue: 0,0:04:16.93,0:04:18.13,Impacto,,0,0,0,,{\k60}Organizaron {\k23}un {\k36}ritual.
+Dialogue: 0,0:04:19.26,0:04:20.37,Impacto,,0,0,0,,{\k46}Invitaron {\k13}a {\k50}sacerdotes
+Dialogue: 0,0:04:20.37,0:04:21.31,Impacto,,0,0,0,,{\k21}del {\k72}templo.
+Dialogue: 0,0:04:21.31,0:04:22.81,Impacto,,0,0,0,,{\k71}Realizaron {\k78}ceremonias,
+Dialogue: 0,0:04:22.97,0:04:23.61,Impacto,,0,0,0,,{\k63}ofrendas,
+Dialogue: 0,0:04:23.88,0:04:24.47,Impacto,,0,0,0,,{\k12}todo {\k22}con {\k24}el
+Dialogue: 0,0:04:24.47,0:04:25.26,Impacto,,0,0,0,,{\k29}objetivo {\k30}de {\k19}darle
+Dialogue: 0,0:04:25.26,0:04:25.91,Impacto,,0,0,0,,{\k28}paz {\k18}a {\k18}ese
+Dialogue: 0,0:04:25.91,0:04:27.02,Impacto,,0,0,0,,{\k111}espíritu.
+Dialogue: 0,0:04:27.31,0:04:27.66,Impacto,,0,0,0,,{\k34}Y,
+Dialogue: 0,0:04:27.89,0:04:29.16,Impacto,,0,0,0,,{\k26}según {\k100}cuentan,
+Dialogue: 0,0:04:29.72,0:04:30.36,Impacto,,0,0,0,,{\k63}funcionó.
+Dialogue: 0,0:04:31.25,0:04:31.99,Impacto,,0,0,0,,{\k36}Después {\k21}de {\k16}ese
+Dialogue: 0,0:04:31.99,0:04:32.26,Impacto,,0,0,0,,{\k27}día,
+Dialogue: 0,0:04:32.62,0:04:33.85,Impacto,,0,0,0,,{\k16}los {\k50}accidentes {\k56}cesaron.
+Dialogue: 0,0:04:34.86,0:04:35.56,Impacto,,0,0,0,,{\k18}La {\k31}figura {\k19}del
+Dialogue: 0,0:04:35.56,0:04:36.31,Impacto,,0,0,0,,{\k21}hombre {\k36}dejó {\k18}de
+Dialogue: 0,0:04:36.31,0:04:36.74,Impacto,,0,0,0,,{\k42}aparecer.
+Dialogue: 0,0:04:37.81,0:04:38.93,Impacto,,0,0,0,,{\k27}La {\k42}carretera {\k42}volvió
+Dialogue: 0,0:04:38.93,0:04:39.81,Impacto,,0,0,0,,{\k15}a {\k20}ser {\k51}solo
+Dialogue: 0,0:04:39.81,0:04:40.62,Impacto,,0,0,0,,{\k30}una {\k51}carretera.
+Dialogue: 0,0:04:41.63,0:04:43.01,Impacto,,0,0,0,,{\k24}La {\k68}tranquilidad {\k45}regresó
+Dialogue: 0,0:04:43.01,0:04:43.51,Impacto,,0,0,0,,{\k14}al {\k35}pueblo.
+Dialogue: 0,0:04:44.56,0:04:45.19,Impacto,,0,0,0,,{\k25}Y {\k18}poco {\k19}a
+Dialogue: 0,0:04:45.19,0:04:45.62,Impacto,,0,0,0,,{\k42}poco,
+Dialogue: 0,0:04:45.89,0:04:46.57,Impacto,,0,0,0,,{\k10}la {\k18}vida {\k39}volvió
+Dialogue: 0,0:04:46.57,0:04:47.37,Impacto,,0,0,0,,{\k8}a {\k15}la {\k56}normalidad.
+Dialogue: 0,0:04:47.63,0:04:49.06,Impacto,,0,0,0,,{\k86}Pero {\k22}aún {\k33}hoy,
+Dialogue: 0,0:04:49.33,0:04:50.12,Impacto,,0,0,0,,{\k14}quienes {\k47}conocen {\k16}esta
+Dialogue: 0,0:04:50.12,0:04:50.66,Impacto,,0,0,0,,{\k54}historia,
+Dialogue: 0,0:04:51.12,0:04:51.81,Impacto,,0,0,0,,{\k19}evitan {\k24}ese {\k25}lugar
+Dialogue: 0,0:04:51.81,0:04:52.51,Impacto,,0,0,0,,{\k19}por {\k16}la {\k33}noche.
+Dialogue: 0,0:04:53.45,0:04:54.18,Impacto,,0,0,0,,{\k20}Por {\k13}si {\k37}acaso.
