@@ -1,25 +1,23 @@
-# Dependency directories
+# Directorios de dependencias
 node_modules/
 jspm_packages/
 
+# Directorios de Python
 __pycache__/
 *.pyc
-.env
-.venv
+
+# Directorios de cache
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+
+# Directorios de entorno virtual
 venv/
-venv
 
 # Build outputs
 dist/
 build/
 out/
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # IDEs and editors
 .vscode/
@@ -41,7 +39,5 @@ yarn-error.log*
 # Testing
 coverage/
 
-
-__pycache__/
-.pytest_cache/
-.mypy_cache/
+# Carpeta de salida
+output/
