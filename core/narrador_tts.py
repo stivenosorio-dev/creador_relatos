@@ -23,6 +23,9 @@ from config import (
     AudioProcessConfig,
     AUDIO_PROCESS_DEFAULT,
     KOKORO_NARRACION_DEFAULT,
+    AudioEditProfile,
+    AUDIO_EDIT_PROFILES,
+    AUDIO_EDIT_PROFILE_DEFAULT,
 )
 from utils.logger import (
     get_logger,
@@ -51,6 +54,7 @@ class NarradorTTS:
         velocidad: str = "-5%",
         pitch: str = "-2Hz",
         audio_config: AudioProcessConfig = AUDIO_PROCESS_DEFAULT,
+        edit_profile: str = AUDIO_EDIT_PROFILE_DEFAULT,
         *,
         kokoro_pausa_entre_oraciones_s: float | None = None,
         kokoro_fade_union_ms: float | None = None,
@@ -61,6 +65,7 @@ class NarradorTTS:
         self.velocidad = velocidad
         self.pitch = pitch
         self.audio_config = audio_config
+        self.edit_profile = edit_profile
         # Solo motor kokoro; None = valores por defecto en _generar_tts_kokoro_sync
         self.kokoro_pausa_entre_oraciones_s = kokoro_pausa_entre_oraciones_s
         self.kokoro_fade_union_ms = kokoro_fade_union_ms
@@ -514,15 +519,18 @@ class NarradorTTS:
 
     def _postprocesar_audio(self, input_path: Path, output_path: Path) -> None:
         """
-        Aplica la cadena completa de 8 efectos de post-procesamiento
-        para eliminar todo rastro de voz sintética.
-
-        Cadena: HPF → EQ → Compresor → De-esser → Saturación → 
-                Reverb → Noise Gate → Limiter
+        Aplica la cadena completa de efectos con analisis adaptativo.
+        Usa el AudioEditProfile seleccionado para calibrar la edicion.
         """
         from core.audio_processor import AudioProcessor
 
-        processor = AudioProcessor(self.audio_config)
+        profile = AUDIO_EDIT_PROFILES.get(self.edit_profile)
+        if profile is None:
+            logger.warning(f"Perfil '{self.edit_profile}' no encontrado, usando 'natural'.")
+            profile = AUDIO_EDIT_PROFILES[AUDIO_EDIT_PROFILE_DEFAULT]
+
+        logger.info(f"Perfil de edicion: {profile.emoji} {profile.nombre}")
+        processor = AudioProcessor(profile=profile)
         processor.procesar(input_path, output_path)
 
     # ========================================================================

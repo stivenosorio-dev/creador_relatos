@@ -320,6 +320,168 @@ AUDIO_PROCESS_DEFAULT = AudioProcessConfig()
 
 
 # ============================================================================
+# PERFILES DE EDICION DE VOZ (5 presets premium)
+# ============================================================================
+
+@dataclass
+class AudioEditProfile:
+    """
+    Perfil de edicion de voz completo.
+    Cada perfil define todos los parametros de la cadena de efectos
+    mas ajustes de pitch/speed via librosa (aplicados ANTES de pedalboard).
+    Un analizador previo mide LUFS, pico, centroide espectral y sibilancia,
+    y ajusta dinamicamente ganancia de entrada y umbral del compresor.
+    """
+    nombre: str
+    descripcion: str
+    emoji: str
+    pitch_semitones: float = 0.0
+    speed_factor: float = 1.0
+    input_gain_db: float = 0.0
+    highpass_cutoff_hz: float = 80.0
+    eq_cut_freq_hz: float = 3200.0
+    eq_cut_gain_db: float = -3.0
+    eq_cut_q: float = 1.5
+    eq_warmth_freq_hz: float = 180.0
+    eq_warmth_gain_db: float = 2.0
+    eq_warmth_q: float = 0.8
+    eq_presence_freq_hz: float = 8000.0
+    eq_presence_gain_db: float = 1.5
+    eq_presence_q: float = 1.0
+    eq_nasal_cut_hz: float = 900.0
+    eq_nasal_cut_db: float = 0.0
+    eq_nasal_cut_q: float = 1.2
+    comp_threshold_db: float = -18.0
+    comp_ratio: float = 3.0
+    comp_attack_ms: float = 15.0
+    comp_release_ms: float = 150.0
+    deesser_freq_hz: float = 6500.0
+    deesser_gain_db: float = -3.0
+    saturation_drive_db: float = 2.0
+    saturation_active: bool = True
+    reverb_room_size: float = 0.10
+    reverb_damping: float = 0.65
+    reverb_wet_level: float = 0.05
+    reverb_dry_level: float = 1.0
+    gate_threshold_db: float = -50.0
+    gate_attack_ms: float = 2.0
+    gate_release_ms: float = 80.0
+    limiter_threshold_db: float = -1.5
+
+
+AUDIO_EDIT_PROFILES: dict[str, AudioEditProfile] = {
+
+    "natural": AudioEditProfile(
+        nombre="Voz Natural — Sin Rastros Artificiales", emoji="\U0001f9ec",
+        descripcion=(
+            "Elimina todos los marcadores de TTS: dureza robotica de 3 kHz, "
+            "sibilancia uniforme y ausencia de espacio acustico. "
+            "Satura armonicos pares, micro-reverb de sala y compresion suave. "
+            "Resultado: indistinguible de voz humana profesional."
+        ),
+        pitch_semitones=-0.5, speed_factor=0.97, input_gain_db=1.0,
+        highpass_cutoff_hz=75.0,
+        eq_cut_freq_hz=3100.0, eq_cut_gain_db=-4.5, eq_cut_q=1.8,
+        eq_warmth_freq_hz=180.0, eq_warmth_gain_db=3.5, eq_warmth_q=0.7,
+        eq_presence_freq_hz=8000.0, eq_presence_gain_db=2.0, eq_presence_q=0.9,
+        eq_nasal_cut_hz=900.0, eq_nasal_cut_db=-1.5, eq_nasal_cut_q=1.2,
+        comp_threshold_db=-16.0, comp_ratio=3.5, comp_attack_ms=12.0, comp_release_ms=120.0,
+        deesser_freq_hz=6800.0, deesser_gain_db=-5.0,
+        saturation_drive_db=3.5, saturation_active=True,
+        reverb_room_size=0.14, reverb_damping=0.70, reverb_wet_level=0.07,
+        gate_threshold_db=-52.0, gate_attack_ms=1.5, gate_release_ms=60.0,
+        limiter_threshold_db=-1.0,
+    ),
+
+    "fluido": AudioEditProfile(
+        nombre="Afinador Fluido — Relatos Calmados", emoji="\U0001f39a",
+        descripcion=(
+            "Compresion suave estilo radio FM, EQ de presencia elevada para "
+            "claridad articulatoria, reverb de sala mediana. "
+            "Sin saturacion agresiva. Para audiobooks y misterio suave."
+        ),
+        pitch_semitones=0.0, speed_factor=0.98, input_gain_db=0.5,
+        highpass_cutoff_hz=85.0,
+        eq_cut_freq_hz=4000.0, eq_cut_gain_db=-2.0, eq_cut_q=1.0,
+        eq_warmth_freq_hz=200.0, eq_warmth_gain_db=2.0, eq_warmth_q=0.9,
+        eq_presence_freq_hz=5000.0, eq_presence_gain_db=3.0, eq_presence_q=0.8,
+        eq_nasal_cut_hz=0.0, eq_nasal_cut_db=0.0, eq_nasal_cut_q=1.0,
+        comp_threshold_db=-15.0, comp_ratio=2.5, comp_attack_ms=20.0, comp_release_ms=200.0,
+        deesser_freq_hz=7000.0, deesser_gain_db=-4.0,
+        saturation_drive_db=1.2, saturation_active=True,
+        reverb_room_size=0.08, reverb_damping=0.80, reverb_wet_level=0.04,
+        gate_threshold_db=-48.0, gate_attack_ms=2.0, gate_release_ms=100.0,
+        limiter_threshold_db=-1.5,
+    ),
+
+    "hoguera": AudioEditProfile(
+        nombre="Hoguera Oscura — Terror Inmersivo", emoji="\U0001f525",
+        descripcion=(
+            "Pitch -2 semitonos, calidez extrema en 150 Hz, compresion agresiva "
+            "estilo tape vintage, saturacion alta, reverb de cueva. "
+            "Para terror, creepypasta y misterio oscuro."
+        ),
+        pitch_semitones=-2.0, speed_factor=0.93, input_gain_db=2.0,
+        highpass_cutoff_hz=60.0,
+        eq_cut_freq_hz=3500.0, eq_cut_gain_db=-5.0, eq_cut_q=2.0,
+        eq_warmth_freq_hz=150.0, eq_warmth_gain_db=5.5, eq_warmth_q=0.6,
+        eq_presence_freq_hz=6000.0, eq_presence_gain_db=1.0, eq_presence_q=1.2,
+        eq_nasal_cut_hz=800.0, eq_nasal_cut_db=-2.0, eq_nasal_cut_q=1.4,
+        comp_threshold_db=-14.0, comp_ratio=5.0, comp_attack_ms=8.0, comp_release_ms=200.0,
+        deesser_freq_hz=6000.0, deesser_gain_db=-6.5,
+        saturation_drive_db=5.5, saturation_active=True,
+        reverb_room_size=0.22, reverb_damping=0.50, reverb_wet_level=0.12,
+        gate_threshold_db=-46.0, gate_attack_ms=3.0, gate_release_ms=100.0,
+        limiter_threshold_db=-1.5,
+    ),
+
+    "podcast": AudioEditProfile(
+        nombre="Podcast Oscuro Profesional", emoji="\U0001f399",
+        descripcion=(
+            "Sonido broadcast de alta gama: compresion de radio ratio 4:1, "
+            "de-essing agresivo, EQ de presencia de microfono condensador. "
+            "Para true crime, conspiracion, paranormal."
+        ),
+        pitch_semitones=0.0, speed_factor=0.98, input_gain_db=1.5,
+        highpass_cutoff_hz=85.0,
+        eq_cut_freq_hz=4000.0, eq_cut_gain_db=-2.0, eq_cut_q=1.0,
+        eq_warmth_freq_hz=200.0, eq_warmth_gain_db=2.0, eq_warmth_q=0.9,
+        eq_presence_freq_hz=5000.0, eq_presence_gain_db=3.5, eq_presence_q=0.8,
+        eq_nasal_cut_hz=950.0, eq_nasal_cut_db=-1.5, eq_nasal_cut_q=1.2,
+        comp_threshold_db=-14.0, comp_ratio=4.0, comp_attack_ms=10.0, comp_release_ms=100.0,
+        deesser_freq_hz=7000.0, deesser_gain_db=-5.5,
+        saturation_drive_db=1.8, saturation_active=True,
+        reverb_room_size=0.06, reverb_damping=0.85, reverb_wet_level=0.03,
+        gate_threshold_db=-44.0, gate_attack_ms=1.0, gate_release_ms=50.0,
+        limiter_threshold_db=-1.0,
+    ),
+
+    "misterio": AudioEditProfile(
+        nombre="Misterio Suave — Suspenso Elegante", emoji="\U0001f32b",
+        descripcion=(
+            "Reverb de sala grande para soledad y espacio, compresion suave-media, "
+            "pitch -0.8 st y velocidad reducida para tension controlada. "
+            "Para thriller psicologico y suspenso sin terror extremo."
+        ),
+        pitch_semitones=-0.8, speed_factor=0.95, input_gain_db=1.0,
+        highpass_cutoff_hz=80.0,
+        eq_cut_freq_hz=3300.0, eq_cut_gain_db=-3.0, eq_cut_q=1.5,
+        eq_warmth_freq_hz=160.0, eq_warmth_gain_db=3.0, eq_warmth_q=0.75,
+        eq_presence_freq_hz=7000.0, eq_presence_gain_db=2.5, eq_presence_q=1.0,
+        eq_nasal_cut_hz=900.0, eq_nasal_cut_db=-1.0, eq_nasal_cut_q=1.2,
+        comp_threshold_db=-16.0, comp_ratio=3.0, comp_attack_ms=18.0, comp_release_ms=180.0,
+        deesser_freq_hz=6500.0, deesser_gain_db=-4.0,
+        saturation_drive_db=2.0, saturation_active=True,
+        reverb_room_size=0.18, reverb_damping=0.55, reverb_wet_level=0.09,
+        gate_threshold_db=-50.0, gate_attack_ms=2.5, gate_release_ms=90.0,
+        limiter_threshold_db=-1.5,
+    ),
+}
+
+AUDIO_EDIT_PROFILE_DEFAULT = "natural"
+
+
+# ============================================================================
 # CONFIGURACIÓN DE OLLAMA
 # ============================================================================
 

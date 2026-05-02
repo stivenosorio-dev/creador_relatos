@@ -1,259 +1,364 @@
 """
-🔊 Audio Processor — Cadena de efectos profesional para eliminar voz sintética.
+Audio Processor — Cadena de efectos profesional con analisis adaptativo.
 
-Aplica 8 etapas de procesamiento con pedalboard (Spotify) para transformar
-la voz de edge-tts en una narración que suena como un locutor profesional
-grabado en un estudio íntimo de radio nocturna.
-
-Cadena de efectos:
-  1. High-Pass Filter (80 Hz)     → Eliminar rumble sub-grave
-  2. EQ Paramétrico               → Eliminar dureza robótica + calidez
-  3. Compresor                    → Consistencia y presencia
-  4. De-esser (EQ + Compressor)   → Reducir sibilancia artificial
-  5. Saturación armónica          → Calidez analógica vintage
-  6. Reverb de sala               → Profundidad y naturalidad
-  7. Noise Gate                   → Silencios limpios
-  8. Limiter                      → Prevenir clipping
-
-Resultado: Voz de narrador de hoguera, cálida, profunda, inmersiva.
-           Cero rastro de voz virtual.
+NUEVO en esta version:
+  - Recibe un AudioEditProfile en lugar de AudioProcessConfig plano.
+  - Antes de aplicar efectos, analiza el audio crudo:
+      * LUFS integrado (loudness percibida)
+      * Pico verdadero (true peak)
+      * Centroide espectral (brillo / oscuridad de la voz)
+      * RMS de alta frecuencia (sibilancia)
+      * Rango dinamico estimado (crest factor)
+  - Con esos datos ajusta DINAMICAMENTE:
+      * Ganancia de entrada (para normalizar el LUFS al target)
+      * Umbral del compresor (adaptado al rango dinamico real)
+      * Nivel del de-esser (adaptado a la sibilancia medida)
+  Esto garantiza que el perfil suene perfecto sin importar la voz de origen.
+  - Soporte de pitch shift y time stretch via librosa (pre-pedalboard).
 """
 
 import numpy as np
 from pathlib import Path
+from dataclasses import dataclass
 
+import librosa
+import soundfile as sf
 from pedalboard import (
-    Pedalboard,
-    HighpassFilter,
-    LowShelfFilter,
-    HighShelfFilter,
-    PeakFilter,
-    Compressor,
-    Reverb,
-    NoiseGate,
-    Limiter,
-    Gain,
-    Clipping,
+    Pedalboard, HighpassFilter, LowShelfFilter, HighShelfFilter,
+    PeakFilter, Compressor, Reverb, NoiseGate, Limiter, Gain, Clipping,
 )
 from pedalboard.io import AudioFile
 
-from config import AudioProcessConfig, AUDIO_PROCESS_DEFAULT
 from utils.logger import get_logger, print_info
 
 logger = get_logger("audio_processor")
 
+TARGET_LUFS = -18.0  # Loudness objetivo post-analisis para narración de voz
+
+
+@dataclass
+class AudioAnalysis:
+    """Resultados del analisis previo del audio crudo."""
+    lufs_integrated: float       # Loudness integrada en LUFS
+    true_peak_db: float          # Pico verdadero en dBFS
+    rms_db: float                # RMS global en dB
+    spectral_centroid_hz: float  # Centroide espectral (brillo)
+    sibilance_rms_db: float      # RMS en banda 5-9 kHz (sibilancia)
+    crest_factor_db: float       # Diferencia peak-RMS (rango dinamico)
+    duracion_seg: float
+    sample_rate: int
+
+
+def analizar_audio(path: Path) -> AudioAnalysis:
+    """
+    Analiza el audio crudo y retorna metricas clave para la edicion adaptativa.
+
+    Usa librosa para calcular LUFS aproximado (via power mean), centroide
+    espectral y energia por bandas. No requiere dependencias adicionales.
+    """
+    audio, sr = librosa.load(str(path), sr=None, mono=True)
+
+    if len(audio) == 0:
+        raise RuntimeError(f"Audio vacio: {path}")
+
+    duracion = len(audio) / sr
+
+    # RMS global
+    rms = float(np.sqrt(np.mean(audio ** 2)))
+    rms_db = 20 * np.log10(rms + 1e-9)
+
+    # True peak (aproximado)
+    true_peak_db = 20 * np.log10(float(np.max(np.abs(audio))) + 1e-9)
+
+    # LUFS integrado aproximado (ITU-R BS.1770 simplificado: K-weight + power mean)
+    # K-weighting: atenuar bajos, boost en presencia
+    # Simplificacion: usar RMS ponderado por frecuencia via STFT
+    S = np.abs(librosa.stft(audio, n_fft=2048, hop_length=512)) ** 2
+    freqs = librosa.fft_frequencies(sr=sr, n_fft=2048)
+    # K-weighting aproximado: +4dB a 4kHz, -6dB/octava bajo 80Hz
+    k_weight = np.ones(len(freqs))
+    k_weight[freqs < 80] *= 0.5
+    k_weight[(freqs >= 1000) & (freqs < 8000)] *= 1.5
+    S_weighted = S * k_weight[:, np.newaxis]
+    mean_power = float(np.mean(S_weighted))
+    lufs = 10 * np.log10(mean_power + 1e-12) - 0.691
+    lufs = float(np.clip(lufs, -60, 0))
+
+    # Centroide espectral (brillo de la voz)
+    centroid = librosa.feature.spectral_centroid(y=audio, sr=sr)
+    centroid_hz = float(np.mean(centroid))
+
+    # Energia de sibilancia (5-9 kHz)
+    S_full = np.abs(librosa.stft(audio)) ** 2
+    freqs_full = librosa.fft_frequencies(sr=sr)
+    mask_sib = (freqs_full >= 5000) & (freqs_full <= 9000)
+    sib_rms = float(np.sqrt(np.mean(S_full[mask_sib, :])))
+    sib_rms_db = 20 * np.log10(sib_rms + 1e-9)
+
+    # Crest factor
+    crest_db = true_peak_db - rms_db
+
+    logger.info(
+        f"Analisis: LUFS={lufs:.1f} | Peak={true_peak_db:.1f}dB | "
+        f"RMS={rms_db:.1f}dB | Centroide={centroid_hz:.0f}Hz | "
+        f"Sibilancia={sib_rms_db:.1f}dB | Crest={crest_db:.1f}dB | "
+        f"Dur={duracion:.1f}s"
+    )
+
+    return AudioAnalysis(
+        lufs_integrated=lufs,
+        true_peak_db=true_peak_db,
+        rms_db=rms_db,
+        spectral_centroid_hz=centroid_hz,
+        sibilance_rms_db=sib_rms_db,
+        crest_factor_db=crest_db,
+        duracion_seg=duracion,
+        sample_rate=sr,
+    )
+
 
 class AudioProcessor:
     """
-    Cadena de post-procesamiento profesional de audio.
-    
-    Transforma el audio crudo de TTS en una narración premium
-    indistinguible de una grabación humana real.
+    Cadena de post-procesamiento profesional con analisis adaptativo.
+
+    Flujo:
+      1. analizar_audio() -> AudioAnalysis
+      2. _calcular_ajustes_adaptativos() -> parametros corregidos
+      3. (Opcional) pitch shift + time stretch via librosa
+      4. Construir Pedalboard con parametros finales
+      5. Procesar en chunks
     """
 
-    def __init__(self, config: AudioProcessConfig = AUDIO_PROCESS_DEFAULT):
-        self.config = config
-        self._board = self._construir_cadena()
-
-    def _construir_cadena(self) -> Pedalboard:
+    def __init__(self, profile=None, config=None):
         """
-        Construye la cadena de efectos completa.
-        
-        Cada efecto está calibrado específicamente para contrarrestar
-        los artefactos típicos de las voces neurales de edge-tts.
+        profile: AudioEditProfile (nuevo sistema de perfiles)
+        config:  AudioProcessConfig (compatibilidad legada)
+        Si se pasa config y no profile, se convierte a un perfil basico.
         """
-        cfg = self.config
+        from config import AudioEditProfile, AUDIO_PROCESS_DEFAULT
 
-        board = Pedalboard([
-            # ================================================================
-            # ETAPA 1: HIGH-PASS FILTER (80 Hz)
-            # ================================================================
-            # Elimina el rumble sub-grave que no aporta nada a la voz
-            # y puede causar problemas en la mezcla final.
-            HighpassFilter(cutoff_frequency_hz=cfg.highpass_cutoff_hz),
+        if profile is not None:
+            self._profile = profile
+            self._legacy_config = None
+        elif config is not None:
+            # Compatibilidad: crear perfil desde config legacy
+            self._profile = self._config_to_profile(config)
+            self._legacy_config = config
+        else:
+            cfg = AUDIO_PROCESS_DEFAULT
+            self._profile = self._config_to_profile(cfg)
+            self._legacy_config = cfg
 
-            # ================================================================
-            # ETAPA 2: EQ PARAMÉTRICO (3 bandas)
-            # ================================================================
+    @staticmethod
+    def _config_to_profile(cfg):
+        """Convierte AudioProcessConfig legacy a AudioEditProfile."""
+        from config import AudioEditProfile
+        return AudioEditProfile(
+            nombre="Perfil Legado",
+            descripcion="Convertido desde AudioProcessConfig",
+            emoji="⚙️",
+            highpass_cutoff_hz=cfg.highpass_cutoff_hz,
+            eq_cut_freq_hz=cfg.eq_cut_freq_hz,
+            eq_cut_gain_db=cfg.eq_cut_gain_db,
+            eq_cut_q=cfg.eq_cut_q,
+            eq_warmth_freq_hz=cfg.eq_warmth_freq_hz,
+            eq_warmth_gain_db=cfg.eq_warmth_gain_db,
+            eq_warmth_q=cfg.eq_warmth_q,
+            eq_presence_freq_hz=cfg.eq_presence_freq_hz,
+            eq_presence_gain_db=cfg.eq_presence_gain_db,
+            eq_presence_q=cfg.eq_presence_q,
+            comp_threshold_db=cfg.comp_threshold_db,
+            comp_ratio=cfg.comp_ratio,
+            comp_attack_ms=cfg.comp_attack_ms,
+            comp_release_ms=cfg.comp_release_ms,
+            deesser_freq_hz=cfg.deesser_freq_hz,
+            deesser_gain_db=cfg.deesser_threshold_db + 19,
+            saturation_drive_db=cfg.saturation_drive_db,
+            saturation_active=True,
+            reverb_room_size=cfg.reverb_room_size,
+            reverb_damping=cfg.reverb_damping,
+            reverb_wet_level=cfg.reverb_wet_level,
+            reverb_dry_level=cfg.reverb_dry_level,
+            gate_threshold_db=cfg.gate_threshold_db,
+            gate_attack_ms=cfg.gate_attack_ms,
+            gate_release_ms=cfg.gate_release_ms,
+            limiter_threshold_db=cfg.limiter_threshold_db,
+        )
 
-            # 2a. Corte en 3.2 kHz → Eliminar la "dureza robótica"
-            # Las voces neurales tienen un pico antinatural en 2-4 kHz
-            # que las hace sonar "digitales" y "cortantes".
-            PeakFilter(
-                cutoff_frequency_hz=cfg.eq_cut_freq_hz,
-                gain_db=cfg.eq_cut_gain_db,
-                q=cfg.eq_cut_q,
-            ),
+    def _calcular_ajustes_adaptativos(self, analisis: AudioAnalysis) -> dict:
+        """
+        Calcula correcciones dinamicas basadas en el analisis del audio.
 
-            # 2b. Boost en 180 Hz → Calidez de voz de hoguera
-            # Agrega cuerpo y gravedad a la voz, como un narrador
-            # hablando cerca de un micrófono de condensador grande.
-            LowShelfFilter(
-                cutoff_frequency_hz=cfg.eq_warmth_freq_hz,
-                gain_db=cfg.eq_warmth_gain_db,
-                q=cfg.eq_warmth_q,
-            ),
+        Reglas:
+          - input_gain: compensa la diferencia entre LUFS medido y target
+          - comp_threshold: se ajusta al rango dinamico real (crest factor)
+          - deesser_gain: se amplifica si la sibilancia es alta
+        """
+        p = self._profile
 
-            # 2c. Boost sutil en 8 kHz → Presencia y brillo natural
-            # Agrega "aire" a la voz sin agregar sibilancia.
-            # Simula la respuesta de un buen micrófono de estudio.
-            HighShelfFilter(
-                cutoff_frequency_hz=cfg.eq_presence_freq_hz,
-                gain_db=cfg.eq_presence_gain_db,
-                q=cfg.eq_presence_q,
-            ),
+        # 1. Ganancia de entrada adaptativa (normalizar LUFS al target)
+        lufs_delta = TARGET_LUFS - analisis.lufs_integrated
+        # No compensar mas de +12dB ni menos de -6dB para evitar distorsion
+        gain_adaptativo = float(np.clip(p.input_gain_db + lufs_delta * 0.6, -6.0, 14.0))
 
-            # ================================================================
-            # ETAPA 3: COMPRESOR
-            # ================================================================
-            # Ratio 3:1 con threshold moderado.
-            # Da consistencia a la voz: las partes suaves se elevan,
-            # las partes fuertes se controlan.
-            # Attack rápido (15ms) para captar consonantes.
-            # Release medio (150ms) para sonar natural.
-            Compressor(
-                threshold_db=cfg.comp_threshold_db,
-                ratio=cfg.comp_ratio,
-                attack_ms=cfg.comp_attack_ms,
-                release_ms=cfg.comp_release_ms,
-            ),
+        # 2. Umbral del compresor adaptativo
+        # Si el audio es muy dinamico (crest > 20dB) bajar umbral para controlar mejor
+        crest = analisis.crest_factor_db
+        comp_thr_adaptativo = p.comp_threshold_db
+        if crest > 20:
+            comp_thr_adaptativo -= (crest - 20) * 0.3
+        elif crest < 10:
+            # Audio ya muy comprimido: subir umbral para no sobre-comprimir
+            comp_thr_adaptativo += (10 - crest) * 0.4
+        comp_thr_adaptativo = float(np.clip(comp_thr_adaptativo, -35.0, -8.0))
 
-            # ================================================================
-            # ETAPA 4: DE-ESSER (via PeakFilter + Compressor focalizado)
-            # ================================================================
-            # Las voces de TTS tienen sibilancia artificial muy uniforme.
-            # Atenuamos la banda de 6.5 kHz donde vive la sibilancia.
-            PeakFilter(
-                cutoff_frequency_hz=cfg.deesser_freq_hz,
-                gain_db=cfg.deesser_threshold_db + 19,  # -3dB sutil
-                q=3.0,  # Q alto para no afectar frecuencias vecinas
-            ),
+        # 3. De-esser adaptativo segun sibilancia medida
+        # Si sib_rms_db > -40 (sibilancia notable), aumentar corte
+        deesser_adaptativo = p.deesser_gain_db
+        if analisis.sibilance_rms_db > -40:
+            extra_cut = (analisis.sibilance_rms_db + 40) * 0.3
+            deesser_adaptativo -= extra_cut
+        deesser_adaptativo = float(np.clip(deesser_adaptativo, -12.0, -1.0))
 
-            # ================================================================
-            # ETAPA 5: SATURACIÓN ARMÓNICA
-            # ================================================================
-            # Simula la calidez de un preamplificador analógico vintage.
-            # Agrega armónicos pares (2do, 4to) que hacen la voz más
-            # "humana" y "rica". Las voces digitales son demasiado
-            # limpias; esto agrega la "imperfección" natural.
-            #
-            # Usamos Gain (para subir antes del clipping) + Clipping
-            # suave + Gain (para bajar después) = saturación controlada.
-            Gain(gain_db=cfg.saturation_drive_db),
-            Clipping(threshold_db=-0.5),  # Clipping suave
-            Gain(gain_db=-cfg.saturation_drive_db),  # Compensar ganancia
+        logger.info(
+            f"Ajustes adaptativos: gain={gain_adaptativo:+.1f}dB | "
+            f"comp_thr={comp_thr_adaptativo:.1f}dB | "
+            f"deesser={deesser_adaptativo:.1f}dB"
+        )
 
-            # ================================================================
-            # ETAPA 6: REVERB DE SALA PEQUEÑA
-            # ================================================================
-            # Simula un espacio real íntimo (sala pequeña / estudio).
-            # Las voces de TTS suenan como grabadas en una cámara
-            # anecoica (sin ningún ambiente), lo cual es antinatural.
-            # Este reverb sutil agrega la "vida" del espacio.
-            Reverb(
-                room_size=cfg.reverb_room_size,
-                damping=cfg.reverb_damping,
-                wet_level=cfg.reverb_wet_level,
-                dry_level=cfg.reverb_dry_level,
-            ),
+        return {
+            "input_gain_db": gain_adaptativo,
+            "comp_threshold_db": comp_thr_adaptativo,
+            "deesser_gain_db": deesser_adaptativo,
+        }
 
-            # ================================================================
-            # ETAPA 7: NOISE GATE
-            # ================================================================
-            # Limpia los silencios entre frases.
-            # Las voces de TTS a veces dejan artefactos muy tenues
-            # en los silencios. El gate los elimina.
-            NoiseGate(
-                threshold_db=cfg.gate_threshold_db,
-                attack_ms=cfg.gate_attack_ms,
-                release_ms=cfg.gate_release_ms,
-            ),
+    def _construir_cadena(self, ajustes: dict) -> Pedalboard:
+        """Construye el Pedalboard con parametros finales (perfil + ajustes adaptativos)."""
+        p = self._profile
+        gain_db      = ajustes["input_gain_db"]
+        comp_thr     = ajustes["comp_threshold_db"]
+        deesser_gain = ajustes["deesser_gain_db"]
 
-            # ================================================================
-            # ETAPA 8: LIMITER
-            # ================================================================
-            # Protección final contra clipping.
-            # Asegura que ningún pico supere -1.5 dBFS.
-            # Esencial para la mezcla posterior con música y SFX.
-            Limiter(threshold_db=cfg.limiter_threshold_db),
-        ])
+        efectos = [
+            Gain(gain_db=gain_db),
+            HighpassFilter(cutoff_frequency_hz=p.highpass_cutoff_hz),
+            PeakFilter(cutoff_frequency_hz=p.eq_cut_freq_hz,
+                       gain_db=p.eq_cut_gain_db, q=p.eq_cut_q),
+            LowShelfFilter(cutoff_frequency_hz=p.eq_warmth_freq_hz,
+                           gain_db=p.eq_warmth_gain_db, q=p.eq_warmth_q),
+            HighShelfFilter(cutoff_frequency_hz=p.eq_presence_freq_hz,
+                            gain_db=p.eq_presence_gain_db, q=p.eq_presence_q),
+        ]
 
-        return board
+        # Corte nasal (opcional segun perfil)
+        if p.eq_nasal_cut_db != 0.0 and p.eq_nasal_cut_hz > 0:
+            efectos.append(PeakFilter(
+                cutoff_frequency_hz=p.eq_nasal_cut_hz,
+                gain_db=p.eq_nasal_cut_db,
+                q=p.eq_nasal_cut_q,
+            ))
+
+        efectos += [
+            Compressor(threshold_db=comp_thr, ratio=p.comp_ratio,
+                       attack_ms=p.comp_attack_ms, release_ms=p.comp_release_ms),
+            PeakFilter(cutoff_frequency_hz=p.deesser_freq_hz,
+                       gain_db=deesser_gain, q=3.0),
+        ]
+
+        if p.saturation_active and p.saturation_drive_db > 0:
+            efectos += [
+                Gain(gain_db=p.saturation_drive_db),
+                Clipping(threshold_db=-0.5),
+                Gain(gain_db=-p.saturation_drive_db),
+            ]
+
+        efectos += [
+            Reverb(room_size=p.reverb_room_size, damping=p.reverb_damping,
+                   wet_level=p.reverb_wet_level, dry_level=p.reverb_dry_level),
+            NoiseGate(threshold_db=p.gate_threshold_db,
+                      attack_ms=p.gate_attack_ms, release_ms=p.gate_release_ms),
+            Limiter(threshold_db=p.limiter_threshold_db),
+        ]
+
+        return Pedalboard(efectos)
 
     def procesar(self, input_path: Path, output_path: Path) -> None:
         """
-        Procesa un archivo de audio a través de la cadena completa.
-
-        Lee el audio en chunks para optimizar el uso de memoria
-        en equipos con 8GB RAM.
-
-        Args:
-            input_path: Ruta al archivo WAV de entrada (crudo de TTS).
-            output_path: Ruta al archivo WAV de salida (procesado).
+        Pipeline completo:
+          1. Analizar audio crudo
+          2. Calcular ajustes adaptativos
+          3. Pitch shift + time stretch si el perfil lo requiere
+          4. Aplicar cadena Pedalboard en chunks
         """
-        logger.info(f"Iniciando post-procesamiento: {input_path.name}")
-        logger.info(f"Cadena de efectos: {len(self._board)} etapas")
+        p = self._profile
+        logger.info(f"Procesando con perfil: {p.nombre}")
 
-        # Procesar en chunks para optimizar memoria
-        chunk_size = 1024 * 256  # ~256K samples por chunk
+        # ── 1. Analizar audio ─────────────────────────────────────────────
+        analisis = analizar_audio(input_path)
+        ajustes = self._calcular_ajustes_adaptativos(analisis)
 
-        with AudioFile(str(input_path)) as infile:
-            sample_rate = infile.samplerate
-            num_channels = infile.num_channels
-            total_frames = infile.frames
-            duration_sec = total_frames / sample_rate
+        # ── 2. Pitch shift + time stretch (librosa, pre-pedalboard) ───────
+        necesita_librosa = abs(p.pitch_semitones) > 0.05 or abs(p.speed_factor - 1.0) > 0.01
 
-            logger.info(
-                f"Audio de entrada: {duration_sec:.1f}s | "
-                f"{sample_rate}Hz | {num_channels}ch | "
-                f"{total_frames} frames"
-            )
+        if necesita_librosa:
+            audio_raw, sr = librosa.load(str(input_path), sr=None, mono=True)
 
-            with AudioFile(
-                str(output_path),
-                "w",
-                samplerate=sample_rate,
-                num_channels=num_channels,
-            ) as outfile:
-                frames_processed = 0
+            if abs(p.pitch_semitones) > 0.05:
+                logger.info(f"Pitch shift: {p.pitch_semitones:+.1f} st")
+                audio_raw = librosa.effects.pitch_shift(
+                    audio_raw, sr=sr, n_steps=p.pitch_semitones, bins_per_octave=24
+                )
 
-                while infile.tell() < total_frames:
-                    # Leer chunk
-                    chunk = infile.read(chunk_size)
+            if abs(p.speed_factor - 1.0) > 0.01:
+                logger.info(f"Time stretch: x{p.speed_factor:.2f}")
+                audio_raw = librosa.effects.time_stretch(audio_raw, rate=p.speed_factor)
 
-                    # Aplicar cadena de efectos al chunk
-                    processed = self._board(chunk, sample_rate)
+            audio_raw = audio_raw.astype(np.float32)
+            mx = np.max(np.abs(audio_raw))
+            if mx > 0:
+                audio_raw = audio_raw / mx * 0.95
 
-                    # Escribir chunk procesado
-                    outfile.write(processed)
+            # Guardar temp para que pedalboard lo lea
+            tmp_path = input_path.parent / "_tmp_librosa.wav"
+            sf.write(str(tmp_path), audio_raw, sr)
+            process_input = tmp_path
+        else:
+            process_input = input_path
+            tmp_path = None
 
-                    frames_processed += chunk.shape[1] if chunk.ndim > 1 else chunk.shape[0]
+        # ── 3. Construir cadena y procesar en chunks ──────────────────────
+        board = self._construir_cadena(ajustes)
+        chunk_size = 1024 * 256
 
-                    # Log de progreso cada ~10 segundos de audio
-                    if frames_processed % (sample_rate * 10) < chunk_size:
-                        progress = (frames_processed / total_frames) * 100
-                        logger.debug(f"Procesando: {progress:.0f}%")
+        try:
+            with AudioFile(str(process_input)) as infile:
+                sample_rate = infile.samplerate
+                num_channels = infile.num_channels
+                total_frames = infile.frames
+                duracion_sec = total_frames / sample_rate
+
+                logger.info(
+                    f"Procesando: {duracion_sec:.1f}s | {sample_rate}Hz | "
+                    f"{len(board)} efectos en cadena"
+                )
+
+                with AudioFile(str(output_path), "w",
+                               samplerate=sample_rate,
+                               num_channels=num_channels) as outfile:
+                    frames_done = 0
+                    while infile.tell() < total_frames:
+                        chunk = infile.read(chunk_size)
+                        processed = board(chunk, sample_rate)
+                        outfile.write(processed)
+                        frames_done += chunk.shape[1] if chunk.ndim > 1 else chunk.shape[0]
+                        if frames_done % (sample_rate * 15) < chunk_size:
+                            pct = frames_done / total_frames * 100
+                            logger.debug(f"  {pct:.0f}%")
+        finally:
+            if tmp_path and tmp_path.exists():
+                tmp_path.unlink()
 
         print_info(
             f"Audio procesado: {output_path.name} | "
-            f"Duración: {duration_sec:.1f}s | 8 efectos aplicados"
-        )
-
-    def describir_cadena(self) -> str:
-        """Retorna una descripción legible de la cadena de efectos."""
-        cfg = self.config
-        return (
-            "🔊 Cadena de Post-Procesamiento Premium\n"
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            f"  1. High-Pass Filter     │ {cfg.highpass_cutoff_hz}Hz\n"
-            f"  2. EQ Cut (robótica)    │ {cfg.eq_cut_gain_db}dB @ {cfg.eq_cut_freq_hz}Hz\n"
-            f"  3. EQ Warm (calidez)    │ +{cfg.eq_warmth_gain_db}dB @ {cfg.eq_warmth_freq_hz}Hz\n"
-            f"  4. EQ Presence (brillo) │ +{cfg.eq_presence_gain_db}dB @ {cfg.eq_presence_freq_hz}Hz\n"
-            f"  5. Compresor            │ {cfg.comp_ratio}:1 @ {cfg.comp_threshold_db}dB\n"
-            f"  6. De-esser             │ @ {cfg.deesser_freq_hz}Hz\n"
-            f"  7. Saturación armónica  │ {cfg.saturation_drive_db}dB drive, {cfg.saturation_mix*100:.0f}% mix\n"
-            f"  8. Reverb sala          │ size={cfg.reverb_room_size}, wet={cfg.reverb_wet_level}\n"
-            f"  9. Noise Gate           │ {cfg.gate_threshold_db}dB threshold\n"
-            f" 10. Limiter              │ {cfg.limiter_threshold_db}dBFS ceiling\n"
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            f"Perfil: {p.nombre} | Dur: {analisis.duracion_seg:.1f}s"
         )

@@ -14,6 +14,8 @@ from config import (
     VOZ_DEFAULT,
     OUTPUT_DIR,
     MOTORES_TTS,
+    AUDIO_EDIT_PROFILES,
+    AUDIO_EDIT_PROFILE_DEFAULT,
     narrador_tts_kwargs_para_voz,
 )
 from core.narrador_tts import NarradorTTS
@@ -88,6 +90,27 @@ class AppParanormal(tk.Tk):
         self.modelo_entry = tk.Entry(config_frame, textvariable=self.modelo_var, bg="#1e1e1e", fg="#ffffff", insertbackground="white", borderwidth=0, highlightthickness=1)
         self.modelo_entry.pack(pady=(0, 15), fill="x")
 
+        # Perfil de edicion de voz
+        tk.Label(config_frame, text="Edición de Voz:", bg="#0f0f0f", fg="#e0e0e0").pack(anchor="w")
+        self.profile_var = tk.StringVar(value=AUDIO_EDIT_PROFILE_DEFAULT)
+        profile_display_names = [f"{v.emoji} {v.nombre}" for v in AUDIO_EDIT_PROFILES.values()]
+        self.profile_menu = ttk.Combobox(
+            config_frame, textvariable=self.profile_var,
+            values=profile_display_names,
+            state="readonly", width=25,
+        )
+        self.profile_menu.current(0)
+        self.profile_menu.pack(pady=(0, 4))
+        self._profile_desc_var = tk.StringVar()
+        self._profile_lbl = tk.Label(
+            config_frame, textvariable=self._profile_desc_var,
+            bg="#0f0f0f", fg="#666666", font=("Segoe UI", 8, "italic"),
+            wraplength=200, justify="left",
+        )
+        self._profile_lbl.pack(anchor="w", pady=(0, 14))
+        self.profile_menu.bind("<<ComboboxSelected>>", self._on_profile_changed)
+        self._on_profile_changed()  # init desc
+
         # Botón Directorio
         self.output_dir_var = tk.StringVar(value=str(OUTPUT_DIR))
         tk.Label(config_frame, text="Carpeta de Salida:", bg="#0f0f0f", fg="#e0e0e0").pack(anchor="w")
@@ -148,6 +171,14 @@ class AppParanormal(tk.Tk):
             pass
         self.after(100, self._process_queue)
 
+    def _on_profile_changed(self, event=None):
+        disp = self.profile_menu.get()
+        for k, v in AUDIO_EDIT_PROFILES.items():
+            if f"{v.emoji} {v.nombre}" == disp:
+                self.profile_var.set(k)
+                self._profile_desc_var.set(v.descripcion[:120] + "...")
+                break
+
     def _start_generation(self):
         texto = self.relato_text.get("1.0", "end-1c").strip()
         if not texto or len(texto) < 10:
@@ -175,7 +206,8 @@ class AppParanormal(tk.Tk):
             self._log(f"🎙️ Paso 1: Generando narración premium ({voz_config.nombre} / {voz_config.motor})...")
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-            narrador = NarradorTTS(voz_config, **narrador_tts_kwargs_para_voz(voz_config))
+            perfil_key = self.profile_var.get()
+            narrador = NarradorTTS(voz_config, edit_profile=perfil_key, **narrador_tts_kwargs_para_voz(voz_config))
             audio_path = loop.run_until_complete(narrador.generar(texto, out_dir))
             duracion_seg = narrador.obtener_duracion(audio_path)
             duracion_str = f"{int(duracion_seg // 60):02d}:{int(duracion_seg % 60):02d}"
