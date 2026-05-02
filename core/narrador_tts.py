@@ -68,7 +68,7 @@ class NarradorTTS:
 
         # Paso 1: Preprocesar texto para dramatismo
         print_step(1, 4, "Preprocesando texto con pausas dramáticas...")
-        texto_dramatico = self._preprocesar_texto(texto)
+        texto_dramatico = self._preprocesar_texto(texto, motor=self.voz.motor)
         logger.info(f"Texto preprocesado: {len(texto)} → {len(texto_dramatico)} caracteres")
 
         # Paso 2: Generar audio con TTS
@@ -103,45 +103,65 @@ class NarradorTTS:
     # PREPROCESAMIENTO DE TEXTO
     # ========================================================================
 
-    def _preprocesar_texto(self, texto: str) -> str:
+    def _preprocesar_texto(self, texto: str, *, motor: str = "edge-tts") -> str:
         """
         Transforma el texto crudo en texto optimizado para TTS dramático.
-        
-        Agrega pausas SSML, ajusta puntuación para mejorar la prosodia,
-        y optimiza el ritmo narrativo para contenido de terror.
-        
-        Nota: Las pausas via comas son efectivas en edge-tts. Kokoro
-        interpreta la puntuación de forma nativa y también se beneficia
-        de estos marcadores.
+
+        ESTRATEGIA DE PAUSAS:
+        Edge-TTS interpreta las comas como pausas cortas (~300ms) cuando están
+        dentro de una frase continua. El problema que causaba el artefacto "brr"
+        era colocar comas ENTRE saltos de línea (\n, , , ,\n), lo que generaba
+        una línea vacía que empezaba con coma — edge-tts la vocalizaba como un
+        fonema inválido.
+
+        Solución: los saltos de línea (cambios de párrafo) se convierten en un
+        punto final seguido de un espacio, unificando el texto en un flujo
+        continuo de frases. Las pausas dramáticas se insertan SIEMPRE dentro
+        de la misma línea como comas de puntuación, nunca al inicio de línea.
+
+        Kokoro ignora parte de esa prosodia textual y suele concatenar los
+        segmentos sin silencios audibles entre oraciones — para kokoro las
+        oraciones pasan a líneas (\n), y `_generar_tts_kokoro_sync` inserta
+        silencio explícito entre cada línea. No se usa "? ."/"! ." markers de
+        edge porque verbalizarían una frase cortada rara en kokoro/espeak.
         """
         resultado = texto
 
-        # 1. Normalizar espacios y saltos de línea
-        resultado = re.sub(r'\n{3,}', '\n\n', resultado)
+        # ── ETAPA 1: Unificar el texto en un flujo continuo ───────────────
+        # El error principal: \n\n con comas al inicio de la línea siguiente
+        # causa que edge-tts vocalice las comas como fonema — produce "brr".
+        # Solución: convertir párrafos en punto + espacio (pausa natural del motor).
+        resultado = re.sub(r'([^.!?])\n{2,}', r'\1. ', resultado)  # sin puntuacion -> agregar punto
+        resultado = re.sub(r'([.!?])\n{2,}', r'\1 ', resultado)     # ya tiene puntuacion -> solo espacio
+        resultado = re.sub(r' *\n *', ' ', resultado)                  # salto simple -> espacio
+
+        # ── ETAPA 2: Normalizar espacios redundantes ──────────────────────
         resultado = re.sub(r' {2,}', ' ', resultado)
 
-        # 2. Puntos suspensivos → pausa larga de suspenso (900ms)
-        resultado = re.sub(r'\.{3,}', ', , , ', resultado)
+        # ── ETAPA 3: Puntos suspensivos → pausa larga de suspenso ─────────
+        # ". . . " es seguro: está rodeado de espacios, nunca al inicio.
+        resultado = re.sub(r'\.{3,}', '. . . ', resultado)
 
-        # 3. Después de signos de exclamación → pausa de impacto (600ms)
-        resultado = re.sub(r'!(\s)', r'! , \1', resultado)
+        # ── ETAPA 4/5: Impacto/Incertidumbre (solo edge: "? ." / "! .").
+        # Kokoro: silencios reales entre oraciones en lugar de estos marcadores.
 
-        # 4. Después de signos de interrogación → pausa de incertidumbre (400ms)
-        resultado = re.sub(r'\?(\s)', r'? , \1', resultado)
+        if motor != "kokoro":
+            resultado = re.sub(r'!(\s+)', r'! . \1', resultado)
+            resultado = re.sub(r'\?(\s+)', r'? . \1', resultado)
 
-        # 5. Guiones largos (—) → pausa dramática
-        resultado = resultado.replace('—', ', , ')
+        # ── ETAPA 6: Guiones largos → pausa dramática ─────────────────────
+        # Reemplazar con punto y coma rodeado de espacios (pausa media segura)
+        resultado = resultado.replace('—', '; ')
         resultado = resultado.replace('–', ', ')
 
-        # 6. Separar párrafos con pausas largas
-        resultado = re.sub(r'\n\n', '\n, , , ,\n', resultado)
+        # ── ETAPA 7: Diálogos entre comillas → pausa antes y después ──────
+        # Solo añadir coma de pausa ANTES de la comilla de apertura,
+        # nunca al inicio del resultado.
+        resultado = re.sub(r'(?<=\w)\s*"([^"]+)"', r', "\1"', resultado)
+        resultado = re.sub(r'(?<=\w)\s*"([^"]+)"', r', "\1"', resultado)
+        resultado = re.sub(r'(?<=\w)\s*«([^»]+)»', r', "\1"', resultado)
 
-        # 7. Texto entre comillas (diálogos) - agregar pausa antes y después
-        resultado = re.sub(r'"([^"]+)"', r', "\1", ', resultado)
-        resultado = re.sub(r'"([^"]+)"', r', "\1", ', resultado)
-        resultado = re.sub(r'«([^»]+)»', r', "\1", ', resultado)
-
-        # 8. Palabras en MAYÚSCULAS → agregar énfasis con pausas
+        # ── ETAPA 8: Palabras en MAYÚSCULAS → énfasis con pausas ──────────
         def enfatizar_mayusculas(match):
             palabra = match.group(0)
             if len(palabra) > 2 and palabra.isupper():
@@ -150,11 +170,44 @@ class NarradorTTS:
 
         resultado = re.sub(r'\b[A-ZÁÉÍÓÚÑ]{3,}\b', enfatizar_mayusculas, resultado)
 
-        # 9. Limpiar comas múltiples excesivas
-        resultado = re.sub(r',(\s*,){4,}', ', , , ,', resultado)
-        resultado = re.sub(r'\s{2,}', ' ', resultado)
+        # ── ETAPA 9: Limpieza final ────────────────────────────────────────
+        # Eliminar cualquier coma que haya quedado al inicio de la cadena
+        resultado = re.sub(r'^[\s,;\.]+', '', resultado)
+        # Colapsar secuencias de puntuación duplicada
+        resultado = re.sub(r'(\.\s*){3,}', '. . . ', resultado)
+        resultado = re.sub(r',(\s*,){2,}', ', , ', resultado)
+        # Espacios múltiples finales
+        resultado = re.sub(r' {2,}', ' ', resultado)
 
-        return resultado.strip()
+        resultado = resultado.strip()
+
+        # Kokoro: una oración por línea para insertar pausas WAV entre ellas.
+        if motor == "kokoro":
+            resultado = self._kokoro_fragmentar_en_lineas(resultado)
+
+        return resultado
+
+    def _kokoro_fragmentar_en_lineas(self, texto: str) -> str:
+        """
+        Una oración por línea (. ! ? …) para poder insertar silencio WAV real
+        entre oraciones — Kokoro no separa tanto como edge al concatenar yields.
+        """
+        ell = "\ue666"
+        t = texto.replace(". . . ", f"{ell} ")
+        trozos = re.split(r"(?<=[.!?])\s+", t)
+        lineas = [frag.replace(ell, ". . . ").strip() for frag in trozos]
+        lineas = [ln for ln in lineas if ln]
+        return "\n".join(lineas) if lineas else texto
+
+    def _kokoro_speed_desde_velocidad_edge(self) -> float:
+        """Mapea el rate edge (p. ej. '-5%' → algo más lento) al parámetro speed de kokoro."""
+        raw = self.velocidad.strip().replace(" ", "")
+        match = re.fullmatch(r"([+-]?\d+(?:\.\d+)?)%", raw)
+        if not match:
+            return 0.92
+        pct = float(match.group(1))
+        # -5% en edge≈ ritmo algo más calmado ⇒ speed < 1.0
+        return float(max(0.65, min(1.3, 1.0 + pct / 100.0)))
 
     # ========================================================================
     # GENERACIÓN TTS
@@ -219,10 +272,11 @@ class NarradorTTS:
           - audio es un numpy array float32, sample rate 24000 Hz
 
         Esta implementación:
-          1. Divide el texto en párrafos para manejar textos largos sin OOM.
-          2. Concatena todos los chunks de audio en un solo array float32.
-          3. Exporta a WAV 44100 Hz mono (vía pydub) para que el
-             AudioProcessor lo procese igual que el audio de edge-tts.
+          1. Una línea = una oración (preprocesado kokoro): evita pegar todas
+             las yields del modelo sin huecos audibles entre frases.
+          2. Entre líneas inserta silencio explícito (24 kHz) — ritmo tipo relato.
+          3. Usa `speed` derivado del mismo dial de velocidad que edge (`-5%`…).
+          4. Resample a la frecuencia del AudioProcessor igual que edge-tts.
         """
         try:
             import soundfile as sf
@@ -237,6 +291,14 @@ class NarradorTTS:
             ) from e
 
         KOKORO_SAMPLE_RATE = 24000
+        # Duración perceptible tipo “hueco narrativo”; terror suele funcionar algo por encima.
+        KOKORO_PAUSE_ENTRE_ORACIONES_S = 0.42
+
+        kokoro_speed = self._kokoro_speed_desde_velocidad_edge()
+        silencio_interlinea = np.zeros(
+            int(KOKORO_SAMPLE_RATE * KOKORO_PAUSE_ENTRE_ORACIONES_S),
+            dtype=np.float32,
+        )
 
         # Inicializar pipeline para español
         try:
@@ -247,59 +309,71 @@ class NarradorTTS:
                 f"Verifica que espeak-ng esté instalado correctamente. Error: {e}"
             ) from e
 
-        logger.info(f"Kokoro pipeline inicializado. Voz: {self.voz.voice_id}")
+        logger.info(
+            f"Kokoro pipeline inicializado. Voz: {self.voz.voice_id} | "
+            f"speed={kokoro_speed} (equiv. velocidad edge '{self.velocidad}')"
+        )
 
-        # Dividir texto en párrafos para evitar fragmentos demasiado largos
-        # (Kokoro funciona mejor con chunks de ~500 palabras o menos)
-        parrafos = [p.strip() for p in texto.split('\n') if p.strip()]
-        if not parrafos:
-            parrafos = [texto]
+        # Líneas = oraciones (~); silencio entre líneas para pausas de narrador.
+        oraciones_lineas = [p.strip() for p in texto.split("\n") if p.strip()]
+        if not oraciones_lineas:
+            oraciones_lineas = [texto]
 
-        all_audio_chunks: list[np.ndarray] = []
+        audio_por_oracion: list[np.ndarray] = []
 
-        for idx_parrafo, parrafo in enumerate(parrafos):
-            if not parrafo:
+        def _normalize_chunk(audio_chunk) -> np.ndarray:
+            """Kokoro puede devolver torch.Tensor o ndarray."""
+            try:
+                import torch
+                if isinstance(audio_chunk, torch.Tensor):
+                    return audio_chunk.detach().cpu().numpy().astype(np.float32)
+            except ImportError:
+                pass
+            return np.asarray(audio_chunk, dtype=np.float32)
+
+        for idx, linea in enumerate(oraciones_lineas):
+            if not linea:
                 continue
 
-            logger.debug(f"Kokoro procesando párrafo {idx_parrafo + 1}/{len(parrafos)}...")
+            logger.debug(f"Kokoro oración {idx + 1}/{len(oraciones_lineas)}...")
 
             try:
-                # API oficial: pipeline(text, voice, speed)
-                # El generator yield: (graphemes, phonemes, audio_array)
                 generator = pipeline(
-                    parrafo,
+                    linea,
                     voice=self.voz.voice_id,
-                    speed=1.0,
+                    speed=kokoro_speed,
                 )
 
+                intra_linea: list[np.ndarray] = []
                 for i, (gs, ps, audio) in enumerate(generator):
                     if audio is None or len(audio) == 0:
                         logger.debug(f"  Chunk {i} vacío, saltando.")
                         continue
-                    # Kokoro puede devolver torch.Tensor o np.ndarray según versión/SO.
-                    # Normalizar siempre a numpy float32.
-                    try:
-                        import torch
-                        if isinstance(audio, torch.Tensor):
-                            audio_np = audio.detach().cpu().numpy().astype(np.float32)
-                        else:
-                            audio_np = np.asarray(audio, dtype=np.float32)
-                    except ImportError:
-                        audio_np = np.asarray(audio, dtype=np.float32)
-                    all_audio_chunks.append(audio_np)
+                    intra_linea.append(_normalize_chunk(audio))
+
+                if not intra_linea:
+                    logger.warning(f"Sin audio para oración {idx + 1}, se omite.")
+                    continue
+
+                audio_por_oracion.append(np.concatenate(intra_linea))
 
             except Exception as e:
-                logger.warning(f"Error en párrafo {idx_parrafo + 1}: {e}. Saltando.")
+                logger.warning(f"Error en oración {idx + 1}: {e}. Saltando.")
                 continue
 
-        if not all_audio_chunks:
+        if not audio_por_oracion:
             raise RuntimeError(
                 "Kokoro no generó audio para ningún fragmento del texto. "
                 "Verifica que el texto no esté vacío y que la voz sea válida."
             )
 
-        # Concatenar todos los chunks
-        audio_combined = np.concatenate(all_audio_chunks)  # float32, 24000 Hz
+        with_pauses: list[np.ndarray] = []
+        for i, block in enumerate(audio_por_oracion):
+            with_pauses.append(block)
+            if i < len(audio_por_oracion) - 1:
+                with_pauses.append(silencio_interlinea)
+
+        audio_combined = np.concatenate(with_pauses)
 
         # Guardar WAV temporal en 24000 Hz (nativo de kokoro)
         temp_wav_24k = output_path.parent / "_temp_kokoro_24k.wav"
@@ -310,7 +384,8 @@ class NarradorTTS:
             f"TTS Kokoro generado: {temp_wav_24k.name} | "
             f"Duración: {duracion_seg:.1f}s | "
             f"Sample rate: {KOKORO_SAMPLE_RATE}Hz | "
-            f"Chunks: {len(all_audio_chunks)}"
+            f"Oraciones: {len(audio_por_oracion)} "
+            f"(pausa entre líneas {KOKORO_PAUSE_ENTRE_ORACIONES_S:.2f}s)"
         )
 
         # Resamplear a 44100 Hz mono (requerido por AudioProcessor / pedalboard)
