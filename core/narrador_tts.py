@@ -18,7 +18,12 @@ import edge_tts
 import numpy as np
 from pydub import AudioSegment
 
-from config import VozConfig, AudioProcessConfig, AUDIO_PROCESS_DEFAULT
+from config import (
+    VozConfig,
+    AudioProcessConfig,
+    AUDIO_PROCESS_DEFAULT,
+    KOKORO_NARRACION_DEFAULT,
+)
 from utils.logger import (
     get_logger,
     print_info,
@@ -46,11 +51,22 @@ class NarradorTTS:
         velocidad: str = "-5%",
         pitch: str = "-2Hz",
         audio_config: AudioProcessConfig = AUDIO_PROCESS_DEFAULT,
+        *,
+        kokoro_pausa_entre_oraciones_s: float | None = None,
+        kokoro_fade_union_ms: float | None = None,
+        kokoro_recorte_cola_relativo: float | None = None,
+        kokoro_speed: float | None = None,
     ):
         self.voz = voz_config
         self.velocidad = velocidad
         self.pitch = pitch
         self.audio_config = audio_config
+        # Solo motor kokoro; None = valores por defecto en _generar_tts_kokoro_sync
+        self.kokoro_pausa_entre_oraciones_s = kokoro_pausa_entre_oraciones_s
+        self.kokoro_fade_union_ms = kokoro_fade_union_ms
+        self.kokoro_recorte_cola_relativo = kokoro_recorte_cola_relativo
+        # None = derivar de `velocidad` estilo edge; float = pasar directo a KPipeline(speed=…)
+        self.kokoro_speed = kokoro_speed
 
     async def generar(self, texto: str, output_dir: Path) -> Path:
         """
@@ -209,6 +225,51 @@ class NarradorTTS:
         # -5% en edge≈ ritmo algo más calmado ⇒ speed < 1.0
         return float(max(0.65, min(1.3, 1.0 + pct / 100.0)))
 
+    @staticmethod
+    def _kokoro_recortar_colas_mudas(
+        audio: np.ndarray, rel_peak: float = 0.018
+    ) -> np.ndarray:
+        """
+        Quita silencio casi plano al inicio/fin de cada síntesis.
+        Si no se hace, el fundido actúa sobre tramos ya mudos y la unión
+        voz–pausa suena a 'tapón' o corte brusco.
+        """
+        if audio.size < 32:
+            return audio
+        peak = float(np.max(np.abs(audio)))
+        if peak < 1e-8:
+            return audio
+        thr = max(peak * rel_peak, 1e-5)
+        idx = np.nonzero(np.abs(audio) > thr)[0]
+        if idx.size == 0:
+            return audio
+        return np.ascontiguousarray(audio[idx[0] : idx[-1] + 1], dtype=np.float32)
+
+    @staticmethod
+    def _kokoro_fundir_bordes(
+        audio: np.ndarray,
+        sample_rate: int,
+        fade_ms: float,
+        *,
+        fundir_entrada: bool,
+        fundir_salida: bool,
+    ) -> np.ndarray:
+        """
+        Fundidos cortos (sen² / cos²) para evitar discontinuidades que el oído
+        percibe como clic al pasar de habla a silencio o viceversa.
+        """
+        n = max(3, int(sample_rate * fade_ms * 0.001))
+        out = np.ascontiguousarray(audio, dtype=np.float32).copy()
+        if len(out) <= n * 2:
+            return out
+        if fundir_entrada:
+            t = np.linspace(0.0, np.pi / 2, n, dtype=np.float32)
+            out[:n] *= np.sin(t) ** 2
+        if fundir_salida:
+            t = np.linspace(0.0, np.pi / 2, n, dtype=np.float32)
+            out[-n:] *= np.cos(t) ** 2
+        return out
+
     # ========================================================================
     # GENERACIÓN TTS
     # ========================================================================
@@ -275,8 +336,9 @@ class NarradorTTS:
           1. Una línea = una oración (preprocesado kokoro): evita pegar todas
              las yields del modelo sin huecos audibles entre frases.
           2. Entre líneas inserta silencio explícito (24 kHz) — ritmo tipo relato.
-          3. Usa `speed` derivado del mismo dial de velocidad que edge (`-5%`…).
-          4. Resample a la frecuencia del AudioProcessor igual que edge-tts.
+          3. Recorte de colas mudas + fundidos de borde para evitar clics entre trozos.
+          4. Usa `speed` derivado del mismo dial de velocidad que edge (`-5%`…).
+          5. Resample a la frecuencia del AudioProcessor igual que edge-tts.
         """
         try:
             import soundfile as sf
@@ -292,9 +354,31 @@ class NarradorTTS:
 
         KOKORO_SAMPLE_RATE = 24000
         # Duración perceptible tipo “hueco narrativo”; terror suele funcionar algo por encima.
-        KOKORO_PAUSE_ENTRE_ORACIONES_S = 0.42
+        kd = KOKORO_NARRACION_DEFAULT
+        KOKORO_PAUSE_ENTRE_ORACIONES_S = (
+            self.kokoro_pausa_entre_oraciones_s
+            if self.kokoro_pausa_entre_oraciones_s is not None
+            else kd.pausa_entre_oraciones_s
+        )
+        # Fundido en uniones oración–pausa–oración (evita clics).
+        KOKORO_FADE_UNION_MS = (
+            self.kokoro_fade_union_ms
+            if self.kokoro_fade_union_ms is not None
+            else kd.fade_union_ms
+        )
+        recorte_rel = (
+            self.kokoro_recorte_cola_relativo
+            if self.kokoro_recorte_cola_relativo is not None
+            else kd.recorte_cola_relativo
+        )
 
-        kokoro_speed = self._kokoro_speed_desde_velocidad_edge()
+        if self.kokoro_speed is not None:
+            kokoro_speed = float(max(0.5, min(1.5, self.kokoro_speed)))
+            origen_speed = f"fijo={kokoro_speed}"
+        else:
+            kokoro_speed = self._kokoro_speed_desde_velocidad_edge()
+            origen_speed = f"desde edge '{self.velocidad}' → {kokoro_speed}"
+
         silencio_interlinea = np.zeros(
             int(KOKORO_SAMPLE_RATE * KOKORO_PAUSE_ENTRE_ORACIONES_S),
             dtype=np.float32,
@@ -311,7 +395,7 @@ class NarradorTTS:
 
         logger.info(
             f"Kokoro pipeline inicializado. Voz: {self.voz.voice_id} | "
-            f"speed={kokoro_speed} (equiv. velocidad edge '{self.velocidad}')"
+            f"speed={kokoro_speed} ({origen_speed})"
         )
 
         # Líneas = oraciones (~); silencio entre líneas para pausas de narrador.
@@ -355,7 +439,14 @@ class NarradorTTS:
                     logger.warning(f"Sin audio para oración {idx + 1}, se omite.")
                     continue
 
-                audio_por_oracion.append(np.concatenate(intra_linea))
+                bloque = self._kokoro_recortar_colas_mudas(
+                    np.concatenate(intra_linea), rel_peak=recorte_rel
+                )
+                if bloque.size == 0:
+                    logger.warning(f"Audio vacío tras recorte en oración {idx + 1}, se omite.")
+                    continue
+
+                audio_por_oracion.append(bloque)
 
             except Exception as e:
                 logger.warning(f"Error en oración {idx + 1}: {e}. Saltando.")
@@ -366,6 +457,17 @@ class NarradorTTS:
                 "Kokoro no generó audio para ningún fragmento del texto. "
                 "Verifica que el texto no esté vacío y que la voz sea válida."
             )
+
+        audio_por_oracion = [
+            self._kokoro_fundir_bordes(
+                blk,
+                KOKORO_SAMPLE_RATE,
+                KOKORO_FADE_UNION_MS,
+                fundir_entrada=i > 0,
+                fundir_salida=True,
+            )
+            for i, blk in enumerate(audio_por_oracion)
+        ]
 
         with_pauses: list[np.ndarray] = []
         for i, block in enumerate(audio_por_oracion):
@@ -385,7 +487,8 @@ class NarradorTTS:
             f"Duración: {duracion_seg:.1f}s | "
             f"Sample rate: {KOKORO_SAMPLE_RATE}Hz | "
             f"Oraciones: {len(audio_por_oracion)} "
-            f"(pausa entre líneas {KOKORO_PAUSE_ENTRE_ORACIONES_S:.2f}s)"
+            f"(pausa {KOKORO_PAUSE_ENTRE_ORACIONES_S:.2f}s, "
+            f"fundido uniones {KOKORO_FADE_UNION_MS:.0f}ms)"
         )
 
         # Resamplear a 44100 Hz mono (requerido por AudioProcessor / pedalboard)

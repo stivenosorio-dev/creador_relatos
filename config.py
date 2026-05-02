@@ -233,6 +233,35 @@ VOCES_DISPONIBLES = {
 VOZ_DEFAULT = "jorge"  # es-MX-JorgeNeural — la mejor para terror latino
 
 
+@dataclass(frozen=True)
+class KokoroNarracionDefaults:
+    """
+    Valores por defecto del motor Kokoro en NarradorTTS (GUI y CLI).
+    Calibrados para relatos; editar aquí si cambias el punto óptimo en test_kokoro_config.
+    """
+
+    speed: float = 0.85
+    pausa_entre_oraciones_s: float = 0.50
+    fade_union_ms: float = 25.0
+    recorte_cola_relativo: float = 0.020
+
+
+KOKORO_NARRACION_DEFAULT = KokoroNarracionDefaults()
+
+
+def narrador_tts_kwargs_para_voz(voz: VozConfig) -> dict:
+    """kwargs extra para NarradorTTS cuando la voz usa motor kokoro (vacío si edge-tts)."""
+    if voz.motor != "kokoro":
+        return {}
+    k = KOKORO_NARRACION_DEFAULT
+    return {
+        "kokoro_speed": k.speed,
+        "kokoro_pausa_entre_oraciones_s": k.pausa_entre_oraciones_s,
+        "kokoro_fade_union_ms": k.fade_union_ms,
+        "kokoro_recorte_cola_relativo": k.recorte_cola_relativo,
+    }
+
+
 # ============================================================================
 # CONFIGURACIÓN DE POST-PROCESAMIENTO DE AUDIO
 # ============================================================================

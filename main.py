@@ -33,6 +33,7 @@ from config import (
     VOZ_DEFAULT,
     OUTPUT_DIR,
     recomendar_plataforma,
+    narrador_tts_kwargs_para_voz,
 )
 from utils.logger import (
     setup_logger,
@@ -217,7 +218,9 @@ def crear(relato, plataforma, voz, modelo, velocidad_voz, output):
 
     try:
         from core.narrador_tts import NarradorTTS
-        narrador = NarradorTTS(voz_config, velocidad_voz)
+        narrador = NarradorTTS(
+            voz_config, velocidad_voz, **narrador_tts_kwargs_para_voz(voz_config)
+        )
         audio_path = asyncio.run(narrador.generar(texto_relato, output_path))
         print_success(f"Audio generado: {audio_path}")
 
@@ -310,7 +313,7 @@ def audio(relato, voz, velocidad, output):
     print_header("GENERANDO AUDIO NARRATIVO")
 
     from core.narrador_tts import NarradorTTS
-    narrador = NarradorTTS(voz_config, velocidad)
+    narrador = NarradorTTS(voz_config, velocidad, **narrador_tts_kwargs_para_voz(voz_config))
     audio_path = asyncio.run(narrador.generar(texto, output_path))
     duracion = narrador.obtener_duracion(audio_path)
 

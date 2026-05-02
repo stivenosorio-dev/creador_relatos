@@ -8,7 +8,14 @@ from pathlib import Path
 from datetime import datetime
 
 # Importar lógica del proyecto
-from config import PLATAFORMAS, VOCES_DISPONIBLES, VOZ_DEFAULT, OUTPUT_DIR, MOTORES_TTS
+from config import (
+    PLATAFORMAS,
+    VOCES_DISPONIBLES,
+    VOZ_DEFAULT,
+    OUTPUT_DIR,
+    MOTORES_TTS,
+    narrador_tts_kwargs_para_voz,
+)
 from core.narrador_tts import NarradorTTS
 from core.transcriptor import Transcriptor
 from core.script_director import ScriptDirector
@@ -168,7 +175,7 @@ class AppParanormal(tk.Tk):
             self._log(f"🎙️ Paso 1: Generando narración premium ({voz_config.nombre} / {voz_config.motor})...")
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-            narrador = NarradorTTS(voz_config)
+            narrador = NarradorTTS(voz_config, **narrador_tts_kwargs_para_voz(voz_config))
             audio_path = loop.run_until_complete(narrador.generar(texto, out_dir))
             duracion_seg = narrador.obtener_duracion(audio_path)
             duracion_str = f"{int(duracion_seg // 60):02d}:{int(duracion_seg % 60):02d}"
@@ -178,7 +185,7 @@ class AppParanormal(tk.Tk):
             # --- SUBTÍTULOS ---
             self._log("📝 Paso 2: Transcribiendo subtítulos (faster-whisper)...")
             transcriptor = Transcriptor()
-            srt_path, ass_path = transcriptor.generar(audio_path, out_dir)
+            srt_path, ass_path = transcriptor.generar(audio_path, out_dir, plataforma=plataforma)
             self._log("✅ Subtítulos sincronizados (.srt y .ass)")
             memory_manager.post_module_cleanup("Transcriptor")
 
